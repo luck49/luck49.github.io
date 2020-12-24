@@ -15,7 +15,7 @@ div{-webkit-tap-highlight-color:rgba(0,0,0,0);}
 .clear{clear:both;float:none;}
 .hidden{display:none;}
 .transparent{opacity:0;}
-.bg{position:absolute;top:0px;left:-640px;z-index:1000;width:1280px;height:1007px;background:url('bg.jpg') no-repeat;}
+.bg{position:absolute;top:0px;left:-640px;z-index:1000;width:1280px;height:1007px;background:url('snow_bg_5.png') no-repeat;}
 .animation1,.animation2,.animation3{position:absolute;top:0px;left:0px;z-index:1001;width:100%;height:100%;}
 .animation2,.animation3{display:none;}
 .animation1 .title{position:absolute;top:30px;left:90px;width:448px;height:167px;background:url('title_1.png') no-repeat;}
