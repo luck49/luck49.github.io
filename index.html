@@ -3,662 +3,1106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>北京-承德-赤峰-乌兰布统-古北水镇 7天自驾游攻略</title>
+<title>新西兰南北岛双人自由行攻略 · 14天（含鲁冰花）</title>
 <style>
-  :root{
-    --orange:#e8813a; --orange-d:#d4692a; --gold:#f0b23e; --sky:#5aa9e6;
-    --ink:#33302b; --sub:#7a7268; --bg:#faf6ef; --card:#ffffff;
-    --green:#7fa650; --red:#c94f3d; --blue:#3d7dc9;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;}
-  img,svg{display:block;max-width:100%;}
-
-  /* ===== Hero ===== */
-  .hero{position:relative;overflow:hidden;}
-  .hero svg{width:100%;height:auto;}
-  .hero-mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,20,8,.05) 40%,rgba(30,20,8,.62));}
-  .hero-text{position:absolute;left:0;right:0;bottom:0;padding:36px 5vw;color:#fff;}
-  .hero-text .kicker{font-size:14px;letter-spacing:4px;opacity:.9;}
-  .hero-text h1{font-size:clamp(26px,4.2vw,44px);font-weight:800;margin:6px 0 14px;text-shadow:0 2px 12px rgba(0,0,0,.35);}
-  .hero-stats{display:flex;flex-wrap:wrap;gap:10px;}
-  .chip{background:rgba(255,255,255,.18);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:6px 16px;font-size:14px;font-weight:600;}
-  .chip b{font-size:17px;}
-
-  /* ===== Nav ===== */
-  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid #eee3d2;overflow-x:auto;white-space:nowrap;}
-  nav .inner{display:flex;gap:4px;padding:10px 5vw;}
-  nav a{color:var(--sub);text-decoration:none;font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px;transition:.2s;}
-  nav a:hover{background:#f6e9d4;color:var(--orange-d);}
-  nav a.hl{background:var(--orange);color:#fff;}
-
-  .wrap{max-width:1080px;margin:0 auto;padding:0 20px;}
-  section{padding:44px 0 8px;}
-  .sec-title{display:flex;align-items:center;gap:12px;margin-bottom:22px;}
-  .sec-title .bar{width:8px;height:30px;border-radius:4px;background:linear-gradient(180deg,var(--gold),var(--orange));}
-  .sec-title h2{font-size:26px;font-weight:800;}
-  .sec-title small{color:var(--sub);font-weight:500;margin-left:auto;font-size:14px;}
-
-  /* ===== Route chain ===== */
-  .route-chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;background:var(--card);border-radius:18px;padding:22px;box-shadow:0 4px 18px rgba(180,130,60,.10);}
-  .stop{background:#fdf3e3;border:1.5px solid #f0d9ae;color:#8a5a1d;font-weight:700;font-size:14px;padding:6px 14px;border-radius:999px;}
-  .stop.key{background:var(--orange);border-color:var(--orange);color:#fff;}
-  .arrow{color:#d8b878;font-weight:800;font-size:13px;}
-
-  /* ===== Overview table ===== */
-  .table-wrap{overflow-x:auto;border-radius:16px;box-shadow:0 4px 18px rgba(180,130,60,.10);}
-  table{width:100%;min-width:640px;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden;}
-  th{background:linear-gradient(90deg,var(--orange),var(--gold));color:#fff;font-size:14px;padding:12px 14px;text-align:left;}
-  td{padding:12px 14px;font-size:14.5px;border-bottom:1px solid #f3e9d8;vertical-align:top;}
-  tr:last-child td{border-bottom:none;}
-  tr:hover td{background:#fdf8ef;}
-  td.day{font-weight:800;color:var(--orange-d);white-space:nowrap;}
-  td .km{color:var(--sub);font-size:13px;}
-  .tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;margin-left:6px;vertical-align:middle;}
-  .tag.hot{background:#fdeaea;color:var(--red);}
-  .tag.free{background:#e9f5e3;color:#4c8a2f;}
-  .tag.warn{background:#fff6e0;color:#b07d10;}
-
-  /* ===== Day cards ===== */
-  .day-card{background:var(--card);border-radius:22px;box-shadow:0 6px 24px rgba(180,130,60,.12);overflow:hidden;margin-bottom:36px;}
-  .day-head{display:flex;align-items:baseline;gap:14px;padding:22px 28px 0;flex-wrap:wrap;}
-  .day-badge{background:linear-gradient(135deg,var(--orange),var(--gold));color:#fff;font-weight:800;font-size:15px;border-radius:12px;padding:6px 14px;box-shadow:0 3px 8px rgba(230,130,50,.35);}
-  .day-head h3{font-size:21px;font-weight:800;}
-  .day-meta{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;}
-  .meta-pill{font-size:12.5px;font-weight:700;padding:4px 12px;border-radius:999px;background:#f3ede2;color:#8a7a5c;}
-  .meta-pill.drive{background:#e8f1fb;color:var(--blue);}
-  .meta-pill.bed{background:#fdeee6;color:var(--orange-d);}
-  .day-body{display:grid;grid-template-columns:1.05fr .95fr;gap:0;padding:20px 28px 26px;}
-  .day-body.rev{grid-template-columns:.95fr 1.05fr;}
-  .day-pics{display:flex;flex-direction:column;gap:12px;padding-right:22px;}
-  .day-body.rev .day-pics{order:2;padding-right:0;padding-left:22px;}
-  .pic{border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(120,90,40,.15);}
-  .pic figcaption{font-size:12.5px;color:var(--sub);text-align:center;padding:7px 8px;background:#fdf8ef;font-weight:600;}
-  .timeline{border-left:3px solid #f0dcb8;padding-left:0;display:flex;flex-direction:column;gap:0;}
-  .tl-item{position:relative;padding:7px 0 7px 22px;font-size:14.5px;}
-  .tl-item::before{content:"";position:absolute;left:-7px;top:15px;width:11px;height:11px;border-radius:50%;background:#fff;border:3px solid var(--orange);}
-  .tl-item .t{font-weight:800;color:var(--orange-d);margin-right:8px;font-variant-numeric:tabular-nums;}
-  .tl-item b{color:var(--ink);}
-  .tl-note{background:#fdf6e9;border-radius:12px;padding:10px 14px;font-size:13.5px;color:#8a6a2f;margin-top:10px;}
-  .tl-note::before{content:"💡 ";}
-  .tl-warn{background:#fdeeee;border-radius:12px;padding:10px 14px;font-size:13.5px;color:#a0432f;margin-top:10px;}
-  .tl-warn::before{content:"⚠️ ";}
-
-  /* ===== Budget ===== */
-  .budget-total{background:linear-gradient(90deg,#fff3df,#fde8cf);border:1.5px dashed var(--orange);border-radius:14px;padding:16px 22px;margin-top:16px;font-size:16px;font-weight:700;color:var(--orange-d);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
-  .budget-total b{font-size:24px;}
-
-  /* ===== Checklist ===== */
-  .todo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;}
-  .todo{background:var(--card);border-radius:16px;padding:18px 20px;box-shadow:0 4px 14px rgba(180,130,60,.10);font-size:14.5px;display:flex;gap:12px;}
-  .todo .no{flex:none;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--gold));color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px;}
-  .rules{background:#2f2a24;color:#f5ead6;border-radius:18px;padding:24px 26px;margin-top:20px;}
-  .rules h4{color:var(--gold);font-size:17px;margin-bottom:10px;}
-  .rules p{font-size:14.5px;margin:6px 0;}
-  .rules b{color:#ffd98a;}
-
-  footer{text-align:center;color:var(--sub);font-size:13px;padding:40px 20px 60px;}
-  footer .src{margin-top:6px;font-size:12px;opacity:.8;}
-
-  @media (max-width:820px){
-    .day-body,.day-body.rev{grid-template-columns:1fr;}
-    .day-pics,.day-body.rev .day-pics{padding:0 0 18px;order:0;}
-    .day-meta{margin-left:0;width:100%;}
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #f5f7fa;
+    color: #2c3e50;
+    line-height: 1.8;
+    padding: 20px;
   }
-  @media print{
-    nav{display:none;}
-    .day-card{break-inside:avoid;box-shadow:none;border:1px solid #eee;}
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* 头部 */
+  .hero {
+    background: linear-gradient(135deg, #1a5f7a 0%, #2d8b8b 50%, #3ba89f 100%);
+    color: #fff;
+    border-radius: 16px;
+    padding: 48px 40px;
+    margin-bottom: 32px;
+    box-shadow: 0 8px 32px rgba(26, 95, 122, 0.25);
+  }
+  .hero h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+  .hero p {
+    font-size: 15px;
+    opacity: 0.92;
+    margin-bottom: 6px;
+  }
+  .hero .tags {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .hero .tags span {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 13px;
+  }
+
+  /* 总览表 */
+  .overview {
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .overview h2 {
+    font-size: 20px;
+    color: #1a5f7a;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e8f0f2;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  thead th {
+    background: #1a5f7a;
+    color: #fff;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  thead th:first-child { border-radius: 8px 0 0 0; }
+  thead th:last-child { border-radius: 0 8px 0 0; }
+  tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eef2f5;
+  }
+  tbody tr:hover {
+    background: #f0f8fa;
+  }
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* 每日卡片 */
+  .day-card {
+    background: #fff;
+    border-radius: 14px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    overflow: hidden;
+    border-left: 5px solid #2d8b8b;
+  }
+  .day-header {
+    background: #e8f4f6;
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .day-header .day-num {
+    background: #1a5f7a;
+    color: #fff;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .day-header .day-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1a5f7a;
+  }
+  .day-header .day-date {
+    font-size: 13px;
+    color: #5a7a8a;
+    margin-left: auto;
+    background: #fff;
+    padding: 3px 12px;
+    border-radius: 12px;
+    border: 1px solid #cde0e4;
+  }
+  .day-body {
+    padding: 22px 28px 26px;
+  }
+
+  /* 时间轴 */
+  .timeline {
+    position: relative;
+    padding-left: 26px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: #cde0e4;
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 16px;
+  }
+  .tl-item:last-child {
+    margin-bottom: 0;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -22px;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #2d8b8b;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #2d8b8b;
+  }
+  .tl-item .tl-time {
+    display: inline-block;
+    background: #1a5f7a;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+  }
+  .tl-item .tl-content {
+    font-size: 14.5px;
+    color: #3a4a5a;
+  }
+  .tl-item .tl-content strong {
+    color: #1a5f7a;
+  }
+
+  /* 信息标签 */
+  .info-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .info-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #f0f8fa;
+    border: 1px solid #d4e8ec;
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 13px;
+    color: #2c5f6f;
+  }
+  .info-tag .icon {
+    font-size: 14px;
+  }
+
+  .highlight-box {
+    background: #fff8e6;
+    border-left: 4px solid #f0b429;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 18px;
+    margin-top: 14px;
+    font-size: 13.5px;
+    color: #6b5a1e;
+  }
+  .highlight-box strong {
+    color: #b8860b;
+  }
+
+  .warn-box {
+    background: #fef0ef;
+    border-left: 4px solid #e74c3c;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 18px;
+    margin-top: 14px;
+    font-size: 13.5px;
+    color: #8b3a35;
+  }
+
+  .lupin-box {
+    background: #f3ecfa;
+    border-left: 4px solid #9b59b6;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 18px;
+    margin-top: 14px;
+    font-size: 13.5px;
+    color: #5b3a7a;
+  }
+  .lupin-box strong {
+    color: #7d3c98;
+  }
+
+  /* 费用表 */
+  .cost-section {
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .cost-section h2 {
+    font-size: 20px;
+    color: #1a5f7a;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e8f0f2;
+  }
+  .cost-table tfoot td {
+    font-weight: 700;
+    background: #e8f4f6;
+    color: #1a5f7a;
+    font-size: 15px;
+    padding: 14px 12px;
+  }
+
+  /* 预约清单 */
+  .booking-section {
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .booking-section h2 {
+    font-size: 20px;
+    color: #1a5f7a;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e8f0f2;
+  }
+  .booking-list {
+    list-style: none;
+    counter-reset: booking;
+  }
+  .booking-list li {
+    counter-increment: booking;
+    position: relative;
+    padding: 12px 0 12px 48px;
+    border-bottom: 1px dashed #e0eaee;
+    font-size: 14.5px;
+  }
+  .booking-list li:last-child {
+    border-bottom: none;
+  }
+  .booking-list li::before {
+    content: counter(booking);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 28px;
+    height: 28px;
+    background: #1a5f7a;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .booking-list li strong {
+    color: #1a5f7a;
+  }
+  .booking-list li .deadline {
+    display: inline-block;
+    background: #fef0ef;
+    color: #c0392b;
+    font-size: 12px;
+    padding: 1px 8px;
+    border-radius: 8px;
+    margin-left: 8px;
+  }
+
+  /* 注意事项 */
+  .tips-section {
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .tips-section h2 {
+    font-size: 20px;
+    color: #1a5f7a;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e8f0f2;
+  }
+  .tips-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .tip-card {
+    background: #f8fbfc;
+    border-radius: 10px;
+    padding: 18px 20px;
+    border: 1px solid #e4eef1;
+  }
+  .tip-card h3 {
+    font-size: 15px;
+    color: #1a5f7a;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tip-card p, .tip-card ul {
+    font-size: 13.5px;
+    color: #4a5a6a;
+  }
+  .tip-card ul {
+    padding-left: 18px;
+  }
+  .tip-card ul li {
+    margin-bottom: 4px;
+  }
+
+  /* 页脚 */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 13px;
+    color: #8a9aaa;
+  }
+
+  /* 响应式 */
+  @media (max-width: 640px) {
+    body { padding: 12px; }
+    .hero { padding: 28px 22px; }
+    .hero h1 { font-size: 22px; }
+    .day-header { padding: 14px 18px; }
+    .day-body { padding: 18px 18px 22px; }
+    .overview, .cost-section, .booking-section, .tips-section { padding: 20px 18px; }
+    .tips-grid { grid-template-columns: 1fr; }
+    .day-header .day-date { margin-left: 0; }
+    table { font-size: 12.5px; }
+    thead th, tbody td { padding: 8px 6px; }
   }
 </style>
 </head>
 <body>
+<div class="container">
 
-<!-- ===================== HERO ===================== -->
-<header class="hero">
-  <svg viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="草原自驾封面插画">
-    <defs>
-      <linearGradient id="cv-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#5fb2ec"/><stop offset="1" stop-color="#cdeafd"/>
-      </linearGradient>
-      <linearGradient id="cv-field" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#f2cd55"/><stop offset="1" stop-color="#e3a83c"/>
-      </linearGradient>
-    </defs>
-    <rect width="1200" height="500" fill="url(#cv-sky)"/>
-    <ellipse cx="220" cy="90" rx="90" ry="26" fill="#ffffff" opacity=".9"/>
-    <ellipse cx="300" cy="105" rx="70" ry="20" fill="#ffffff" opacity=".8"/>
-    <ellipse cx="920" cy="70" rx="110" ry="28" fill="#ffffff" opacity=".9"/>
-    <ellipse cx="1030" cy="95" rx="80" ry="22" fill="#ffffff" opacity=".8"/>
-    <path d="M0 240 Q 200 170 420 225 T 830 210 T 1200 235 V500 H0 Z" fill="#c9d98c"/>
-    <path d="M0 290 Q 260 220 520 275 T 1200 285 V500 H0 Z" fill="url(#cv-field)"/>
-    <path d="M0 340 Q 300 290 640 330 T 1200 345 V500 H0 Z" fill="#eabf4b"/>
-    <!-- birches -->
-    <g>
-      <rect x="86" y="235" width="10" height="120" fill="#f4f1e6"/>
-      <rect x="88" y="252" width="7" height="6" fill="#4a4a4a"/><rect x="88" y="282" width="7" height="6" fill="#4a4a4a"/><rect x="88" y="315" width="7" height="6" fill="#4a4a4a"/>
-      <circle cx="91" cy="222" r="34" fill="#f2b93b"/><circle cx="70" cy="238" r="22" fill="#e8a02e"/>
-      <rect x="150" y="255" width="8" height="95" fill="#f4f1e6"/>
-      <rect x="151" y="270" width="6" height="5" fill="#4a4a4a"/><rect x="151" y="300" width="6" height="5" fill="#4a4a4a"/>
-      <circle cx="154" cy="243" r="26" fill="#e8973a"/>
-    </g>
-    <!-- sheep -->
-    <g fill="#ffffff">
-      <ellipse cx="980" cy="330" rx="14" ry="9"/><ellipse cx="1020" cy="345" rx="12" ry="8"/><ellipse cx="940" cy="350" rx="12" ry="8"/><ellipse cx="1060" cy="325" rx="11" ry="7"/>
-    </g>
-    <g fill="#3c3c3c"><ellipse cx="880" cy="352" rx="13" ry="9"/><ellipse cx="830" cy="342" rx="11" ry="8"/></g>
-    <!-- road -->
-    <path d="M430 500 C 520 400 700 380 760 320 C 800 280 780 262 740 252 L 790 246 C 850 260 870 292 830 340 C 760 420 620 430 560 500 Z" fill="#8d8d94"/>
-    <path d="M505 480 C 580 410 720 395 790 330" stroke="#f7d54d" stroke-width="6" stroke-dasharray="26 22" fill="none"/>
-    <!-- car -->
-    <g transform="translate(618,368)">
-      <rect x="0" y="14" width="86" height="26" rx="10" fill="#ffffff"/>
-      <rect x="16" y="2" width="52" height="20" rx="8" fill="#ffffff"/>
-      <rect x="21" y="6" width="20" height="13" rx="4" fill="#9fc9e8"/>
-      <rect x="46" y="6" width="18" height="13" rx="4" fill="#9fc9e8"/>
-      <circle cx="20" cy="40" r="9" fill="#3b3b3b"/><circle cx="66" cy="40" r="9" fill="#3b3b3b"/>
-      <circle cx="20" cy="40" r="4" fill="#cfcfcf"/><circle cx="66" cy="40" r="4" fill="#cfcfcf"/>
-    </g>
-  </svg>
-  <div class="hero-mask"></div>
-  <div class="hero-text">
-    <div class="kicker">国庆黄金周 · 草原+沙漠+皇家园林+长城水镇</div>
-    <h1>北京 → 承德 → 赤峰 → 乌兰布统 → 古北水镇<br>7 天自驾游攻略</h1>
-    <div class="hero-stats">
-      <span class="chip">🚗 总里程 <b>≈1850 km</b></span>
-      <span class="chip">📅 9.30 – 10.6 · <b>7 天</b></span>
-      <span class="chip">🔁 <b>环线</b> 不走回头路</span>
+  <!-- 头部 -->
+  <div class="hero">
+    <h1>🇳🇿 新西兰南北岛双人自由行攻略</h1>
+    <p>📅 10月17日 — 10月30日 · 14天13晚</p>
+    <p>✈️ 北京出发 · 奥克兰进出 · 不自驾 · InterCity巴士+国内航班</p>
+    <div class="tags">
+      <span>🚌 InterCity FlexiPass</span>
+      <span>🏔️ 库克山</span>
+      <span>💧 米尔福德峡湾</span>
+      <span>🪂 皇后镇跳伞</span>
+      <span>🧙 霍比特人村</span>
+      <span>✨ 怀托摩萤火虫洞</span>
+      <span>🌸 鲁冰花（10月下旬早花期）</span>
     </div>
   </div>
-</header>
 
-<nav><div class="inner">
-  <a href="#route" class="hl">路线总览</a>
-  <a href="#d1">D1 承德</a>
-  <a href="#d2">D2 玉龙沙湖</a>
-  <a href="#d3">D3 赤峰·温泉</a>
-  <a href="#d4">D4 热阿线·达达线</a>
-  <a href="#d5">D5 大青山·乌兰布统</a>
-  <a href="#d6">D6 公主湖·古北水镇</a>
-  <a href="#d7">D7 返程</a>
-</div></nav>
-
-<div class="wrap">
-
-<!-- ===================== 路线骨架 ===================== -->
-<section id="route">
-  <div class="sec-title"><span class="bar"></span><h2>🗺️ 路线骨架</h2><small>总里程约 1850km · 环线不回头</small></div>
-  <div class="route-chain">
-    <span class="stop key">北京</span><span class="arrow">→</span>
-    <span class="stop key">承德</span><span class="arrow">→</span>
-    <span class="stop">玉龙沙湖</span><span class="arrow">→</span>
-    <span class="stop key">赤峰</span><span class="arrow">→</span>
-    <span class="stop">大板</span><span class="arrow">→</span>
-    <span class="stop key">热水塘</span><span class="arrow">→</span>
-    <span class="stop">热阿线</span><span class="arrow">→</span>
-    <span class="stop">阿斯哈图石林</span><span class="arrow">→</span>
-    <span class="stop">达达线</span><span class="arrow">→</span>
-    <span class="stop">达里湖</span><span class="arrow">→</span>
-    <span class="stop key">经棚</span><span class="arrow">→</span>
-    <span class="stop">大青山</span><span class="arrow">→</span>
-    <span class="stop key">乌兰布统</span><span class="arrow">→</span>
-    <span class="stop">蛤蟆坝</span><span class="arrow">→</span>
-    <span class="stop key">古北水镇</span><span class="arrow">→</span>
-    <span class="stop key">北京</span>
+  <!-- 总览 -->
+  <div class="overview">
+    <h2>📋 行程总览</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>日期</th>
+          <th>行程</th>
+          <th>交通方式</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>10.17</td><td>北京 → 奥克兰</td><td>国际航班</td></tr>
+        <tr><td>10.18</td><td>16:35 落地奥克兰，晚上皇后街/天空塔夜景</td><td>步行</td></tr>
+        <tr><td>10.19</td><td>霍比特人村 + 怀托摩萤火虫洞一日游</td><td>一日游团</td></tr>
+        <tr><td>10.20</td><td>奥克兰 → 基督城</td><td>国内航班</td></tr>
+        <tr><td>10.21</td><td>基督城 → 蒂卡波湖 · 🌸 湖畔鲁冰花</td><td>InterCity 巴士</td></tr>
+        <tr><td>10.22</td><td>库克山一日游 · 🌸 普卡基湖鲁冰花</td><td>一日游团</td></tr>
+        <tr><td>10.23</td><td>蒂卡波湖 → 瓦纳卡 · 🌸 沿途公路花丛</td><td>InterCity + Ritchies</td></tr>
+        <tr><td>10.24</td><td>瓦纳卡 → 皇后镇 · 🌸 Lindis River 沿途</td><td>InterCity 巴士</td></tr>
+        <tr><td>10.25</td><td>皇后镇：跳伞 + Skyline + Luge</td><td>步行/缆车</td></tr>
+        <tr><td>10.26</td><td>米尔福德峡湾一日游</td><td>一日游团</td></tr>
+        <tr><td>10.27</td><td>皇后镇 → 格林诺奇 / 箭镇</td><td>巴士/一日游</td></tr>
+        <tr><td>10.28</td><td>皇后镇自由日 · 🌸 花园/湖边找花</td><td>步行/公交</td></tr>
+        <tr><td>10.29</td><td>皇后镇上午自由活动 → 傍晚飞奥克兰</td><td>国内航班</td></tr>
+        <tr><td>10.30</td><td>奥克兰市区一日游 → 晚上 22:00 飞北京</td><td>巴士/轮渡/步行</td></tr>
+      </tbody>
+    </table>
   </div>
 
-  <div style="height:26px"></div>
-  <div class="table-wrap">
-  <table>
-    <tr><th style="width:110px">日期</th><th>行程</th><th style="width:150px">驾驶</th><th style="width:140px">住宿</th></tr>
-    <tr><td class="day">9.30 周三</td><td>北京 → 承德（避暑山庄）</td><td>230km<span class="km"> / 3h</span></td><td>承德</td></tr>
-    <tr><td class="day">10.1 周四</td><td>承德 → 玉龙沙湖 → 赤峰</td><td>~430km<span class="km"> / 5h</span></td><td>赤峰</td></tr>
-    <tr><td class="day">10.2 周五</td><td>赤峰辽代博物馆 → 巴林右旗 → 热水塘</td><td>~350km<span class="km"> / 4h</span></td><td>热水塘（温泉）</td></tr>
-    <tr><td class="day">10.3 周六</td><td>热阿线 → 石林 → 达达线 → 达里湖 → 经棚</td><td>~260km<span class="km"> / 4.5h</span></td><td>经棚</td></tr>
-    <tr><td class="day">10.4 周日</td><td>经棚 → 大青山 → 乌兰布统</td><td>~170km<span class="km"> / 3h+景区</span></td><td>乌兰布统</td></tr>
-    <tr><td class="day">10.5 周一</td><td>公主湖 → 蛤蟆坝/桦木沟 → 古北水镇</td><td>~400km<span class="km"> / 5h</span></td><td>古北水镇/密云</td></tr>
-    <tr><td class="day">10.6 周二</td><td>古北水镇 → 北京</td><td>140km<span class="km"> / 2h</span></td><td>到家 🏠</td></tr>
-  </table>
+  <!-- Day 1 -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num">1</div>
+      <div class="day-title">北京 → 奥克兰</div>
+      <div class="day-date">10月17日</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-content">从北京搭乘国际航班飞往奥克兰，飞行时间约 <strong>12–13 小时</strong>。建议选择傍晚起飞的航班，在飞机上睡觉，落地后正好适应时差。</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-tag"><span class="icon">🏨</span> 住宿：奥克兰 CBD · Haka House Auckland 或 Adina CityLife Auckland</span>
+      </div>
+      <div class="warn-box">
+        <strong>⚠️ 入境提醒：</strong>新西兰对入境物品查验极严，任何动植物制品、蜂蜜、中药材、新鲜果蔬<strong>必须申报</strong>，未申报被查到最低罚款 <strong>400 纽币</strong>。飞机上发的入境卡要认真填写。
+      </div>
+    </div>
   </div>
-</section>
 
-<!-- ===================== 逐日行程 ===================== -->
-<section>
-  <div class="sec-title"><span class="bar"></span><h2>📅 逐日详细行程</h2><small>按钟点走，节奏刚刚好</small></div>
-
-  <!-- D1 -->
-  <article class="day-card" id="d1">
-    <div class="day-head">
-      <span class="day-badge">D1 · 9.30 周三</span>
-      <h3>北京 → 承德 ｜ 避暑山庄·小布达拉宫</h3>
-      <div class="day-meta"><span class="meta-pill drive">🚗 230km / 3h</span><span class="meta-pill bed">🛏 宿承德</span></div>
+  <!-- Day 2 -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num">2</div>
+      <div class="day-title">16:35 落地奥克兰 · 皇后街夜景</div>
+      <div class="day-date">10月18日</div>
     </div>
     <div class="day-body">
-      <div class="day-pics">
-        <figure class="pic">
-          <svg viewBox="0 0 800 450">
-            <defs><linearGradient id="cd-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8ecdf0"/><stop offset="1" stop-color="#e3f3fb"/></linearGradient></defs>
-            <rect width="800" height="450" fill="url(#cd-sky)"/>
-            <path d="M0 200 Q 180 120 360 180 T 800 175 V260 H0 Z" fill="#8fb96a"/>
-            <path d="M0 235 Q 220 170 460 220 T 800 225 V280 H0 Z" fill="#6d9c4f"/>
-            <!-- temple on hill -->
-            <g transform="translate(560,120)">
-              <rect x="0" y="30" width="130" height="45" fill="#b03a2e"/>
-              <path d="M-12 30 Q 65 -6 142 30 L 130 22 Q 65 -12 0 22 Z" fill="#e8a92e"/>
-              <rect x="48" y="45" width="34" height="30" fill="#7e2a20"/>
-            </g>
-            <!-- lake -->
-            <rect y="280" width="800" height="170" fill="#7fb8d4"/>
-            <rect y="280" width="800" height="14" fill="#9ccbe0"/>
-            <path d="M0 330 Q 200 322 400 330 T 800 330" stroke="#a9d4e6" stroke-width="3" fill="none" opacity=".7"/>
-            <path d="M0 380 Q 200 372 400 380 T 800 380" stroke="#a9d4e6" stroke-width="3" fill="none" opacity=".5"/>
-            <!-- pavilion -->
-            <g transform="translate(300,208)">
-              <rect x="-90" y="62" width="180" height="16" fill="#efe8da"/>
-              <rect x="-70" y="10" width="140" height="54" fill="#b03a2e"/>
-              <rect x="-14" y="26" width="28" height="38" fill="#6e241b"/>
-              <rect x="-58" y="26" width="22" height="22" fill="#f2d488"/>
-              <rect x="36" y="26" width="22" height="22" fill="#f2d488"/>
-              <path d="M-88 10 Q 0 -34 88 10 L 70 0 Q 0 -44 -70 0 Z" fill="#e8a92e"/>
-              <rect x="-6" y="-34" width="12" height="14" fill="#c9871f"/>
-              <rect x="-70" y="64" width="140" height="10" fill="#b03a2e" opacity=".25" transform="translate(0,96) scale(1,-1)"/>
-            </g>
-            <!-- willow -->
-            <g stroke="#5c8a3c" stroke-width="7" fill="none" stroke-linecap="round">
-              <path d="M60 250 q -8 70 -20 105"/><path d="M85 252 q 2 72 -6 108"/><path d="M110 250 q 10 70 4 106"/><path d="M135 255 q 16 62 12 100"/>
-            </g>
-            <path d="M40 250 Q 100 210 160 250 L 150 262 Q 100 228 50 262 Z" fill="#6d9c4f"/>
-            <rect x="94" y="250" width="12" height="34" fill="#7a5b3a"/>
-            <!-- reflection -->
-            <g opacity=".35" transform="translate(0,556) scale(1,-0.42)">
-              <rect x="230" y="280" width="140" height="54" fill="#b03a2e"/>
-            </g>
-          </svg>
-          <figcaption>避暑山庄湖区 · 烟雨楼</figcaption>
-        </figure>
-      </div>
       <div class="timeline">
-        <div class="tl-item"><span class="t">06:30</span>出门早餐、装车</div>
-        <div class="tl-item"><span class="t">07:00</span>准时出发：京承高速 G45 北上，节前最后工作日早高峰出城方向基本顺畅（中途太子服务区休息一次）</div>
-        <div class="tl-item"><span class="t">10:00</span>抵承德市区，酒店放行李（建议住<b>避暑山庄丽正门附近</b>，步行可达）</div>
-        <div class="tl-item"><span class="t">10:30</span>午餐：老三羊汤（羊汤+烧饼，人均25）</div>
-        <div class="tl-item"><span class="t">11:30</span><b>避暑山庄</b>（丽正门进）：宫殿区（澹泊敬诚殿，金丝楠木大殿）→ 博物馆 → 湖区（环碧、烟雨楼，可乘游船约40/人）→ 平原区万树园 → 试马埭。出园前在<b>南山积雪亭</b>俯瞰外八庙全景。门票130，60岁以上免票；<b>务必提前在公众号「避暑山庄及周围寺庙」约好时段票，刷身份证入园</b></div>
-        <div class="tl-item"><span class="t">16:00</span>（可选）加游<b>普陀宗乘之庙</b>（小布达拉宫，门票80，1.5h）——就是在南山积雪亭看到的那片红台白台</div>
-        <div class="tl-item"><span class="t">18:00</span>晚餐：大清花饺子 / 御土荷叶鸡</div>
-        <div class="tl-item"><span class="t">20:00</span>（可选）《鼎盛王朝·康熙大典》实景演出（约1.5h，198–280元，提前一天公众号购票）</div>
-        <div class="tl-warn">今日是高速免费前一天，过路费约 100 元。</div>
+        <div class="tl-item">
+          <div class="tl-time">16:35</div>
+          <div class="tl-content">抵达奥克兰国际机场。入境取行李约 <strong>1–1.5 小时</strong>。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">18:00</div>
+          <div class="tl-content">机场到市区：<strong>SkyDrive 巴士</strong>约 30–45 分钟，或打车约 30 分钟（50–70 纽币）。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">19:00</div>
+          <div class="tl-content">入住酒店后，步行逛 <strong>皇后街 Queen Street</strong>，从奢牌到新西兰特产店都有。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">20:00</div>
+          <div class="tl-content">步行到 <strong>Queens Wharf（皇后码头）</strong>，吹海港晚风，远眺天空塔夜景。步行约 10 分钟。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">20:30</div>
+          <div class="tl-content"><strong>晚餐推荐：</strong>Depot Eatery（生蚝、烤羊排）或 Elliott Stables 美食广场。</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-tag"><span class="icon">🚶</span> 步行：皇后街 → 皇后码头 约10分钟</span>
+        <span class="info-tag"><span class="icon">🏨</span> 住宿：奥克兰 CBD</span>
       </div>
     </div>
-  </article>
+  </div>
 
-  <!-- D2 -->
-  <article class="day-card" id="d2">
-    <div class="day-head">
-      <span class="day-badge">D2 · 10.1 周四</span>
-      <h3>承德 → 玉龙沙湖 → 赤峰 ｜ 白沙漠+碧湖</h3>
-      <div class="day-meta"><span class="meta-pill drive">🚗 ~430km / 5h</span><span class="meta-pill bed">🛏 宿赤峰</span></div>
-    </div>
-    <div class="day-body rev">
-      <div class="day-pics">
-        <figure class="pic">
-          <svg viewBox="0 0 800 450">
-            <defs><linearGradient id="sh-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4aa3e8"/><stop offset="1" stop-color="#bfe6fb"/></linearGradient></defs>
-            <rect width="800" height="450" fill="url(#sh-sky)"/>
-            <ellipse cx="620" cy="80" rx="90" ry="24" fill="#fff" opacity=".9"/>
-            <path d="M0 210 Q 150 120 330 190 T 800 185 V450 H0 Z" fill="#f6efdd"/>
-            <path d="M0 260 Q 220 190 460 250 T 800 255 V450 H0 Z" fill="#efe3c8"/>
-            <!-- lake -->
-            <path d="M330 300 Q 480 262 660 300 Q 700 320 660 345 Q 480 385 330 345 Q 290 322 330 300 Z" fill="#2fa8c9"/>
-            <path d="M360 315 Q 480 292 620 316" stroke="#7fd4e8" stroke-width="5" fill="none" opacity=".8"/>
-            <!-- camels -->
-            <g fill="#8a5a2e">
-              <g transform="translate(120,300)"><ellipse cx="0" cy="0" rx="26" ry="15"/><circle cx="24" cy="-14" r="8"/><rect x="20" y="-12" width="7" height="18" rx="3" transform="rotate(20 23 -8)"/><rect x="-20" y="10" width="5" height="20"/><rect x="-8" y="12" width="5" height="20"/><rect x="6" y="12" width="5" height="20"/><rect x="16" y="10" width="5" height="20"/><ellipse cx="-6" cy="-13" rx="10" ry="8"/></g>
-              <g transform="translate(200,322) scale(.85)"><ellipse cx="0" cy="0" rx="26" ry="15"/><circle cx="24" cy="-14" r="8"/><rect x="-20" y="10" width="5" height="20"/><rect x="-6" y="12" width="5" height="20"/><rect x="8" y="12" width="5" height="20"/><ellipse cx="-6" cy="-13" rx="10" ry="8"/></g>
-              <g transform="translate(268,340) scale(.7)"><ellipse cx="0" cy="0" rx="26" ry="15"/><circle cx="24" cy="-14" r="8"/><rect x="-20" y="10" width="5" height="20"/><rect x="-4" y="12" width="5" height="20"/><rect x="10" y="10" width="5" height="20"/><ellipse cx="-6" cy="-13" rx="10" ry="8"/></g>
-            </g>
-            <!-- offroad car -->
-            <g transform="translate(560,255)">
-              <rect x="0" y="0" width="66" height="22" rx="7" fill="#e8e8e8"/>
-              <rect x="12" y="-12" width="40" height="16" rx="5" fill="#dcdcdc"/>
-              <rect x="16" y="-9" width="15" height="11" rx="3" fill="#7fb3d5"/><rect x="34" y="-9" width="14" height="11" rx="3" fill="#7fb3d5"/>
-              <circle cx="15" cy="22" r="8" fill="#333"/><circle cx="51" cy="22" r="8" fill="#333"/>
-              <path d="M66 12 q 26 -4 34 12 q -20 4 -34 0" fill="#d8c9a3"/>
-            </g>
-          </svg>
-          <figcaption>玉龙沙湖 · 石英白沙与碧湖</figcaption>
-        </figure>
-      </div>
-      <div class="timeline">
-        <div class="tl-item"><span class="t">07:00</span>出发（今天全中国出京大堵车，而你已经在承德，赢麻了）。导航「<b>玉龙沙湖景区</b>」（翁牛特旗乌丹镇）：大广高速→围场北方向→省道，约320km/4h，中途服务区休息一次</div>
-        <div class="tl-item"><span class="t">11:30</span>抵玉龙沙湖（大门票80），景区内免费停车场。午餐景区内简餐（泡面/盒饭水平，别期待太高）</div>
-        <div class="tl-item"><span class="t">12:15</span>游玩：走<b>境漠线</b>——白沙漠+碧湖（石英白沙，出片不输鸣沙山）、乘<b>沙漠越野车冲沙</b>（约150/车次，初/中/高三级赛道，最值得花钱的项目）、骑骆驼（约50–80）、沙地摩托；体力一般可走<b>境水线</b>看红山羽神岩画与湿地。这里是1971年「中华第一龙」C形碧玉龙的出土地，在玉龙广场打卡</div>
-        <div class="tl-item"><span class="t">15:00</span>出发 → 赤峰市区（约90km/1.5h）</div>
-        <div class="tl-item"><span class="t">16:30</span>抵赤峰入住（红山区万达/维多利一带吃饭方便）</div>
-        <div class="tl-item"><span class="t">18:00</span>晚餐：<b>对夹</b>（赤峰招牌，酥皮夹熏肉，城南对夹老店）+ 蒙餐（罕山手把肉）</div>
-        <div class="tl-note">今晚把明天热水塘的温泉酒店订好（推荐见 D3）。</div>
-      </div>
-    </div>
-  </article>
-
-  <!-- D3 -->
-  <article class="day-card" id="d3">
-    <div class="day-head">
-      <span class="day-badge">D3 · 10.2 周五</span>
-      <h3>赤峰 → 辽代博物馆 → 巴林右旗 → 热水塘 ｜ 契丹辽文化+83℃温泉</h3>
-      <div class="day-meta"><span class="meta-pill drive">🚗 ~350km / 4h</span><span class="meta-pill bed">🛏 宿热水塘（温泉）</span></div>
+  <!-- Day 3 -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num">3</div>
+      <div class="day-title">霍比特人村 + 怀托摩萤火虫洞一日游</div>
+      <div class="day-date">10月19日</div>
     </div>
     <div class="day-body">
-      <div class="day-pics">
-        <figure class="pic">
-          <svg viewBox="0 0 800 450">
-            <defs>
-              <linearGradient id="hs-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fb8e8"/><stop offset="1" stop-color="#d9eef9"/></linearGradient>
-              <linearGradient id="hs-pool" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5fb3c9"/><stop offset="1" stop-color="#2f8aa8"/></linearGradient>
-            </defs>
-            <rect width="800" height="450" fill="url(#hs-sky)"/>
-            <path d="M0 200 Q 200 140 420 190 T 800 185 V280 H0 Z" fill="#9fbf7a"/>
-            <path d="M0 240 Q 260 185 520 230 T 800 235 V300 H0 Z" fill="#86a862"/>
-            <!-- white pagoda -->
-            <g transform="translate(620,108)">
-              <rect x="-52" y="120" width="104" height="26" fill="#e8e2d2"/>
-              <path d="M-38 120 Q -46 60 0 40 Q 46 60 38 120 Z" fill="#f4efe2"/>
-              <rect x="-8" y="14" width="16" height="30" fill="#f4efe2"/>
-              <circle cx="0" cy="10" r="9" fill="#e0b13e"/>
-              <rect x="-30" y="86" width="60" height="8" fill="#ded6c2"/>
-            </g>
-            <!-- museum building -->
-            <g transform="translate(120,150)">
-              <rect x="0" y="40" width="220" height="90" fill="#c8b294"/>
-              <rect x="-12" y="20" width="244" height="24" fill="#a8916f"/>
-              <rect x="20" y="60" width="36" height="50" fill="#6e5a41"/>
-              <rect x="76" y="60" width="36" height="50" fill="#8a755a"/>
-              <rect x="132" y="60" width="36" height="50" fill="#8a755a"/>
-              <rect x="182" y="60" width="24" height="70" fill="#6e5a41"/>
-            </g>
-            <!-- hot spring pool -->
-            <path d="M0 320 Q 400 285 800 320 V450 H0 Z" fill="url(#hs-pool)"/>
-            <path d="M60 350 Q 200 336 360 350 T 740 352" stroke="#9adbe8" stroke-width="5" fill="none" opacity=".7"/>
-            <path d="M120 395 Q 300 382 500 396" stroke="#9adbe8" stroke-width="4" fill="none" opacity=".5"/>
-            <!-- steam -->
-            <g stroke="#ffffff" stroke-width="7" fill="none" stroke-linecap="round" opacity=".75">
-              <path d="M240 320 q -14 -22 0 -40 q 14 -18 0 -38"/>
-              <path d="M330 325 q -14 -22 0 -40 q 14 -18 0 -38"/>
-              <path d="M430 322 q -14 -22 0 -40 q 14 -18 0 -38"/>
-            </g>
-            <!-- stones -->
-            <ellipse cx="120" cy="330" rx="46" ry="18" fill="#8f8a80"/>
-            <ellipse cx="660" cy="335" rx="54" ry="20" fill="#7e7970"/>
-          </svg>
-          <figcaption>热水塘温泉 · 远处辽代白塔</figcaption>
-        </figure>
-      </div>
       <div class="timeline">
-        <div class="tl-item"><span class="t">09:00</span><b>辽代历史文化博物馆</b>（红山区钢铁西街，体育场西侧）：免费，带身份证现场领票/预约。全国唯一全面展示宋辽金历史的专题博物馆，镇馆看契丹金银器、辽瓷、陈国公主墓文物复刻。<b>10:00 有免费讲解</b>，跟住讲解员效率翻倍。注意：赤峰博物馆（松山馆区）因消防维修闭馆中，别跑错</div>
-        <div class="tl-item"><span class="t">10:45</span>出发 → 巴林右旗大板镇（G16 丹锡高速，180km/2h）</div>
-        <div class="tl-item"><span class="t">13:00</span>大板午餐：巴林手把肉/涮羊肉（人均60）</div>
-        <div class="tl-item"><span class="t">14:00</span><b>巴林石博物馆</b>（免费，索博日嘎街）：中国四大印石之一的鸡血石/冻石精品，地下一层可看加工车间；步行可达<b>康熙行宫民俗博物馆</b>（国家三级馆，民族服饰+宗教法器）</div>
-        <div class="tl-item"><span class="t">15:45</span>出发 → 热水塘镇（约150km/2h，G16 转经棚方向）</div>
-        <div class="tl-item"><span class="t">18:00</span>抵热水塘，入住温泉酒店，泡 <b>83℃ 天然矿物温泉</b>（含40多种微量元素）</div>
-        <div class="tl-item"><span class="t">19:00</span>晚餐：金泉美食城 / 街边烧烤+烤羊排</div>
-        <div class="tl-note">🏨 住宿推荐：<b>蓝天温泉大酒店</b>（4.2分，标间双浴缸温泉入户，送泡澡袋，约300–400）；<b>山水温泉宾馆</b>（经济款200上下，院里有充电桩，电车友好）；<b>天牧温泉小镇</b>（欧式独栋汤屋，情侣/家庭升级款500+）</div>
-        <div class="tl-warn">可选支线（默认不安排）：若极度痴迷辽文化，可大板→索博日嘎镇（115km）看庆州释迦佛舍利白塔，但要多开230km山路，D3 会爆，慎选。</div>
+        <div class="tl-item">
+          <div class="tl-time">07:00</div>
+          <div class="tl-content">一日游团酒店接人，出发前往 <strong>霍比特人村</strong>，车程约 <strong>2 小时</strong>。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">09:00</div>
+          <div class="tl-content">参观霍比特人村约 <strong>2 小时</strong>，绿龙酒馆可喝一杯免费的姜汁啤酒。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">12:00</div>
+          <div class="tl-content">前往 <strong>怀托摩萤火虫洞</strong>，车程约 1 小时。乘船进入洞穴，头顶是成千上万的萤火虫，像星空一样。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">14:00</div>
+          <div class="tl-content">游览萤火虫洞，<strong>洞内禁止拍照和喧哗</strong>。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">19:00–20:00</div>
+          <div class="tl-content">返回奥克兰市区。</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-tag"><span class="icon">🎫</span> 预订：Klook / GetYourGuide 提前1周</span>
+        <span class="info-tag"><span class="icon">💰</span> 约 1400–1600 元/人（含接送午餐）</span>
+        <span class="info-tag"><span class="icon">🏨</span> 住宿：奥克兰 CBD</span>
       </div>
     </div>
-  </article>
+  </div>
 
-  <!-- D4 -->
-  <article class="day-card" id="d4">
-    <div class="day-head">
-      <span class="day-badge">D4 · 10.3 周六</span>
-      <h3>热阿线 → 阿斯哈图石林 → 达达线 → 达里湖 → 经棚 ｜ 全天风景驾驶日</h3>
-      <div class="day-meta"><span class="meta-pill drive">🚗 ~260km / 4.5h</span><span class="meta-pill bed">🛏 宿经棚</span></div>
-    </div>
-    <div class="day-body rev">
-      <div class="day-pics">
-        <figure class="pic">
-          <svg viewBox="0 0 800 450">
-            <defs><linearGradient id="sl-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#55a9e8"/><stop offset="1" stop-color="#d2ecfb"/></linearGradient></defs>
-            <rect width="800" height="450" fill="url(#sl-sky)"/>
-            <ellipse cx="150" cy="70" rx="80" ry="22" fill="#fff" opacity=".85"/>
-            <path d="M0 260 Q 260 190 540 245 T 800 250 V450 H0 Z" fill="#e9bd45"/>
-            <path d="M0 320 Q 300 270 620 315 T 800 320 V450 H0 Z" fill="#dfa92f"/>
-            <!-- stone pillars -->
-            <g>
-              <g transform="translate(330,120)"><rect x="-26" y="0" width="52" height="60" rx="14" fill="#8d7f74"/><rect x="-32" y="48" width="64" height="56" rx="14" fill="#7e7166"/><rect x="-26" y="96" width="52" height="70" rx="14" fill="#8d7f74"/><rect x="-34" y="150" width="68" height="60" rx="14" fill="#766a5f"/></g>
-              <g transform="translate(430,150) scale(.85)"><rect x="-26" y="0" width="52" height="60" rx="14" fill="#97897d"/><rect x="-32" y="48" width="64" height="56" rx="14" fill="#867970"/><rect x="-26" y="96" width="52" height="80" rx="14" fill="#97897d"/></g>
-              <g transform="translate(240,170) scale(.7)"><rect x="-26" y="0" width="52" height="60" rx="14" fill="#867970"/><rect x="-32" y="48" width="64" height="56" rx="14" fill="#97897d"/><rect x="-26" y="96" width="52" height="90" rx="14" fill="#7e7166"/></g>
-              <g transform="translate(520,190) scale(.55)"><rect x="-26" y="0" width="52" height="60" rx="14" fill="#8d7f74"/><rect x="-30" y="48" width="60" height="90" rx="14" fill="#766a5f"/></g>
-            </g>
-            <!-- autumn trees -->
-            <circle cx="140" cy="330" r="26" fill="#e8973a"/><circle cx="180" cy="345" r="20" fill="#d4692a"/>
-            <circle cx="660" cy="345" r="24" fill="#e8973a"/><circle cx="700" cy="358" r="17" fill="#c9762e"/>
-          </svg>
-          <figcaption>阿斯哈图石林 · 草原上的花岗岩城堡</figcaption>
-        </figure>
-        <figure class="pic">
-          <svg viewBox="0 0 800 300">
-            <defs><linearGradient id="dl-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb347"/><stop offset="1" stop-color="#ff7e5f"/></linearGradient></defs>
-            <rect width="800" height="300" fill="url(#dl-sky)"/>
-            <circle cx="400" cy="120" r="44" fill="#fff3d6"/>
-            <rect y="150" width="800" height="150" fill="#3f6f8f"/>
-            <rect y="150" width="800" height="10" fill="#5d8ca8"/>
-            <path d="M340 165 h120" stroke="#ffe9b0" stroke-width="7" opacity=".85"/>
-            <path d="M360 190 h80" stroke="#ffe9b0" stroke-width="5" opacity=".6"/>
-            <path d="M375 215 h50" stroke="#ffe9b0" stroke-width="4" opacity=".45"/>
-            <!-- birds -->
-            <g stroke="#2e3a45" stroke-width="3.5" fill="none" stroke-linecap="round">
-              <path d="M150 70 q 8 -9 16 0 q 8 -9 16 0"/>
-              <path d="M210 95 q 7 -8 14 0 q 7 -8 14 0"/>
-              <path d="M540 60 q 8 -9 16 0 q 8 -9 16 0"/>
-              <path d="M590 90 q 6 -7 12 0 q 6 -7 12 0"/>
-              <path d="M480 40 q 6 -7 12 0 q 6 -7 12 0"/>
-            </g>
-            <!-- swans -->
-            <g fill="#ffffff"><path d="M250 230 q 4 -18 16 -20 q 14 -2 12 10 q 14 2 16 12 q 2 10 -12 12 l -26 0 q -10 -6 -6 -14 Z"/><path d="M310 245 q 3 -14 12 -16 q 11 -2 10 8 q 11 2 13 9 q 2 8 -9 10 l -21 0 q -8 -5 -5 -11 Z"/></g>
-            <!-- reeds -->
-            <g stroke="#c98434" stroke-width="5" stroke-linecap="round"><path d="M60 300 v-70"/><path d="M80 300 v-58"/><path d="M100 300 v-66"/><path d="M740 300 v-62"/><path d="M720 300 v-52"/></g>
-            <g fill="#e0b25e"><ellipse cx="60" cy="224" rx="7" ry="14"/><ellipse cx="100" cy="228" rx="7" ry="13"/><ellipse cx="740" cy="232" rx="7" ry="13"/></g>
-          </svg>
-          <figcaption>达里诺尔湖 · 候鸟南迁</figcaption>
-        </figure>
-      </div>
-      <div class="timeline">
-        <div class="tl-item"><span class="t">08:00</span>出发上<b>热阿线</b>（热水塘→黄岗梁→石林，约88km）：前段河谷白桦林，中段翻大兴安岭最高峰<b>黄岗梁</b>（海拔2029m，免费，可短暂停留观景台），后段平缓草原。走走停停拍照约2.5h；途中<b>很黑村</b>（网红地名）买现炒瓜子</div>
-        <div class="tl-item"><span class="t">10:30</span><b>阿斯哈图石林</b>（5A，门票120+观光车40必坐）：花岗岩石林地貌世界独一份，乘观光车串「草原石林区→鲲鹏区→七剑山/城堡区」，栈道一圈约2.5h。<b>周六人多，8:30 开园越早进越好——所以 08:00 必须从热水塘出门</b></div>
-        <div class="tl-item"><span class="t">13:15</span>景区门口农家院午餐（炖菜/手把肉，人均50）</div>
-        <div class="tl-item"><span class="t">14:00</span>上<b>达达线</b>反向（石林→达里湖方向，约80km/2h风景路）：白音敖包<b>沙地云杉林</b>停留30min（世界唯一沙地云杉原始林，门票约30，可选）</div>
-        <div class="tl-item"><span class="t">16:00</span><b>达里诺尔湖</b>（门票约80–90）：内蒙第三大湖、碱性半咸水湖，<b>10月初正值候鸟南迁</b>，带望远镜看天鹅/大雁；顺路尝<b>华子鱼</b>（瓦氏雅罗鱼，干炸最香）</div>
-        <div class="tl-item"><span class="t">17:45</span>出发 → 经棚镇（约90km/1.2h）</div>
-        <div class="tl-item"><span class="t">19:00</span>抵经棚入住（克什克腾旗政府驻地，住宿餐饮最全；今晚<b>给车加满油</b>，明天草原段加油站稀疏）</div>
-        <div class="tl-warn">全天草原腹地手机常无信号，今晚把经棚→大青山→乌兰布统的离线地图更新好。</div>
-      </div>
-    </div>
-  </article>
-
-  <!-- D5 -->
-  <article class="day-card" id="d5">
-    <div class="day-head">
-      <span class="day-badge">D5 · 10.4 周日</span>
-      <h3>经棚 → 大青山 → 乌兰布统 ｜ 岩臼奇观+草原日落</h3>
-      <div class="day-meta"><span class="meta-pill drive">🚗 ~170km / 3h+景区</span><span class="meta-pill bed">🛏 宿乌兰布统</span></div>
+  <!-- Day 4 -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num">4</div>
+      <div class="day-title">奥克兰 → 基督城</div>
+      <div class="day-date">10月20日</div>
     </div>
     <div class="day-body">
-      <div class="day-pics">
-        <figure class="pic">
-          <svg viewBox="0 0 800 450">
-            <defs><linearGradient id="dq-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5fb2ec"/><stop offset="1" stop-color="#d6f0fc"/></linearGradient></defs>
-            <rect width="800" height="450" fill="url(#dq-sky)"/>
-            <ellipse cx="640" cy="70" rx="90" ry="24" fill="#fff" opacity=".9"/>
-            <path d="M0 300 L 400 110 L 800 300 V450 H0 Z" fill="#d9b84a"/>
-            <path d="M0 340 Q 400 260 800 340 V450 H0 Z" fill="#c9a437"/>
-            <!-- potholes 九缸十八锅 -->
-            <g fill="#5d513f">
-              <ellipse cx="400" cy="150" rx="26" ry="10"/><ellipse cx="345" cy="185" rx="20" ry="8"/><ellipse cx="455" cy="188" rx="22" ry="8"/><ellipse cx="300" cy="222" rx="17" ry="7"/><ellipse cx="395" cy="225" rx="19" ry="7"/><ellipse cx="490" cy="225" rx="16" ry="7"/><ellipse cx="350" cy="258" rx="15" ry="6"/><ellipse cx="440" cy="258" rx="15" ry="6"/>
-            </g>
-            <g fill="#33291d"><ellipse cx="400" cy="149" rx="19" ry="6.5"/><ellipse cx="455" cy="187" rx="16" ry="5.5"/><ellipse cx="345" cy="184" rx="14" ry="5"/></g>
-            <!-- rocks -->
-            <path d="M150 320 q 10 -70 40 -78 q 34 -8 34 30 q 26 4 22 48 Z" fill="#8d8177"/>
-            <path d="M600 330 q 8 -56 34 -62 q 28 -6 28 26 q 22 4 18 36 Z" fill="#7e7368"/>
-            <!-- cable car -->
-            <path d="M60 240 L 740 180" stroke="#4a4a4a" stroke-width="2.5"/>
-            <g><rect x="250" y="222" width="26" height="22" rx="5" fill="#c94f3d"/><rect x="254" y="226" width="18" height="10" rx="3" fill="#9fc9e8"/><rect x="261" y="214" width="4" height="9" fill="#4a4a4a"/></g>
-            <g><rect x="470" y="204" width="26" height="22" rx="5" fill="#3d7dc9"/><rect x="474" y="208" width="18" height="10" rx="3" fill="#cfe6f5"/><rect x="481" y="196" width="4" height="9" fill="#4a4a4a"/></g>
-            <!-- trees -->
-            <circle cx="80" cy="380" r="30" fill="#4c7a3f"/><circle cx="130" cy="400" r="24" fill="#e8973a"/>
-            <circle cx="730" cy="395" r="28" fill="#4c7a3f"/><circle cx="680" cy="412" r="20" fill="#d4692a"/>
-          </svg>
-          <figcaption>大青山 · 岩臼群「九缸十八锅」与高山索道</figcaption>
-        </figure>
-        <figure class="pic">
-          <svg viewBox="0 0 800 300">
-            <defs><linearGradient id="wl-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5f4a"/><stop offset=".6" stop-color="#ff9e4a"/><stop offset="1" stop-color="#ffd27a"/></linearGradient></defs>
-            <rect width="800" height="300" fill="url(#wl-sky)"/>
-            <circle cx="560" cy="105" r="38" fill="#fff0cf"/>
-            <path d="M0 160 Q 200 120 420 155 T 800 150 V300 H0 Z" fill="#b57a2e"/>
-            <path d="M0 195 Q 260 155 520 190 T 800 195 V300 H0 Z" fill="#8f5f22"/>
-            <!-- lake -->
-            <path d="M280 235 Q 400 215 540 235 Q 560 252 520 262 Q 400 278 300 262 Q 262 250 280 235 Z" fill="#ff9e58"/>
-            <path d="M320 244 h180" stroke="#ffd8a0" stroke-width="4" opacity=".8"/>
-            <!-- birches -->
-            <g><rect x="120" y="150" width="7" height="70" fill="#f2eee0"/><rect x="122" y="165" width="4" height="4" fill="#444"/><rect x="122" y="188" width="4" height="4" fill="#444"/><circle cx="123" cy="142" r="18" fill="#f4f0e2"/>
-            <rect x="160" y="158" width="6" height="60" fill="#f2eee0"/><circle cx="163" cy="150" r="14" fill="#f4f0e2"/>
-            <rect x="660" y="155" width="7" height="66" fill="#f2eee0"/><circle cx="663" cy="147" r="17" fill="#f4f0e2"/></g>
-            <!-- horses -->
-            <g fill="#2e2018">
-              <g transform="translate(350,205)"><ellipse cx="0" cy="0" rx="22" ry="11"/><rect x="14" y="-16" width="7" height="14" rx="3" transform="rotate(18 17 -10)"/><ellipse cx="22" cy="-16" rx="7" ry="5"/><rect x="-16" y="8" width="4" height="16"/><rect x="-4" y="9" width="4" height="16"/><rect x="8" y="9" width="4" height="16"/><rect x="16" y="8" width="4" height="16"/><path d="M-22 -4 q -8 4 -6 12" stroke="#2e2018" stroke-width="4" fill="none"/></g>
-              <g transform="translate(430,215) scale(.8)"><ellipse cx="0" cy="0" rx="22" ry="11"/><rect x="14" y="-16" width="7" height="14" rx="3" transform="rotate(18 17 -10)"/><ellipse cx="22" cy="-16" rx="7" ry="5"/><rect x="-16" y="8" width="4" height="16"/><rect x="-2" y="9" width="4" height="16"/><rect x="12" y="8" width="4" height="16"/></g>
-            </g>
-          </svg>
-          <figcaption>乌兰布统 · 将军泡子日落</figcaption>
-        </figure>
-      </div>
       <div class="timeline">
-        <div class="tl-item"><span class="t">08:00</span>早餐（经棚对夹/奶茶）后出发</div>
-        <div class="tl-item"><span class="t">08:30</span><b>大青山景区</b>（克什克腾世界地质公园青山园区，经棚东南约25km，经乌线顺路）：门票+索道套票约120–160（<b>索道必坐</b>，1230米内蒙古第一高山索道，单程18分钟；下索道后还需20分钟摆渡车+一段台阶栈道）。山顶看世界最大<b>岩臼群「九缸十八锅」</b>——上千个第四纪冰川凿出的圆坑，大如水缸，如同外星密码；另有巨鹰石、乌龟石等象形石阵+高山草甸。开放8:30–18:30</div>
-        <div class="tl-item"><span class="t">12:00</span>返回经棚方向午餐（或直接路上小饭馆）</div>
-        <div class="tl-item"><span class="t">13:00</span>出发 → 乌兰布统（约110km/2.5h，经乌线本身就是风景路，牛羊成群随时停）</div>
-        <div class="tl-item"><span class="t">15:30</span>抵乌兰布统乡/红山军马场，<b>买大门票120</b>（首次验票录人脸，<b>3天内不限次进出，收好票根</b>）；国庆房价约500–800/晚，比承德贵，忍了</div>
-        <div class="tl-item"><span class="t">16:00</span>顺序打卡：<b>影视基地</b>（还珠格格/康熙王朝取景地，木栈道登顶俯瞰全景）→ <b>将军泡子</b>（湖泊倒影+沙地疏林，日落前光线最美）</div>
-        <div class="tl-item"><span class="t">18:00</span>日落（10月初坝上日落约17:30–17:50）后回镇晚餐：手把肉+草原奶茶（人均70）</div>
-        <div class="tl-note">觉得节奏太赶可砍大青山：08:30 直接出发去乌兰布统，中午到，多出一下午逛盘龙峡谷。</div>
+        <div class="tl-item">
+          <div class="tl-time">上午</div>
+          <div class="tl-content">整理行李，提前 2 小时到达奥克兰国内航站楼（从国际航站楼步行约 10 分钟）。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">航班</div>
+          <div class="tl-content"><strong>奥克兰（AKL）→ 基督城（CHC）</strong>，飞行约 <strong>1 小时 25 分</strong>。捷星和纽航都有多班次，单程约 <strong>150–250 纽币</strong>。建议选上午或中午航班。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午</div>
+          <div class="tl-content">抵达基督城后，机场到市区可坐 <strong>InterCity 机场巴士</strong>（约 20 纽币）或打车（30–40 纽币）。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">傍晚</div>
+          <div class="tl-content">逛 <strong>河畔市场 Riverside Market</strong>，这里是基督城的美食集中地，晚餐直接在这里解决。</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-tag"><span class="icon">🏨</span> 住宿：Quest on Cambridge 或 Haka House Christchurch</span>
       </div>
     </div>
-  </article>
+  </div>
 
-  <!-- D6 -->
-  <article class="day-card" id="d6">
-    <div class="day-head">
-      <span class="day-badge">D6 · 10.5 周一</span>
-      <h3>公主湖晨雾 → 蛤蟆坝/桦木沟 → 古北水镇 ｜ 强度日，按钟点走</h3>
-      <div class="day-meta"><span class="meta-pill drive">🚗 ~400km / 5h</span><span class="meta-pill bed">🛏 宿古北水镇/密云</span></div>
-    </div>
-    <div class="day-body rev">
-      <div class="day-pics">
-        <figure class="pic">
-          <svg viewBox="0 0 800 300">
-            <defs><linearGradient id="gz-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bcd7e8"/><stop offset="1" stop-color="#eef5f2"/></linearGradient></defs>
-            <rect width="800" height="300" fill="url(#gz-sky)"/>
-            <path d="M0 150 Q 240 105 480 140 T 800 145 V300 H0 Z" fill="#c8b06a"/>
-            <rect y="185" width="800" height="115" fill="#a8c6cf"/>
-            <path d="M0 210 Q 200 204 400 210 T 800 210" stroke="#cfe2e6" stroke-width="4" fill="none" opacity=".8"/>
-            <!-- mist -->
-            <ellipse cx="260" cy="175" rx="200" ry="22" fill="#ffffff" opacity=".55"/>
-            <ellipse cx="560" cy="192" rx="230" ry="20" fill="#ffffff" opacity=".45"/>
-            <!-- birches -->
-            <g><rect x="130" y="95" width="8" height="95" fill="#f2eee0"/><rect x="132" y="115" width="5" height="5" fill="#444"/><rect x="132" y="145" width="5" height="5" fill="#444"/><circle cx="134" cy="85" r="24" fill="#f0df9e"/>
-            <rect x="185" y="105" width="7" height="85" fill="#f2eee0"/><circle cx="188" cy="96" r="19" fill="#e8d488"/>
-            <rect x="620" y="100" width="8" height="90" fill="#f2eee0"/><circle cx="624" cy="90" r="22" fill="#f0df9e"/></g>
-            <!-- reflection -->
-            <g opacity=".4"><rect x="130" y="210" width="8" height="60" fill="#d8cfae"/><rect x="620" y="212" width="8" height="55" fill="#d8cfae"/></g>
-          </svg>
-          <figcaption>公主湖 · 白桦晨雾倒影</figcaption>
-        </figure>
-        <figure class="pic">
-          <svg viewBox="0 0 800 450">
-            <defs><linearGradient id="gb-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101c3f"/><stop offset="1" stop-color="#274070"/></linearGradient></defs>
-            <rect width="800" height="450" fill="url(#gb-sky)"/>
-            <g fill="#ffffff"><circle cx="90" cy="50" r="2"/><circle cx="180" cy="30" r="1.6"/><circle cx="300" cy="60" r="2"/><circle cx="430" cy="35" r="1.6"/><circle cx="560" cy="55" r="2"/><circle cx="680" cy="40" r="1.8"/><circle cx="750" cy="80" r="1.5"/></g>
-            <!-- mountain + great wall -->
-            <path d="M0 220 L 200 90 L 380 190 L 560 100 L 800 210 V300 H0 Z" fill="#16294f"/>
-            <path d="M60 205 L 200 108 L 340 195 L 560 118 L 740 200" stroke="#ffca5f" stroke-width="5" fill="none" stroke-linejoin="round"/>
-            <g fill="#ffca5f"><rect x="188" y="96" width="24" height="18"/><rect x="548" y="106" width="24" height="18"/><rect x="330" y="184" width="20" height="14"/></g>
-            <!-- town -->
-            <g>
-              <g transform="translate(90,260)"><rect x="0" y="20" width="110" height="90" fill="#2c3d63"/><path d="M-8 20 L 55 -14 L 118 20 Z" fill="#1d2c4d"/><rect x="16" y="44" width="20" height="24" fill="#ffb84d"/><rect x="62" y="44" width="20" height="24" fill="#ffb84d"/></g>
-              <g transform="translate(250,285)"><rect x="0" y="16" width="95" height="80" fill="#33476e"/><path d="M-7 16 L 47 -12 L 102 16 Z" fill="#223355"/><rect x="14" y="38" width="18" height="22" fill="#ffca6a"/><rect x="56" y="38" width="18" height="22" fill="#ffb84d"/></g>
-              <g transform="translate(580,270)"><rect x="0" y="18" width="120" height="95" fill="#2c3d63"/><path d="M-9 18 L 60 -16 L 129 18 Z" fill="#1d2c4d"/><rect x="18" y="44" width="22" height="26" fill="#ffb84d"/><rect x="72" y="44" width="22" height="26" fill="#ffca6a"/></g>
-            </g>
-            <!-- lanterns -->
-            <g><circle cx="230" cy="300" r="9" fill="#ff5f4a"/><rect x="227" y="291" width="6" height="4" fill="#e0b13e"/><circle cx="420" cy="315" r="9" fill="#ff5f4a"/><rect x="417" y="306" width="6" height="4" fill="#e0b13e"/><circle cx="540" cy="305" r="8" fill="#ff7a4d"/></g>
-            <!-- river -->
-            <rect y="370" width="800" height="80" fill="#14264a"/>
-            <g opacity=".55"><rect x="100" y="378" width="90" height="6" fill="#ffb84d"/><rect x="270" y="390" width="70" height="5" fill="#ffca6a"/><rect x="590" y="384" width="100" height="6" fill="#ffb84d"/><rect x="430" y="404" width="60" height="4" fill="#ff9e58"/></g>
-          </svg>
-          <figcaption>古北水镇 · 司马台长城夜景</figcaption>
-        </figure>
-      </div>
-      <div class="timeline">
-        <div class="tl-item"><span class="t">06:30</span>出门（晨雾8点前散，<b>这是全程最值得早起的一次</b>）。<b>公主湖</b>在主景区外、需再次验票（120大票3天内有效）：白桦+晨雾+湖面倒影，蓝齐儿格格传说地。日出前后气温接近0℃，羽绒服穿足</div>
-        <div class="tl-item"><span class="t">08:00</span>回镇早餐（热奶茶+果子）</div>
-        <div class="tl-item"><span class="t">09:00</span><b>桦木沟蛤蟆坝景区</b>（门票30，距红山军马场20余km，最后几公里乡间土路，轿车慢开可过）：万顷桦林+金蟾湖+摄影基地，沟谷里牛羊、茅屋、栅栏随手拍都是屏保；体力好可去<b>盘龙峡谷</b>（同样主景区外，需验票）</div>
-        <div class="tl-item"><span class="t">11:45</span>回镇午餐，<b>13:00 准时出发</b>（不堵车铁律：今天要跨过整个承德）</div>
-        <div class="tl-item"><span class="t">13:00</span>路线：乌兰布统→四御公路→围场→G45 大广→承德绕城→京承高速→古北水镇，约400km/5h 含一次服务区休息。18:00 前后过承德，避开返京同向车流高峰尾部</div>
-        <div class="tl-item"><span class="t">18:30</span>抵<b>古北水镇</b>（密云古北口；住镇内车停P1/P2停车场，住密云县城更省，房价差近一半）</div>
-        <div class="tl-item"><span class="t">19:00</span><b>夜游水镇</b>（国庆运营至22:30）：司马台长城提灯夜爬、日月岛广场无人机秀/孔明灯、山顶教堂俯瞰全镇灯火、音乐喷泉；逛小吃街（密云烧肉、古北烤梨）。夜游无需再买大门票即可逛部分街区，登长城单独购票（联票约140，以景区小程序当日价为准）</div>
-        <div class="tl-note">周一各博物馆闭馆，但今天只玩水镇，无影响。</div>
-      </div>
-    </div>
-  </article>
-
-  <!-- D7 -->
-  <article class="day-card" id="d7">
-    <div class="day-head">
-      <span class="day-badge">D7 · 10.6 周二</span>
-      <h3>古北水镇 → 北京 ｜ 晨雾补拍，午前到家</h3>
-      <div class="day-meta"><span class="meta-pill drive">🚗 140km / 2h</span><span class="meta-pill bed">🏠 到家</span></div>
+  <!-- Day 5 -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num">5</div>
+      <div class="day-title">基督城 → 蒂卡波湖 · 🌸 鲁冰花</div>
+      <div class="day-date">10月21日</div>
     </div>
     <div class="day-body">
-      <div class="day-pics">
-        <figure class="pic">
-          <svg viewBox="0 0 800 450">
-            <defs><linearGradient id="d7-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a8d4ee"/><stop offset="1" stop-color="#eef8fd"/></linearGradient></defs>
-            <rect width="800" height="450" fill="url(#d7-sky)"/>
-            <ellipse cx="620" cy="80" rx="90" ry="24" fill="#fff" opacity=".9"/>
-            <path d="M0 200 L 220 100 L 420 190 L 620 110 L 800 200 V260 H0 Z" fill="#8fa8bc"/>
-            <path d="M40 208 L 220 118 L 400 198" stroke="#c9a75f" stroke-width="4" fill="none"/>
-            <!-- town day -->
-            <g>
-              <g transform="translate(80,240)"><rect x="0" y="20" width="130" height="100" fill="#e8e0d0"/><path d="M-10 20 L 65 -18 L 140 20 Z" fill="#5a6a7a"/><rect x="20" y="48" width="24" height="30" fill="#7a8a9a"/><rect x="76" y="48" width="24" height="30" fill="#7a8a9a"/></g>
-              <g transform="translate(270,265)"><rect x="0" y="16" width="110" height="85" fill="#ddd4c2"/><path d="M-8 16 L 55 -14 L 118 16 Z" fill="#4c5c6c"/><rect x="16" y="40" width="22" height="26" fill="#6a7a8a"/><rect x="64" y="40" width="22" height="26" fill="#6a7a8a"/></g>
-              <g transform="translate(560,250)"><rect x="0" y="18" width="140" height="105" fill="#e8e0d0"/><path d="M-11 18 L 70 -20 L 151 18 Z" fill="#5a6a7a"/><rect x="22" y="50" width="26" height="32" fill="#7a8a9a"/><rect x="86" y="50" width="26" height="32" fill="#7a8a9a"/></g>
-            </g>
-            <!-- dyed cloth 永顺染坊 -->
-            <g><rect x="430" y="230" width="8" height="120" fill="#8a6a45"/><rect x="530" y="230" width="8" height="120" fill="#8a6a45"/><rect x="428" y="228" width="112" height="6" fill="#8a6a45"/>
-            <rect x="442" y="234" width="24" height="70" fill="#3d6ea8"/><rect x="472" y="234" width="24" height="78" fill="#4c82c0"/><rect x="502" y="234" width="24" height="66" fill="#355f92"/></g>
-            <!-- river & bridge -->
-            <rect y="370" width="800" height="80" fill="#7fa8bd"/>
-            <path d="M340 372 Q 400 340 460 372" stroke="#9a8a72" stroke-width="10" fill="none"/>
-            <path d="M0 400 Q 200 392 400 400 T 800 400" stroke="#a8ccd8" stroke-width="4" fill="none" opacity=".7"/>
-            <ellipse cx="240" cy="240" rx="150" ry="18" fill="#ffffff" opacity=".5"/>
-          </svg>
-          <figcaption>水镇清晨 · 永顺染坊蓝印花布</figcaption>
-        </figure>
-      </div>
       <div class="timeline">
-        <div class="tl-item"><span class="t">07:30</span>早起在镇里拍晨雾（水镇清晨没人，<b>是最出片时段</b>）；镇内早餐</div>
-        <div class="tl-item"><span class="t">09:00</span>白天补拍：<b>永顺染坊</b>（蓝印花布晾晒场）、<b>英华书院</b>、<b>镖局展馆</b>——白天场3个点位逛完就撤（重头戏昨晚已看）</div>
-        <div class="tl-item"><span class="t">10:00</span>出发：京承高速→北京，约140km/2h</div>
-        <div class="tl-item"><span class="t">12:00</span>到家。全国返程最高峰是今天下午13:00后和明天10.7，你在午饭后就躺沙发了 😎</div>
-        <div class="tl-note">回程正好错峰：出京方向的拥堵与你无关，返京高峰又还没开始。</div>
+        <div class="tl-item">
+          <div class="tl-time">08:30</div>
+          <div class="tl-content"><strong>InterCity 巴士</strong>：基督城 → 蒂卡波湖，约 <strong>3 小时 35 分</strong>，每天仅一班，务必提前订。票价约 <strong>50–75 纽币</strong>。建议坐<strong>巴士右侧</strong>，接近蒂卡波时能看到南阿尔卑斯山。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">12:05</div>
+          <div class="tl-content">抵达蒂卡波，步行前往 <strong>好牧羊人教堂（Church of the Good Shepherd）</strong>，教堂窗户正对湖面和雪山。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午</div>
+          <div class="tl-content">蒂卡波湖边散步，冰川蓝湖水在晴天时非常惊艳。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">🌸 花点</div>
+          <div class="tl-content">沿湖畔步道往 <strong>约翰山方向</strong> 步行 10–15 分钟，那边鲁冰花丛更密、游客更少。黄昏光线拍鲁冰花最美，紫色花海 + 奶蓝湖水 + 雪山同框。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上</div>
+          <div class="tl-content">蒂卡波是<strong>国际暗天保护区</strong>，观星条件极佳。可在好牧羊人教堂附近观星，或预订 <strong>Mt John 天文台观星团</strong>（约 150–180 纽币/人）。</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-tag"><span class="icon">🏨</span> 住宿：Haka House Tekapo（紧邻巴士站）</span>
+      </div>
+      <div class="lupin-box">
+        <strong>🌸 鲁冰花提示：</strong>蒂卡波湖畔是新西兰最经典的鲁冰花拍摄地，10月下旬属于早花期，通常已有成片紫色、粉色鲁冰花。好牧羊人教堂周边游客较多，往约翰山方向走人会少很多。
+      </div>
+      <div class="warn-box">
+        <strong>⚠️ 观星提醒：</strong>蒂卡波夜间从镇上走到好牧羊人教堂的路<strong>没有路灯</strong>，务必带手电或确保手机有电。
       </div>
     </div>
-  </article>
-</section>
+  </div>
+
+  <!-- Day 6 -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num">6</div>
+      <div class="day-title">库克山一日游 · 🌸 普卡基湖鲁冰花</div>
+      <div class="day-date">10月22日</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">全天</div>
+          <div class="tl-content">参加从蒂卡波出发的 <strong>库克山一日游</strong>。推荐 <strong>Tekapo Shuttle</strong>，约 <strong>149 纽币/人</strong>。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">上午</div>
+          <div class="tl-content">先停 <strong>普卡基湖（Lake Pukaki）</strong> 拍照，然后进入库克山国家公园。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">🌸 花点</div>
+          <div class="tl-content">普卡基湖停靠时，不要只拍湖，往 <strong>湖边草丛和塔斯曼河河岸方向走几步</strong>，很可能有成片鲁冰花。蓝湖 + 雪山 + 花海，非常出片。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">中午</div>
+          <div class="tl-content">留约 <strong>3 小时</strong> 在 <strong>Hooker Valley Track</strong> 徒步。全程平缓，经过三座吊桥，终点是冰川湖，是新西兰性价比最高的徒步路线之一。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">回程</div>
+          <div class="tl-content">停靠 <strong>Mt. Cook Alpine Salmon</strong>，买一份新鲜的高山三文鱼刺身，坐在湖边吃。如果时间允许，可请司机在蒂卡波湖畔多停一会儿，再看一眼鲁冰花。</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-tag"><span class="icon">🏨</span> 住宿：返回蒂卡波，继续住 Haka House Tekapo</span>
+      </div>
+      <div class="lupin-box">
+        <strong>🌸 鲁冰花提示：</strong>普卡基湖北岸和塔斯曼河河岸是鲁冰花集中区域之一。跟司机确认停靠点，抓紧时间拍。10月下旬花况属于早花期，但普卡基湖一带通常比蒂卡波更早开花。
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 7 -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num">7</div>
+      <div class="day-title">蒂卡波湖 → 瓦纳卡 · 🌸 沿途花丛</div>
+      <div class="day-date">10月23日</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">第一段</div>
+          <div class="tl-content"><strong>InterCity 巴士</strong>：蒂卡波 → Cromwell，约 <strong>3 小时</strong>。用 FlexiPass 扣时。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">第二段</div>
+          <div class="tl-content"><strong>Ritchies 大巴</strong>：Cromwell → 瓦纳卡，约 <strong>40 分钟</strong>，票价约 <strong>25 纽币</strong>。Cromwell 是著名水果小镇，中转时可顺便逛逛。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">🌸 花点</div>
+          <div class="tl-content">Cromwell 一带公路两旁常有鲁冰花，中转等车时可以留意路边花丛。这一带也是水果小镇，春天果园花开，风景很好。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午</div>
+          <div class="tl-content">抵达瓦纳卡后，步行前往 <strong>孤独的树（That Wanaka Tree）</strong>，日落时分最美。瓦纳卡湖边步道也很适合散步。</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-tag"><span class="icon">🏨</span> 住宿：Haka House Wanaka</span>
+      </div>
+      <div class="highlight-box">
+        <strong>💡 注意：</strong>蒂卡波到瓦纳卡<strong>没有直达 InterCity 巴士</strong>，必须在 Cromwell 中转。
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 8 -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num">8</div>
+      <div class="day-title">瓦纳卡 → 皇后镇 · 🌸 Lindis River 沿途</div>
+      <div class="day-date">10月24日</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">上午</div>
+          <div class="tl-content">瓦纳卡湖边悠闲散步，可走 <strong>Beacon Point</strong> 步道。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午</div>
+          <div class="tl-content"><strong>InterCity 巴士</strong>：瓦纳卡 → 皇后镇，约 <strong>1 小时</strong>。沿途经过 Cardrona 附近，是典型的南岛高山牧场风光。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">🌸 花点</div>
+          <div class="tl-content">瓦纳卡到皇后镇的巴士沿途，尤其是 <strong>Lindis River 附近</strong>，可能看到零星或成片鲁冰花。坐<strong>巴士右侧</strong>，留意窗外。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">傍晚</div>
+          <div class="tl-content">抵达皇后镇，镇中心很小，步行就能逛完核心区域。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚餐</div>
+          <div class="tl-content">去 <strong>Fergburger</strong> 吃有名的大脸汉堡，避开正午和傍晚高峰，否则排队很长。</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-tag"><span class="icon">🏨</span> 住宿：Haka House Queenstown 或 LyLo Queenstown</span>
+      </div>
+      <div class="lupin-box">
+        <strong>🌸 鲁冰花提示：</strong>这段路花况不如蒂卡波和普卡基湖集中，但沿途公路旁常有惊喜。坐巴士右侧，看到花丛可以记下位置，回程或自由日再来看。
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 9 -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num">9</div>
+      <div class="day-title">皇后镇：跳伞 + Skyline + Luge</div>
+      <div class="day-date">10月25日</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">上午</div>
+          <div class="tl-content"><strong>NZONE 高空跳伞</strong>。15000 英尺跳伞约 <strong>2247 元人民币</strong>，手持 GoPro 摄影约 <strong>861 元</strong>。跳伞受天气影响大，建议提前 1–2 天确认，并留出备用日期。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午</div>
+          <div class="tl-content">乘坐 <strong>Skyline 缆车</strong>上山，俯瞰皇后镇全景和瓦卡蒂普湖。山顶的 <strong>Luge 滑板车</strong> 非常好玩，<strong>3 圈约 89 纽币</strong>。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">餐饮</div>
+          <div class="tl-content">推荐 <strong>Patagonia</strong> 冰淇淋（皇后镇码头边）和 <strong>Saigon Kingdom</strong> 越南粉。</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-tag"><span class="icon">🪂</span> NZONE 跳伞 提前1–2周预订</span>
+        <span class="info-tag"><span class="icon">🏨</span> 住宿：皇后镇</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 10 -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num">10</div>
+      <div class="day-title">米尔福德峡湾一日游</div>
+      <div class="day-date">10月26日</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">全天</div>
+          <div class="tl-content">参加从皇后镇出发的 <strong>米尔福德峡湾一日游</strong>。全程约 <strong>12 小时</strong>（含往返车程约 8 小时），价格约 <strong>1110 元人民币</strong> 起。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">沿途</div>
+          <div class="tl-content">巴士沿著名的 <strong>米尔福德路（Milford Road）</strong> 行驶，途中在镜湖、Knobs Flat 等地停靠。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">核心</div>
+          <div class="tl-content">乘坐游船游览峡湾约 <strong>2 小时</strong>，可以看到瀑布、海豹，运气好还能看到企鹅和海豚。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">19:00–20:00</div>
+          <div class="tl-content">返回皇后镇。</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-tag"><span class="icon">🧥</span> 峡湾常年多雨，务必带防水外套</span>
+        <span class="info-tag"><span class="icon">🏨</span> 住宿：皇后镇</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 11 -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num">11</div>
+      <div class="day-title">皇后镇 → 格林诺奇 / 箭镇</div>
+      <div class="day-date">10月27日</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">方案 A</div>
+          <div class="tl-content"><strong>格林诺奇半日游</strong>，往返约 <strong>78 纽币</strong>。这里是《魔戒》取景地，沿途公路被誉为世界十大最美公路之一。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">方案 B</div>
+          <div class="tl-content">公交去 <strong>箭镇</strong>，逛主街和河边步道。这里是秋色绝美的历史小镇，春天花也很美。</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-tag"><span class="icon">🏨</span> 住宿：皇后镇</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 12 -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num">12</div>
+      <div class="day-title">皇后镇自由日 · 🌸 花园/湖边找花</div>
+      <div class="day-date">10月28日</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">上午</div>
+          <div class="tl-content">睡到自然醒，湖边散步，或去 <strong>皇后镇花园</strong>。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">🌸 花点</div>
+          <div class="tl-content">如果前面几天花况不理想，今天可以去 <strong>皇后镇花园</strong> 或沿 <strong>Lake Wakatipu 湖边步道</strong> 找找鲁冰花。虽然不如蒂卡波集中，但春天花园里也有不少花卉可看。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午</div>
+          <div class="tl-content">可选：酒庄半日游、喷射快艇、缆车晚餐。下午整理行李，买纪念品。</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-tag"><span class="icon">🏨</span> 住宿：皇后镇</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 13 -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num">13</div>
+      <div class="day-title">皇后镇上午自由活动 → 傍晚飞奥克兰</div>
+      <div class="day-date">10月29日</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">上午</div>
+          <div class="tl-content">睡到自然醒，去 <strong>皇后镇花园（Queenstown Gardens）</strong> 散步，湖边坐坐。或去 <strong>Patagonia</strong> 吃冰淇淋，买点纪念品。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">中午</div>
+          <div class="tl-content">镇中心吃午饭，推荐 Fergburger 或 Saigon Kingdom 越南粉。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午</div>
+          <div class="tl-content">前往皇后镇机场。机场离市区约 <strong>8 公里</strong>，打车约 <strong>15 分钟</strong>（30–40 纽币），或坐 <strong>Orbus 公交 1 路</strong>约 20 分钟（约 10 纽币）。建议提前 <strong>2 小时</strong> 到机场。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">17:45–19:35</div>
+          <div class="tl-content"><strong>航班：皇后镇（ZQN）→ 奥克兰（AKL）</strong>。推荐捷星 JQ 或纽航 NZ 傍晚航班，飞行约 <strong>1 小时 50 分</strong>，单程约 <strong>200–300 纽币/人</strong>。务必提前预订并购买行李额。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">20:00</div>
+          <div class="tl-content">抵达奥克兰，入住机场附近酒店。推荐 <strong>Pullman Auckland Airport</strong>，就在国际航站楼旁，步行约 10 分钟。晚餐在机场或酒店解决，早点休息。</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-tag"><span class="icon">🏨</span> 住宿：Pullman Auckland Airport 或机场附近酒店</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 14 -->
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num">14</div>
+      <div class="day-title">奥克兰市区一日游 → 晚上 22:00 飞北京</div>
+      <div class="day-date">10月30日</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">08:00</div>
+          <div class="tl-content">从机场酒店出发，坐 <strong>SkyDrive 巴士</strong>（约 30–45 分钟，20 纽币）或打车（约 30 分钟，50–70 纽币）去市区。行李可寄存在机场酒店，或带到市区寄存点。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">09:30</div>
+          <div class="tl-content">参观 <strong>天空塔（Sky Tower）</strong>，观景台门票约 <strong>32 纽币</strong>，俯瞰奥克兰全景。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">11:00</div>
+          <div class="tl-content">逛 <strong>皇后街 Queen Street</strong>，买新西兰特产：Manuka 蜂蜜、羊毛制品、绿玉等。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">12:30</div>
+          <div class="tl-content">步行到 <strong>Queens Wharf</strong>，坐轮渡去 <strong>德文港（Devonport）</strong>。轮渡单程约 <strong>7 纽币</strong>，船程 <strong>15 分钟</strong>。德文港午餐，推荐海边咖啡馆。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">14:00</div>
+          <div class="tl-content">爬 <strong>维多利亚山（Mount Victoria）</strong>，看海湾和奥克兰市区天际线，约 20 分钟登顶。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">15:30</div>
+          <div class="tl-content">坐轮渡返回市区。如果时间充裕，可打车或公交去 <strong>伊甸山（Mount Eden）</strong>，山顶看全景非常美。注意最晚 <strong>17:00</strong> 要离开市区去机场。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">17:30</div>
+          <div class="tl-content">从市区回奥克兰机场：SkyDrive 巴士约 45 分钟（20 纽币），打车约 30–40 分钟（50–70 纽币，晚高峰可能堵车）。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">19:00</div>
+          <div class="tl-content">到达奥克兰国际机场，取行李，转国际航站楼，办理登机、退税、免税店。国际航班 <strong>22:00</strong> 起飞，提前 3 小时到达。</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">22:00</div>
+          <div class="tl-content"><strong>奥克兰 → 北京</strong>，搭乘国际航班返回北京。</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-tag"><span class="icon">🚢</span> 轮渡：Queens Wharf → Devonport 单程7纽币/15分钟</span>
+        <span class="info-tag"><span class="icon">🗼</span> 天空塔门票：约32纽币/人</span>
+      </div>
+      <div class="highlight-box">
+        <strong>💡 行李建议：</strong>10.29 飞奥克兰时，行李直接带到机场酒店。10.30 退房后寄存在酒店，晚上回酒店取，再去航站楼。
+      </div>
+    </div>
+  </div>
+
+  <!-- 鲁冰花专题 -->
+  <div class="tips-section">
+    <h2>🌸 鲁冰花观赏专题（10月下旬早花期）</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <h3>📅 花期说明</h3>
+        <ul>
+          <li>南岛鲁冰花花期通常从 <strong>10月开始零星出现</strong></li>
+          <li><strong>11月中下旬到12月中</strong> 才是大面积盛放高峰期</li>
+          <li>你10月下旬去，属于<strong>早花期</strong>，花量不如旺季，但蒂卡波和普卡基湖一带大概率已有成片花</li>
+          <li>每年天气不同，花况会有浮动</li>
+        </ul>
+      </div>
+      <div class="tip-card">
+        <h3>📍 核心观赏点</h3>
+        <ul>
+          <li><strong>蒂卡波湖</strong>：好牧羊人教堂湖畔，往约翰山方向花丛更密</li>
+          <li><strong>普卡基湖</strong>：湖北岸和塔斯曼河河岸，蓝湖配雪山配花海</li>
+          <li><strong>Cromwell 一带</strong>：公路两旁常有鲁冰花</li>
+          <li><strong>Lindis River 附近</strong>：瓦纳卡→皇后镇沿途，坐巴士右侧</li>
+          <li><strong>皇后镇花园</strong>：自由日备选，花况不如蒂卡波集中</li>
+        </ul>
+      </div>
+      <div class="tip-card">
+        <h3>📸 拍照小贴士</h3>
+        <ul>
+          <li><strong>最佳光线</strong>：清晨薄雾中或傍晚斜阳下，色彩层次最丰富</li>
+          <li><strong>经典构图</strong>：好牧羊人教堂为背景，前景放一丛鲁冰花</li>
+          <li>或蹲低拍花丛 + 湖面 + 雪山</li>
+          <li>蒂卡波湖畔鲁冰花<strong>以紫色为主</strong>，也有粉、白、蓝混杂</li>
+        </ul>
+      </div>
+      <div class="tip-card">
+        <h3>⚠️ 观赏礼仪与注意</h3>
+        <ul>
+          <li><strong>不要走进花丛踩踏，更不要采摘</strong></li>
+          <li>拍照站在路边或步道即可</li>
+          <li>蒂卡波湖畔<strong>风很大</strong>，傍晚体感温度骤降，穿防风外套</li>
+          <li>鲁冰花季蒂卡波人潮增多，想拍空景建议清晨去</li>
+          <li>花丛附近小虫子不少，穿长裤或喷防虫液</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 费用预估 -->
+  <div class="cost-section">
+    <h2>💰 费用预估（双人，人民币）</h2>
+    <table class="cost-table">
+      <thead>
+        <tr>
+          <th>项目</th>
+          <th>预估费用</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>国际机票（北京往返奥克兰）</td><td>8,000 – 12,000</td><td>经济舱，提前2–3个月预订</td></tr>
+        <tr><td>新西兰国内机票</td><td>2,500 – 4,000</td><td>AKL-CHC + ZQN-AKL，捷星/纽航</td></tr>
+        <tr><td>InterCity FlexiPass</td><td>800 – 1,200</td><td>15小时Pass约199纽币/人</td></tr>
+        <tr><td>住宿（13晚）</td><td>9,000 – 13,000</td><td>青旅双人间或中档Motel</td></tr>
+        <tr><td>一日游/活动</td><td>9,000 – 13,000</td><td>库克山、米尔福德峡湾、跳伞、霍比特人村</td></tr>
+        <tr><td>餐饮</td><td>4,000 – 6,000</td><td>部分自炊，部分外食</td></tr>
+        <tr><td>奥克兰市区交通 + 轮渡</td><td>500 – 800</td><td>AT Hop卡 + 轮渡</td></tr>
+        <tr><td>其他（电话卡、纪念品等）</td><td>1,500 – 2,500</td><td></td></tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>总计</td>
+          <td>35,000 – 52,500</td>
+          <td>人均约 1.75万 – 2.6万</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="highlight-box" style="margin-top:18px;">
+      <strong>💡 省钱提示：</strong>如果住宿以青旅床位为主、餐饮多自炊，总花费可以压到人均 <strong>1.5万 – 1.8万</strong> 左右。
+    </div>
+  </div>
+
+  <!-- 预约清单 -->
+  <div class="booking-section">
+    <h2>📌 必须提前预约的项目清单</h2>
+    <ol class="booking-list">
+      <li><strong>奥克兰 → 基督城航班</strong><span class="deadline">提前1–2周</span> — 捷星价格波动大，越早越便宜。</li>
+      <li><strong>皇后镇 → 奥克兰航班</strong><span class="deadline">提前1–2周</span> — 傍晚航班热门，务必提前锁定。</li>
+      <li><strong>InterCity 巴士</strong><span class="deadline">提前1–2周</span> — 南岛路段很多一天只有一班，用 FlexiPass 也要提前在官网锁定座位。</li>
+      <li><strong>库克山一日游</strong><span class="deadline">提前1周</span> — Tekapo Shuttle 等产品旺季容易满员。</li>
+      <li><strong>米尔福德峡湾一日游</strong><span class="deadline">提前1–2周</span> — 热门日期很早就满。</li>
+      <li><strong>NZONE 跳伞</strong><span class="deadline">提前1–2周</span> — 并留出1天备用日，跳伞受天气影响大。</li>
+      <li><strong>霍比特人村 + 怀托摩萤火虫洞一日游</strong><span class="deadline">提前1周</span> — 霍比特人村门票常售罄。</li>
+      <li><strong>皇后镇 Skyline 缆车 / Luge</strong><span class="deadline">提前3–5天</span> — 旺季建议提前预订。</li>
+      <li><strong>住宿</strong><span class="deadline">提前1–2个月</span> — 尤其蒂卡波、皇后镇、奥克兰 CBD 的房源紧张。</li>
+    </ol>
+  </div>
+
+  <!-- 注意事项 -->
+  <div class="tips-section">
+    <h2>⚠️ 重要注意事项</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <h3>🛂 入境</h3>
+        <ul>
+          <li>新西兰<strong>禁止携带任何动植物制品</strong></li>
+          <li>蜂蜜、中药材、新鲜果蔬<strong>必须申报</strong></li>
+          <li>未申报被查到最低罚款 <strong>400 纽币</strong></li>
+          <li>香烟和酒有严格限额，仔细检查行李</li>
+        </ul>
+      </div>
+      <div class="tip-card">
+        <h3>🚌 交通</h3>
+        <ul>
+          <li>InterCity 巴士<strong>上车前15分钟到站等候</strong></li>
+          <li>司机拿名单核对名字，建议打印确认单备用</li>
+          <li>南岛小镇 Uber 很少，行程衔接留足余量</li>
+          <li>奥克兰用 <strong>AT Hop 卡</strong> 坐公交、轮渡更便宜</li>
+        </ul>
+      </div>
+      <div class="tip-card">
+        <h3>🌦️ 天气</h3>
+        <ul>
+          <li>10月是新西兰春季，南岛早晚温差大（6–17°C）</li>
+          <li>一天内可能经历四季</li>
+          <li>核心穿搭：<strong>防风防水冲锋衣 + 抓绒中层 + 速干内层</strong></li>
+          <li>米尔福德峡湾和库克山地区<strong>务必带防水外套</strong></li>
+        </ul>
+      </div>
+      <div class="tip-card">
+        <h3>📶 网络</h3>
+        <ul>
+          <li>推荐 Spark 或 Vodafone，机场可购买</li>
+          <li>Spark 39纽币 13G 套餐性价比高</li>
+          <li>库克山、米尔福德峡湾信号弱</li>
+          <li>建议<strong>提前下载离线地图</strong></li>
+        </ul>
+      </div>
+      <div class="tip-card">
+        <h3>💳 支付</h3>
+        <ul>
+          <li>大部分地方可刷卡（Visa/Mastercard）</li>
+          <li>建议准备少量新西兰元现金</li>
+          <li>用于部分公交或小额消费</li>
+          <li>新西兰<strong>不用小费</strong></li>
+        </ul>
+      </div>
+      <div class="tip-card">
+        <h3>🙋 礼仪</h3>
+        <ul>
+          <li>新西兰人非常友善，常说 “Thank you”</li>
+          <li>公共场合（尤其巴士上）保持安静</li>
+          <li>进店、上下车记得道谢</li>
+          <li>尊重毛利文化，拍照前先征得同意</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>🇳🇿 祝你们在新西兰拥有一段美好的回忆！</p>
+    <p style="margin-top:6px;">攻略生成日期：2026年9月 · 基于小红书攻略及公开信息整理 · 含鲁冰花早花期提示</p>
+  </div>
 
 </div>
-
-<footer>
-  🍂 祝一路顺风，秋色正好 🍂
-</footer>
-
 </body>
 </html>
