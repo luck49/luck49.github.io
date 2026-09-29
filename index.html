@@ -1,652 +1,664 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>白姑娘圣诞节快乐</title>
-<!--Merry Christmas-->
-<meta id="viewport" name="viewport" content="width=640, initial-scale=0.5, maximum-scale=2.0, minimum-scale=0.5, user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-touch-fullscreen" content="yes">
-<meta http-equiv="Access-Control-Allow-Origin" content="*">
-<meta name="MobileOptimized" content="640">
-<meta name="format-detection" content="telephone=no">
-<link rel="stylesheet" href="images/main.css" type="text/css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北京-承德-赤峰-乌兰布统-古北水镇 7天自驾游攻略</title>
+<style>
+  :root{
+    --orange:#e8813a; --orange-d:#d4692a; --gold:#f0b23e; --sky:#5aa9e6;
+    --ink:#33302b; --sub:#7a7268; --bg:#faf6ef; --card:#ffffff;
+    --green:#7fa650; --red:#c94f3d; --blue:#3d7dc9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;}
+  img,svg{display:block;max-width:100%;}
 
-<script type="text/javascript" src="images/viewport.js"></script>
-<script type="text/javascript" src="images/jquery-1.9.1-min.js"></script>
-<script src="images/jquery.min.js"></script>
-<script src="images/warterfall.js"></script>
-<script>var gSound = 'images/christmas.mp3';</script>
+  /* ===== Hero ===== */
+  .hero{position:relative;overflow:hidden;}
+  .hero svg{width:100%;height:auto;}
+  .hero-mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,20,8,.05) 40%,rgba(30,20,8,.62));}
+  .hero-text{position:absolute;left:0;right:0;bottom:0;padding:36px 5vw;color:#fff;}
+  .hero-text .kicker{font-size:14px;letter-spacing:4px;opacity:.9;}
+  .hero-text h1{font-size:clamp(26px,4.2vw,44px);font-weight:800;margin:6px 0 14px;text-shadow:0 2px 12px rgba(0,0,0,.35);}
+  .hero-stats{display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{background:rgba(255,255,255,.18);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:6px 16px;font-size:14px;font-weight:600;}
+  .chip b{font-size:17px;}
 
-<script>
-		 
-		var deerSprite;
-		var newyearCar1Sprite;
-		var newyearCar2Sprite;
-		var newyearCar3Sprite;
-		var title1Sprite;
-		var title2Sprite;
-		var title3Sprite;
-		var openGiftSprite;
-		var flowerSprite;
-		function animation1()
-		{
-			$('.pop1').fadeIn(1000);
-			setTimeout(function(){$('.pop1').fadeOut(1000);$('.pop2').fadeIn(1000);},3000);
-			var duration1 = 15000;
-			var duration2 = 15000;
-			deerSprite = new createDeerSprite();
-			newyearCar1Sprite = new createCarSprite(1,{isVibrate:true});
-			$('.bg').animate({'left':'0px'},duration1,function(){});
-			$('.deer_group').animate({'left':'-640px'},duration2,function(){clearInterval(newyearCar1Sprite.timeID1);clearInterval(deerSprite.timeID1);newyearCar1Sprite.carRotate=0;newyearCar1Sprite.el.css('-webkit-transform','rotate('+newyearCar1Sprite.carRotate+'deg)');openGiftSprite = new createOpenGiftSprite();});
-			title1Sprite = new createTitleSprite(1,{isVibrate:true});
-			new createStarSprite(1,{'top':'10px','left':'0px','scale':0.2,'rotate':'0deg'});
-			new createStarSprite(2,{'top':'20px','left':'60px','scale':0.25,'rotate':'10deg'});
-			new createStarSprite(3,{'top':'320px','left':'120px','scale':0.2,'rotate':'20deg'});
-			new createStarSprite(4,{'top':'250px','left':'260px','scale':0.25,'rotate':'30deg'});
-			new createStarSprite(5,{'top':'20px','left':'480px','scale':0.3,'rotate':'40deg'});
-			new createStarSprite(6,{'top':'320px','left':'410px','scale':0.25,'rotate':'50deg'});
-			new createStarSprite(7,{'top':'390px','left':'500px','scale':0.4,'rotate':'60deg'});
-			new createStarSprite(8,{'top':'80px','left':'520px','scale':0.35,'rotate':'70deg'});
-			new createStarSprite(9,{'top':'420px','left':'30px','scale':0.4,'rotate':'80deg'});
-		}
-		
-		function animation2()
-		{
-			flowerSprite = new createFlowersSprite(10);
-			title2Sprite = new createTitleSprite(2,{isVibrate:false});
-			var titleStep = 0;
-			$('#title2').animate({'opacity':1,'top':'30px'},{'step':function(now,fx){if(fx.prop=='opacity'){titleStep++;}if(titleStep%2==0 && fx.prop=='opacity'){$(this).css('-webkit-transform','scale('+now+')');}},'duration':3000});
-			setTimeout(function(){animation3();},3000);
-		}
-		
-		function animation3()
-		{
-			clearInterval(flowerSprite.timeID1);
-			clearInterval(title2Sprite.timeID1);
-			setTimeout(function(){$('.animation2').fadeOut();$('.animation3').fadeIn();},1500);
-			title3Sprite = new createTitleSprite(3,{isVibrate:true});
-			$('.goto_flower').click(function(){
-				//location.href='http://sun-air.net/wechat/event_20131230_2.html';
-			});
-			$('.share_help_entry').click(function(){
-				$('.card_help').fadeIn(500);
-			});
-			$('.card_help').click(function(){
-				$('.card_help').fadeOut(500);
-			});
-		}
-		
-		function createDeerSprite()
-		{
-			this.duration1 = 100;
-			this.el = $('.deer');
-			this.timeID1 = setInterval(function(){deerSprite.el.toggleClass('deer_frame2');},this.duration1);
-		}
-		
-		function createCarSprite(id,option)
-		{
-			this.duration1 = 100;
-			this.el = $('#newyearcar'+id);
-			if(option.isVibrate)
-			{
-				this.carRotate = 0;
-				this.perCarRotate = 0.1;
-				this.carMinRotate = -1;
-				this.carMaxRotate = 1;
-				var carSprite = this;
-				this.timeID1 = setInterval(function()
-				{
-					if(carSprite.carMinRotate<carSprite.carRotate && carSprite.carRotate<carSprite.carMaxRotate)
-					{
-						carSprite.carRotate = carSprite.carRotate+carSprite.perCarRotate;
-					}else if(carSprite.carRotate>=carSprite.carMaxRotate)
-					{
-						carSprite.perCarRotate = -0.1;
-						carSprite.carRotate = carSprite.carRotate+carSprite.perCarRotate;
-					}else if(carSprite.carRotate<=carSprite.carMinRotate)
-					{
-						carSprite.perCarRotate = 0.1;
-						carSprite.carRotate = carSprite.carRotate+carSprite.perCarRotate;
-					}
-					carSprite.el.css('-webkit-transform','rotate('+carSprite.carRotate+'deg)');
-				},this.duration1);
-			}
-		}
-		
-		function createTitleSprite(id,option)
-		{
-			this.duration1 = 100;
-			this.el = $('#title'+id);
-			this.rotate = 0;
-			this.perRotate = 0.1;
-			this.minRotate = -1;
-			this.maxRotate = 1;
-			titleSprite = this;
-			if(option.isVibrate)
-			{
-				this.timeID1 = setInterval(function()
-				{
-					if(titleSprite.minRotate<titleSprite.rotate && titleSprite.rotate<titleSprite.maxRotate)
-					{
-						titleSprite.rotate = titleSprite.rotate+titleSprite.perRotate;
-					}else if(titleSprite.rotate>=titleSprite.maxRotate)
-					{
-						titleSprite.perRotate = -0.1;
-						titleSprite.rotate = titleSprite.rotate+titleSprite.perRotate;
-					}else if(titleSprite.rotate<=titleSprite.minRotate)
-					{
-						titleSprite.perRotate = 0.1;
-						titleSprite.rotate = titleSprite.rotate+titleSprite.perRotate;
-					}
-					titleSprite.el.css('-webkit-transform','rotate('+titleSprite.rotate+'deg)');
-				},this.duration1);
-			}
-		}
-		
-		function createOpenGiftSprite()
-		{
-			this.el = $('.opengift');
-			this.el.show();
-			this.minWidth = 134;
-			this.maxWidth = 168;
-			this.currentWidth = this.minWidth;
-			this.changePosition = 0;
-			this.perChangePosition = 2;
-			var openGiftSprite = this;
-			this.timeID1 = setInterval(function()
-			{
-				if(openGiftSprite.currentWidth>openGiftSprite.maxWidth || openGiftSprite.currentWidth<openGiftSprite.minWidth)
-				{
-					openGiftSprite.perChangePosition = -openGiftSprite.perChangePosition;
-				}
-				openGiftSprite.currentWidth = openGiftSprite.currentWidth+openGiftSprite.perChangePosition;
-				openGiftSprite.changePosition = openGiftSprite.changePosition+openGiftSprite.perChangePosition;
-				openGiftSprite.el.css('top',parseInt(openGiftSprite.el.css('top'),10)-openGiftSprite.perChangePosition/2+'px');
-				openGiftSprite.el.css('left',parseInt(openGiftSprite.el.css('left'),10)-openGiftSprite.perChangePosition/2+'px');
-				openGiftSprite.el.css('width',openGiftSprite.currentWidth+'px');
-				openGiftSprite.el.css('height',openGiftSprite.currentWidth+'px');
-			},100);	
-		}
-		
-		function createStarSprite(id,option)
-		{
-			this.el = $('#star'+id);
-			this.minWidth = 115;
-			this.maxWidth = 115;
-			this.initScale = option.scale ? option.scale : 1;
-			this.minScale = option.minScale ? option.minScale : option.scale/1.2;
-			this.maxScale = option.maxScale ? option.maxScale : option.scale*1.2;
-			this.initRotate = option.rotate ? option.rotate : '0deg';
-			this.perChangeScale = (this.initScale-this.minScale)/5;
-			this.el.css('-webkit-transform','scale('+this.initScale+') rotate('+this.initRotate+')');
-			this.currentScale = this.initScale;
-			this.el.css('top',option.top);
-			this.el.css('left',option.left);
-			var starSprite = this;
-			this.timeID1 = setInterval(function(){
-				if(starSprite.currentScale>starSprite.maxScale || starSprite.currentScale<starSprite.minScale)
-				{
-					starSprite.perChangeScale = -starSprite.perChangeScale;
-				}
-				starSprite.currentScale = starSprite.currentScale+starSprite.perChangeScale;
-				starSprite.el.css('-webkit-transform','scale('+starSprite.currentScale+') rotate('+starSprite.initRotate+')');
-				starSprite.el.css('transform','scale('+starSprite.currentScale+') rotate('+starSprite.initRotate+')');
-			},100);
-		}
-		
-		function createFlowersSprite(number)
-		{
-			this.flowerResArr = new Array();
-			this.flowerResArr[0] = ['flower_1.png','flower_4.png','flower_6.png','flower_7.png','flower_8.png','flower_10.png','flower_11.png','flower_12.png','flower_14.png'];
-			this.flowerResArr[1] = ['flower_2.png','flower_3.png','flower_4.png','flower_5.png','flower_7.png','flower_8.png','flower_9.png','flower_10.png','flower_12.png','flower_13.png'];
-			this.flowerCountsPerTime = number;
-			this.flowerArr = new Array();
-			this.middlePosition = 220;
-			this.topWidth = 350;
-			this.leftWidth = this.middlePosition;
-			this.createFlowerAnimation = function(){
-				for(i=0;i<this.flowerCountsPerTime;i++)
-				{
-					this.flowerArr[i]= document.createElement('img');
-					this.flowerArr[i].style.position = 'absolute';
-					
-					//alert(i%2);
-					if(i%2==0)
-					{
-						this.leftWidth = this.middlePosition-i*6;
-					}else{
-						this.leftWidth = this.middlePosition+i*6;
-					}
-					if(this.leftWidth<=this.middlePosition)
-					{
-						this.flowerArr[i].src = 'images/'+this.flowerResArr[0][(parseInt(Math.random()*9)%9)];
-					}else{
-						this.flowerArr[i].src = 'images/'+this.flowerResArr[1][(parseInt(Math.random()*10)%10)];
-					}
-					this.flowerArr[i].style.top = this.topWidth+'px';
-					this.flowerArr[i].style.left = this.leftWidth+'px';
-					$('.animation2 .flower').append(this.flowerArr[i]);
-					$(this.flowerArr[i]).animate({'top':'-300px','left':this.leftWidth<=this.middlePosition ? this.leftWidth-80-(i*65)+'px' : this.leftWidth+80+(i*65)+'px'},2000,'swing',function(){$(this).remove();});
-				}
-			};
-			flowerSprite = this;
-			this.timeID1 = setInterval(function(){flowerSprite.createFlowerAnimation(number);},200);
-		}
-		
-		$(document).ready(function(){
-			$('.start').click(function(){
-				animation1();
-				$(this).hide();
-				//$('#audio1')[0].play();
-			});
-			$('.opengift').click(function(){
-				clearInterval(title1Sprite.timeID1);
-				clearInterval(openGiftSprite.timeID1);
-				$('.animation1').hide();
-				$('.animation2').show();
-				animation2();
-			});
-		});
-		
-		
-</script>
-<script>
-var pop_up_note_mode = true;
-var note_id = 1;
+  /* ===== Nav ===== */
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid #eee3d2;overflow-x:auto;white-space:nowrap;}
+  nav .inner{display:flex;gap:4px;padding:10px 5vw;}
+  nav a{color:var(--sub);text-decoration:none;font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px;transition:.2s;}
+  nav a:hover{background:#f6e9d4;color:var(--orange-d);}
+  nav a.hl{background:var(--orange);color:#fff;}
 
-function id(name)
-{
-	return document.getElementById(name);
-}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px;}
+  section{padding:44px 0 8px;}
+  .sec-title{display:flex;align-items:center;gap:12px;margin-bottom:22px;}
+  .sec-title .bar{width:8px;height:30px;border-radius:4px;background:linear-gradient(180deg,var(--gold),var(--orange));}
+  .sec-title h2{font-size:26px;font-weight:800;}
+  .sec-title small{color:var(--sub);font-weight:500;margin-left:auto;font-size:14px;}
 
+  /* ===== Route chain ===== */
+  .route-chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;background:var(--card);border-radius:18px;padding:22px;box-shadow:0 4px 18px rgba(180,130,60,.10);}
+  .stop{background:#fdf3e3;border:1.5px solid #f0d9ae;color:#8a5a1d;font-weight:700;font-size:14px;padding:6px 14px;border-radius:999px;}
+  .stop.key{background:var(--orange);border-color:var(--orange);color:#fff;}
+  .arrow{color:#d8b878;font-weight:800;font-size:13px;}
 
-function switchsound()
-{
-	au = id('bgsound');
-	ai = id('sound_image');
-	if(au.paused)
-	{
-		au.play();
-		ai.src = 'images/music_note_big.png';
-		pop_up_note_mode = true;
-		popup_note();
-		id("music_txt").innerHTML = "打开";
-		id("music_txt").style.visibility = "visible";
-		setTimeout(function(){id("music_txt").style.visibility="hidden"}, 2500);
-	}
-	else
-	{
-		pop_up_note_mode = false;
-		au.pause();
-		ai.src = 'images/music_note_big.png';
-		id("music_txt").innerHTML = "关闭";
-		id("music_txt").style.visibility = "visible";
-		setTimeout(function(){id("music_txt").style.visibility="hidden"}, 2500);
-	}
-}
+  /* ===== Overview table ===== */
+  .table-wrap{overflow-x:auto;border-radius:16px;box-shadow:0 4px 18px rgba(180,130,60,.10);}
+  table{width:100%;min-width:640px;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden;}
+  th{background:linear-gradient(90deg,var(--orange),var(--gold));color:#fff;font-size:14px;padding:12px 14px;text-align:left;}
+  td{padding:12px 14px;font-size:14.5px;border-bottom:1px solid #f3e9d8;vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:#fdf8ef;}
+  td.day{font-weight:800;color:var(--orange-d);white-space:nowrap;}
+  td .km{color:var(--sub);font-size:13px;}
+  .tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;margin-left:6px;vertical-align:middle;}
+  .tag.hot{background:#fdeaea;color:var(--red);}
+  .tag.free{background:#e9f5e3;color:#4c8a2f;}
+  .tag.warn{background:#fff6e0;color:#b07d10;}
 
-function on_pop_note_end(event)
-{
-	note = event.target;
-	
-	if(note.parentNode == id("note_box"))
-	{
-		id("note_box").removeChild(note);
-		console.log("remove note id " + note.getAttribute("id"));
-	}
-}
+  /* ===== Day cards ===== */
+  .day-card{background:var(--card);border-radius:22px;box-shadow:0 6px 24px rgba(180,130,60,.12);overflow:hidden;margin-bottom:36px;}
+  .day-head{display:flex;align-items:baseline;gap:14px;padding:22px 28px 0;flex-wrap:wrap;}
+  .day-badge{background:linear-gradient(135deg,var(--orange),var(--gold));color:#fff;font-weight:800;font-size:15px;border-radius:12px;padding:6px 14px;box-shadow:0 3px 8px rgba(230,130,50,.35);}
+  .day-head h3{font-size:21px;font-weight:800;}
+  .day-meta{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;}
+  .meta-pill{font-size:12.5px;font-weight:700;padding:4px 12px;border-radius:999px;background:#f3ede2;color:#8a7a5c;}
+  .meta-pill.drive{background:#e8f1fb;color:var(--blue);}
+  .meta-pill.bed{background:#fdeee6;color:var(--orange-d);}
+  .day-body{display:grid;grid-template-columns:1.05fr .95fr;gap:0;padding:20px 28px 26px;}
+  .day-body.rev{grid-template-columns:.95fr 1.05fr;}
+  .day-pics{display:flex;flex-direction:column;gap:12px;padding-right:22px;}
+  .day-body.rev .day-pics{order:2;padding-right:0;padding-left:22px;}
+  .pic{border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(120,90,40,.15);}
+  .pic figcaption{font-size:12.5px;color:var(--sub);text-align:center;padding:7px 8px;background:#fdf8ef;font-weight:600;}
+  .timeline{border-left:3px solid #f0dcb8;padding-left:0;display:flex;flex-direction:column;gap:0;}
+  .tl-item{position:relative;padding:7px 0 7px 22px;font-size:14.5px;}
+  .tl-item::before{content:"";position:absolute;left:-7px;top:15px;width:11px;height:11px;border-radius:50%;background:#fff;border:3px solid var(--orange);}
+  .tl-item .t{font-weight:800;color:var(--orange-d);margin-right:8px;font-variant-numeric:tabular-nums;}
+  .tl-item b{color:var(--ink);}
+  .tl-note{background:#fdf6e9;border-radius:12px;padding:10px 14px;font-size:13.5px;color:#8a6a2f;margin-top:10px;}
+  .tl-note::before{content:"💡 ";}
+  .tl-warn{background:#fdeeee;border-radius:12px;padding:10px 14px;font-size:13.5px;color:#a0432f;margin-top:10px;}
+  .tl-warn::before{content:"⚠️ ";}
 
-function popup_note()
-{
-	box = id("note_box");
-	
-	note = document.createElement("span");
-	note.style.cssText = "visibility:visible;position:absolute;background-image:url('images/music_note_big.png');width:15px;height:25px";
-	note.style.left = Math.random() * 20 + 20;
-	note.style.top = "75px";
-	this_node = "music_note_" + note_id;
-	note.setAttribute("ID", this_node);
-	note_id += 1;
-	scale = Math.random() * 0.4 + 0.4;
-	note.style.webkitTransform = "rotate(" + Math.floor(360 * Math.random()) + "deg) scale(" + scale + "," + scale + ")";
-	note.style.webkitTransition = "top 2s ease-in, opacity 2s ease-in, left 2s ease-in";
-	note.addEventListener("webkitTransitionEnd", on_pop_note_end);
-	box.appendChild(note);
+  /* ===== Budget ===== */
+  .budget-total{background:linear-gradient(90deg,#fff3df,#fde8cf);border:1.5px dashed var(--orange);border-radius:14px;padding:16px 22px;margin-top:16px;font-size:16px;font-weight:700;color:var(--orange-d);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+  .budget-total b{font-size:24px;}
 
-	setTimeout("document.getElementById('" + this_node + "').style.left = '0px';", 100);
-	setTimeout("document.getElementById('" + this_node + "').style.top = '0px';", 100);
-	setTimeout("document.getElementById('" + this_node + "').style.opacity = '0';", 100);
-	
-	if(pop_up_note_mode)
-	{
-		setTimeout("popup_note()", 600);
-	}	
-}
+  /* ===== Checklist ===== */
+  .todo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;}
+  .todo{background:var(--card);border-radius:16px;padding:18px 20px;box-shadow:0 4px 14px rgba(180,130,60,.10);font-size:14.5px;display:flex;gap:12px;}
+  .todo .no{flex:none;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--gold));color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px;}
+  .rules{background:#2f2a24;color:#f5ead6;border-radius:18px;padding:24px 26px;margin-top:20px;}
+  .rules h4{color:var(--gold);font-size:17px;margin-bottom:10px;}
+  .rules p{font-size:14.5px;margin:6px 0;}
+  .rules b{color:#ffd98a;}
 
-function playbksound()
-{
-	var audiocontainer = id('audiocontainer');
-	if(audiocontainer != undefined)
-	{
-		audiocontainer.innerHTML = '<audio id="bgsound" loop="loop" autoplay="autoplay"> <source src="' + gSound + '" /> </audio>';
-	}
-			
-	var audio = id('bgsound');
-	audio.play();
-	
-	sound_div = document.createElement("div");
-	sound_div.setAttribute("ID", "cardsound");
-	sound_div.style.cssText = "position:fixed;right:40px;top:40px;z-index:5000;visibility:visible;";
-	box_htm = "<div id='note_box' style='height:100px;width:44px;position:absolute;left:-20px;top:-80px'></div>";
-	bg_htm = "<img id='sound_image' onclick='switchsound()' src='images/music_note_big.png'>";
-	txt_htm = "<div id='music_txt' style='color:white;position:absolute;left:-40px;top:30px;width:60px'></div>"
-	sound_div.innerHTML = bg_htm + box_htm + txt_htm;
-	document.body.appendChild(sound_div);
-	setTimeout("popup_note()", 100);
-}	
+  footer{text-align:center;color:var(--sub);font-size:13px;padding:40px 20px 60px;}
+  footer .src{margin-top:6px;font-size:12px;opacity:.8;}
 
-function in_weixin()
-{
-	var ua = navigator.userAgent.toLowerCase();
-
-	if(ua.match(/MicroMessenger/i) == "micromessenger") {return true;}
-	
-	return false;
-}
-(function(){
-				var onBridgeReady = function () {	
-					
-					playbksound();			
-					
-					// 发送给好友;
-					WeixinJSBridge.on('menu:share:appmessage', function(argv){						WeixinJSBridge.invoke('sendAppMessage',{
-							'img_url' : imgUrl,
-							'img_width' : '640',
-							'img_height' : '640',
-							'link' : link,
-							'desc' : desc,
-							'title' : title
-							}, function(res) {});
-					});
-					// 分享到朋友圈;
-					WeixinJSBridge.on('menu:share:timeline', function(argv){						WeixinJSBridge.invoke('shareTimeline',{
-						'img_url' : imgUrl,
-						'img_width' : '640',
-						'img_height' : '640',
-						'link' : link,
-						'desc' : desc,
-						'title' : desc
-						}, function(res) {
-						});
-					});
-				};
-				
-				if(document.addEventListener){
-					document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-				} else if(document.attachEvent){
-					document.attachEvent('WeixinJSBridgeReady' , onBridgeReady);
-					document.attachEvent('onWeixinJSBridgeReady' , onBridgeReady);
-				}
-			if(!in_weixin())
-	{
-		setTimeout("playbksound()", 500);
-		//setTimeout("translateUrl(link)", 1000);
-	}
-			})();
-
-	</script>
-<div id="audiocontainer"></div>
-<div id="cardsound" style="position: fixed; right:40px; top: 40px; z-index: 5000; visibility: visible;"></div>
+  @media (max-width:820px){
+    .day-body,.day-body.rev{grid-template-columns:1fr;}
+    .day-pics,.day-body.rev .day-pics{padding:0 0 18px;order:0;}
+    .day-meta{margin-left:0;width:100%;}
+  }
+  @media print{
+    nav{display:none;}
+    .day-card{break-inside:avoid;box-shadow:none;border:1px solid #eee;}
+  }
+</style>
 </head>
 <body>
-	<div class="wrapper">
-		<div class="bg"></div>
-		<div class="animation1">
-			<div class="start"></div>
-			<div id="star1" class="star"></div>
-			<div id="star2" class="star"></div>
-			<div id="star3" class="star"></div>
-			<div id="star4" class="star"></div>
-			<div id="star5" class="star"></div>
-			<div id="star6" class="star"></div>
-			<div id="star7" class="star"></div>
-			<div id="star8" class="star"></div>
-			<div id="star9" class="star"></div>
-			<h3 id="title1" class="title"></h3>
-			<div class="deer_group">
-				<div class="pop1"></div>
-				<div class="pop2"><div class="content_border"><img src="images/desc_1.png" class="content_1"><二愣子></div><img src="images/desc_2.png" class="content_3"></div>
-				<div class="deer"></div>
-				<div id="newyearcar1" class="newyearcar"></div>
-				<div class="opengift"></div>
-			</div>
-		</div>
-		<div class="animation2">
-			<h3 id="title2" class="title"></h3>
-			<div class="flower"></div>
-			<div id="newyearcar2" class="newyearcar"></div>
-		</div>
-		<div class="animation3">
-			<h3 id="title3" class="title"></h3>
-			 			<div class="share_help_entry"></div>
-		 
-           
 
- <div id="sharemcover" onClick="document.getElementById('sharemcover').style.display='';" style=" display:none"><img src="http://img.ishangtong.com/baeimages/MgnnofmleM.png"></div>
- <div class="cardWrap">
-    
-<style>
-.btn_music {
-display: inline-block;
-width: 35px;
-height: 35px;
-background: url('http://apisimsim.duapp.com/index/images/play.png') no-repeat center center;
-background-size: 100% auto;
-position: absolute;
-z-index: 100;
-left: 15px;
-top: 30px;
-}
-.btn_music.on {
-    background-image: url("http://apisimsim.duapp.com/index/images/stop.png");
-}
-
-.copyright {
-padding: 8px 0 8px 0;
-position: fixed;
-z-index: 9999;
-font-size: 18px;
-bottom: 0;
-width: 100%;
-color: #477585;
-text-align: center;
-display: block;
-}
- 
- </style>
-
-<div class="messageBox">
-            <div class="user">
-                       <div class="message">🎄🎄🎄白姑娘，圣诞节快乐哟(*^▽^*)🎄🎄🎄</div>
-                 
-                <div class="name">❄️回笼觉主❄️</div>
-                <div class="name">2020-12-25&nbsp;</div>
-            </div>
-            
-               <div  class="dh" id="dh" style="display:none">
-            <select class="selectstyle fl"
-  id="bjdh" onChange="doit()" name="bjdh"   > 
-                    <option    value="0">请选择动画</option>
-                     <option    value="1">下落的枫叶</option>
-                     <option    value="2">飘雪</option>
-                     <option    value="4">飘玫瑰</option>
-                      <option   selected   value="5">驯鹿</option>
- 						 <option    value="7">金元宝</option>
-                    </select>
-                     <select class="selectstyle fr"
-  id="bjid" onChange="doit()" name="bjid"   > 
-                    
-                   <option     selected   value="2"></option> 
-                    </select>
-                    </div>
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <svg viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="草原自驾封面插画">
+    <defs>
+      <linearGradient id="cv-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#5fb2ec"/><stop offset="1" stop-color="#cdeafd"/>
+      </linearGradient>
+      <linearGradient id="cv-field" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f2cd55"/><stop offset="1" stop-color="#e3a83c"/>
+      </linearGradient>
+    </defs>
+    <rect width="1200" height="500" fill="url(#cv-sky)"/>
+    <ellipse cx="220" cy="90" rx="90" ry="26" fill="#ffffff" opacity=".9"/>
+    <ellipse cx="300" cy="105" rx="70" ry="20" fill="#ffffff" opacity=".8"/>
+    <ellipse cx="920" cy="70" rx="110" ry="28" fill="#ffffff" opacity=".9"/>
+    <ellipse cx="1030" cy="95" rx="80" ry="22" fill="#ffffff" opacity=".8"/>
+    <path d="M0 240 Q 200 170 420 225 T 830 210 T 1200 235 V500 H0 Z" fill="#c9d98c"/>
+    <path d="M0 290 Q 260 220 520 275 T 1200 285 V500 H0 Z" fill="url(#cv-field)"/>
+    <path d="M0 340 Q 300 290 640 330 T 1200 345 V500 H0 Z" fill="#eabf4b"/>
+    <!-- birches -->
+    <g>
+      <rect x="86" y="235" width="10" height="120" fill="#f4f1e6"/>
+      <rect x="88" y="252" width="7" height="6" fill="#4a4a4a"/><rect x="88" y="282" width="7" height="6" fill="#4a4a4a"/><rect x="88" y="315" width="7" height="6" fill="#4a4a4a"/>
+      <circle cx="91" cy="222" r="34" fill="#f2b93b"/><circle cx="70" cy="238" r="22" fill="#e8a02e"/>
+      <rect x="150" y="255" width="8" height="95" fill="#f4f1e6"/>
+      <rect x="151" y="270" width="6" height="5" fill="#4a4a4a"/><rect x="151" y="300" width="6" height="5" fill="#4a4a4a"/>
+      <circle cx="154" cy="243" r="26" fill="#e8973a"/>
+    </g>
+    <!-- sheep -->
+    <g fill="#ffffff">
+      <ellipse cx="980" cy="330" rx="14" ry="9"/><ellipse cx="1020" cy="345" rx="12" ry="8"/><ellipse cx="940" cy="350" rx="12" ry="8"/><ellipse cx="1060" cy="325" rx="11" ry="7"/>
+    </g>
+    <g fill="#3c3c3c"><ellipse cx="880" cy="352" rx="13" ry="9"/><ellipse cx="830" cy="342" rx="11" ry="8"/></g>
+    <!-- road -->
+    <path d="M430 500 C 520 400 700 380 760 320 C 800 280 780 262 740 252 L 790 246 C 850 260 870 292 830 340 C 760 420 620 430 560 500 Z" fill="#8d8d94"/>
+    <path d="M505 480 C 580 410 720 395 790 330" stroke="#f7d54d" stroke-width="6" stroke-dasharray="26 22" fill="none"/>
+    <!-- car -->
+    <g transform="translate(618,368)">
+      <rect x="0" y="14" width="86" height="26" rx="10" fill="#ffffff"/>
+      <rect x="16" y="2" width="52" height="20" rx="8" fill="#ffffff"/>
+      <rect x="21" y="6" width="20" height="13" rx="4" fill="#9fc9e8"/>
+      <rect x="46" y="6" width="18" height="13" rx="4" fill="#9fc9e8"/>
+      <circle cx="20" cy="40" r="9" fill="#3b3b3b"/><circle cx="66" cy="40" r="9" fill="#3b3b3b"/>
+      <circle cx="20" cy="40" r="4" fill="#cfcfcf"/><circle cx="66" cy="40" r="4" fill="#cfcfcf"/>
+    </g>
+  </svg>
+  <div class="hero-mask"></div>
+  <div class="hero-text">
+    <div class="kicker">国庆黄金周 · 草原+沙漠+皇家园林+长城水镇</div>
+    <h1>北京 → 承德 → 赤峰 → 乌兰布统 → 古北水镇<br>7 天自驾游攻略</h1>
+    <div class="hero-stats">
+      <span class="chip">🚗 总里程 <b>≈1850 km</b></span>
+      <span class="chip">📅 9.30 – 10.6 · <b>7 天</b></span>
+      <span class="chip">🔁 <b>环线</b> 不走回头路</span>
     </div>
-    
+  </div>
+</header>
+
+<nav><div class="inner">
+  <a href="#route" class="hl">路线总览</a>
+  <a href="#d1">D1 承德</a>
+  <a href="#d2">D2 玉龙沙湖</a>
+  <a href="#d3">D3 赤峰·温泉</a>
+  <a href="#d4">D4 热阿线·达达线</a>
+  <a href="#d5">D5 大青山·乌兰布统</a>
+  <a href="#d6">D6 公主湖·古北水镇</a>
+  <a href="#d7">D7 返程</a>
+</div></nav>
+
+<div class="wrap">
+
+<!-- ===================== 路线骨架 ===================== -->
+<section id="route">
+  <div class="sec-title"><span class="bar"></span><h2>🗺️ 路线骨架</h2><small>总里程约 1850km · 环线不回头</small></div>
+  <div class="route-chain">
+    <span class="stop key">北京</span><span class="arrow">→</span>
+    <span class="stop key">承德</span><span class="arrow">→</span>
+    <span class="stop">玉龙沙湖</span><span class="arrow">→</span>
+    <span class="stop key">赤峰</span><span class="arrow">→</span>
+    <span class="stop">大板</span><span class="arrow">→</span>
+    <span class="stop key">热水塘</span><span class="arrow">→</span>
+    <span class="stop">热阿线</span><span class="arrow">→</span>
+    <span class="stop">阿斯哈图石林</span><span class="arrow">→</span>
+    <span class="stop">达达线</span><span class="arrow">→</span>
+    <span class="stop">达里湖</span><span class="arrow">→</span>
+    <span class="stop key">经棚</span><span class="arrow">→</span>
+    <span class="stop">大青山</span><span class="arrow">→</span>
+    <span class="stop key">乌兰布统</span><span class="arrow">→</span>
+    <span class="stop">蛤蟆坝</span><span class="arrow">→</span>
+    <span class="stop key">古北水镇</span><span class="arrow">→</span>
+    <span class="stop key">北京</span>
+  </div>
+
+  <div style="height:26px"></div>
+  <div class="table-wrap">
+  <table>
+    <tr><th style="width:110px">日期</th><th>行程</th><th style="width:150px">驾驶</th><th style="width:140px">住宿</th></tr>
+    <tr><td class="day">9.30 周三</td><td>北京 → 承德（避暑山庄）</td><td>230km<span class="km"> / 3h</span></td><td>承德</td></tr>
+    <tr><td class="day">10.1 周四</td><td>承德 → 玉龙沙湖 → 赤峰</td><td>~430km<span class="km"> / 5h</span></td><td>赤峰</td></tr>
+    <tr><td class="day">10.2 周五</td><td>赤峰辽代博物馆 → 巴林右旗 → 热水塘</td><td>~350km<span class="km"> / 4h</span></td><td>热水塘（温泉）</td></tr>
+    <tr><td class="day">10.3 周六</td><td>热阿线 → 石林 → 达达线 → 达里湖 → 经棚</td><td>~260km<span class="km"> / 4.5h</span></td><td>经棚</td></tr>
+    <tr><td class="day">10.4 周日</td><td>经棚 → 大青山 → 乌兰布统</td><td>~170km<span class="km"> / 3h+景区</span></td><td>乌兰布统</td></tr>
+    <tr><td class="day">10.5 周一</td><td>公主湖 → 蛤蟆坝/桦木沟 → 古北水镇</td><td>~400km<span class="km"> / 5h</span></td><td>古北水镇/密云</td></tr>
+    <tr><td class="day">10.6 周二</td><td>古北水镇 → 北京</td><td>140km<span class="km"> / 2h</span></td><td>到家 🏠</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- ===================== 逐日行程 ===================== -->
+<section>
+  <div class="sec-title"><span class="bar"></span><h2>📅 逐日详细行程</h2><small>按钟点走，节奏刚刚好</small></div>
+
+  <!-- D1 -->
+  <article class="day-card" id="d1">
+    <div class="day-head">
+      <span class="day-badge">D1 · 9.30 周三</span>
+      <h3>北京 → 承德 ｜ 避暑山庄·小布达拉宫</h3>
+      <div class="day-meta"><span class="meta-pill drive">🚗 230km / 3h</span><span class="meta-pill bed">🛏 宿承德</span></div>
+    </div>
+    <div class="day-body">
+      <div class="day-pics">
+        <figure class="pic">
+          <svg viewBox="0 0 800 450">
+            <defs><linearGradient id="cd-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8ecdf0"/><stop offset="1" stop-color="#e3f3fb"/></linearGradient></defs>
+            <rect width="800" height="450" fill="url(#cd-sky)"/>
+            <path d="M0 200 Q 180 120 360 180 T 800 175 V260 H0 Z" fill="#8fb96a"/>
+            <path d="M0 235 Q 220 170 460 220 T 800 225 V280 H0 Z" fill="#6d9c4f"/>
+            <!-- temple on hill -->
+            <g transform="translate(560,120)">
+              <rect x="0" y="30" width="130" height="45" fill="#b03a2e"/>
+              <path d="M-12 30 Q 65 -6 142 30 L 130 22 Q 65 -12 0 22 Z" fill="#e8a92e"/>
+              <rect x="48" y="45" width="34" height="30" fill="#7e2a20"/>
+            </g>
+            <!-- lake -->
+            <rect y="280" width="800" height="170" fill="#7fb8d4"/>
+            <rect y="280" width="800" height="14" fill="#9ccbe0"/>
+            <path d="M0 330 Q 200 322 400 330 T 800 330" stroke="#a9d4e6" stroke-width="3" fill="none" opacity=".7"/>
+            <path d="M0 380 Q 200 372 400 380 T 800 380" stroke="#a9d4e6" stroke-width="3" fill="none" opacity=".5"/>
+            <!-- pavilion -->
+            <g transform="translate(300,208)">
+              <rect x="-90" y="62" width="180" height="16" fill="#efe8da"/>
+              <rect x="-70" y="10" width="140" height="54" fill="#b03a2e"/>
+              <rect x="-14" y="26" width="28" height="38" fill="#6e241b"/>
+              <rect x="-58" y="26" width="22" height="22" fill="#f2d488"/>
+              <rect x="36" y="26" width="22" height="22" fill="#f2d488"/>
+              <path d="M-88 10 Q 0 -34 88 10 L 70 0 Q 0 -44 -70 0 Z" fill="#e8a92e"/>
+              <rect x="-6" y="-34" width="12" height="14" fill="#c9871f"/>
+              <rect x="-70" y="64" width="140" height="10" fill="#b03a2e" opacity=".25" transform="translate(0,96) scale(1,-1)"/>
+            </g>
+            <!-- willow -->
+            <g stroke="#5c8a3c" stroke-width="7" fill="none" stroke-linecap="round">
+              <path d="M60 250 q -8 70 -20 105"/><path d="M85 252 q 2 72 -6 108"/><path d="M110 250 q 10 70 4 106"/><path d="M135 255 q 16 62 12 100"/>
+            </g>
+            <path d="M40 250 Q 100 210 160 250 L 150 262 Q 100 228 50 262 Z" fill="#6d9c4f"/>
+            <rect x="94" y="250" width="12" height="34" fill="#7a5b3a"/>
+            <!-- reflection -->
+            <g opacity=".35" transform="translate(0,556) scale(1,-0.42)">
+              <rect x="230" y="280" width="140" height="54" fill="#b03a2e"/>
+            </g>
+          </svg>
+          <figcaption>避暑山庄湖区 · 烟雨楼</figcaption>
+        </figure>
+      </div>
+      <div class="timeline">
+        <div class="tl-item"><span class="t">06:30</span>出门早餐、装车</div>
+        <div class="tl-item"><span class="t">07:00</span>准时出发：京承高速 G45 北上，节前最后工作日早高峰出城方向基本顺畅（中途太子服务区休息一次）</div>
+        <div class="tl-item"><span class="t">10:00</span>抵承德市区，酒店放行李（建议住<b>避暑山庄丽正门附近</b>，步行可达）</div>
+        <div class="tl-item"><span class="t">10:30</span>午餐：老三羊汤（羊汤+烧饼，人均25）</div>
+        <div class="tl-item"><span class="t">11:30</span><b>避暑山庄</b>（丽正门进）：宫殿区（澹泊敬诚殿，金丝楠木大殿）→ 博物馆 → 湖区（环碧、烟雨楼，可乘游船约40/人）→ 平原区万树园 → 试马埭。出园前在<b>南山积雪亭</b>俯瞰外八庙全景。门票130，60岁以上免票；<b>务必提前在公众号「避暑山庄及周围寺庙」约好时段票，刷身份证入园</b></div>
+        <div class="tl-item"><span class="t">16:00</span>（可选）加游<b>普陀宗乘之庙</b>（小布达拉宫，门票80，1.5h）——就是在南山积雪亭看到的那片红台白台</div>
+        <div class="tl-item"><span class="t">18:00</span>晚餐：大清花饺子 / 御土荷叶鸡</div>
+        <div class="tl-item"><span class="t">20:00</span>（可选）《鼎盛王朝·康熙大典》实景演出（约1.5h，198–280元，提前一天公众号购票）</div>
+        <div class="tl-warn">今日是高速免费前一天，过路费约 100 元。</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- D2 -->
+  <article class="day-card" id="d2">
+    <div class="day-head">
+      <span class="day-badge">D2 · 10.1 周四</span>
+      <h3>承德 → 玉龙沙湖 → 赤峰 ｜ 白沙漠+碧湖</h3>
+      <div class="day-meta"><span class="meta-pill drive">🚗 ~430km / 5h</span><span class="meta-pill bed">🛏 宿赤峰</span></div>
+    </div>
+    <div class="day-body rev">
+      <div class="day-pics">
+        <figure class="pic">
+          <svg viewBox="0 0 800 450">
+            <defs><linearGradient id="sh-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4aa3e8"/><stop offset="1" stop-color="#bfe6fb"/></linearGradient></defs>
+            <rect width="800" height="450" fill="url(#sh-sky)"/>
+            <ellipse cx="620" cy="80" rx="90" ry="24" fill="#fff" opacity=".9"/>
+            <path d="M0 210 Q 150 120 330 190 T 800 185 V450 H0 Z" fill="#f6efdd"/>
+            <path d="M0 260 Q 220 190 460 250 T 800 255 V450 H0 Z" fill="#efe3c8"/>
+            <!-- lake -->
+            <path d="M330 300 Q 480 262 660 300 Q 700 320 660 345 Q 480 385 330 345 Q 290 322 330 300 Z" fill="#2fa8c9"/>
+            <path d="M360 315 Q 480 292 620 316" stroke="#7fd4e8" stroke-width="5" fill="none" opacity=".8"/>
+            <!-- camels -->
+            <g fill="#8a5a2e">
+              <g transform="translate(120,300)"><ellipse cx="0" cy="0" rx="26" ry="15"/><circle cx="24" cy="-14" r="8"/><rect x="20" y="-12" width="7" height="18" rx="3" transform="rotate(20 23 -8)"/><rect x="-20" y="10" width="5" height="20"/><rect x="-8" y="12" width="5" height="20"/><rect x="6" y="12" width="5" height="20"/><rect x="16" y="10" width="5" height="20"/><ellipse cx="-6" cy="-13" rx="10" ry="8"/></g>
+              <g transform="translate(200,322) scale(.85)"><ellipse cx="0" cy="0" rx="26" ry="15"/><circle cx="24" cy="-14" r="8"/><rect x="-20" y="10" width="5" height="20"/><rect x="-6" y="12" width="5" height="20"/><rect x="8" y="12" width="5" height="20"/><ellipse cx="-6" cy="-13" rx="10" ry="8"/></g>
+              <g transform="translate(268,340) scale(.7)"><ellipse cx="0" cy="0" rx="26" ry="15"/><circle cx="24" cy="-14" r="8"/><rect x="-20" y="10" width="5" height="20"/><rect x="-4" y="12" width="5" height="20"/><rect x="10" y="10" width="5" height="20"/><ellipse cx="-6" cy="-13" rx="10" ry="8"/></g>
+            </g>
+            <!-- offroad car -->
+            <g transform="translate(560,255)">
+              <rect x="0" y="0" width="66" height="22" rx="7" fill="#e8e8e8"/>
+              <rect x="12" y="-12" width="40" height="16" rx="5" fill="#dcdcdc"/>
+              <rect x="16" y="-9" width="15" height="11" rx="3" fill="#7fb3d5"/><rect x="34" y="-9" width="14" height="11" rx="3" fill="#7fb3d5"/>
+              <circle cx="15" cy="22" r="8" fill="#333"/><circle cx="51" cy="22" r="8" fill="#333"/>
+              <path d="M66 12 q 26 -4 34 12 q -20 4 -34 0" fill="#d8c9a3"/>
+            </g>
+          </svg>
+          <figcaption>玉龙沙湖 · 石英白沙与碧湖</figcaption>
+        </figure>
+      </div>
+      <div class="timeline">
+        <div class="tl-item"><span class="t">07:00</span>出发（今天全中国出京大堵车，而你已经在承德，赢麻了）。导航「<b>玉龙沙湖景区</b>」（翁牛特旗乌丹镇）：大广高速→围场北方向→省道，约320km/4h，中途服务区休息一次</div>
+        <div class="tl-item"><span class="t">11:30</span>抵玉龙沙湖（大门票80），景区内免费停车场。午餐景区内简餐（泡面/盒饭水平，别期待太高）</div>
+        <div class="tl-item"><span class="t">12:15</span>游玩：走<b>境漠线</b>——白沙漠+碧湖（石英白沙，出片不输鸣沙山）、乘<b>沙漠越野车冲沙</b>（约150/车次，初/中/高三级赛道，最值得花钱的项目）、骑骆驼（约50–80）、沙地摩托；体力一般可走<b>境水线</b>看红山羽神岩画与湿地。这里是1971年「中华第一龙」C形碧玉龙的出土地，在玉龙广场打卡</div>
+        <div class="tl-item"><span class="t">15:00</span>出发 → 赤峰市区（约90km/1.5h）</div>
+        <div class="tl-item"><span class="t">16:30</span>抵赤峰入住（红山区万达/维多利一带吃饭方便）</div>
+        <div class="tl-item"><span class="t">18:00</span>晚餐：<b>对夹</b>（赤峰招牌，酥皮夹熏肉，城南对夹老店）+ 蒙餐（罕山手把肉）</div>
+        <div class="tl-note">今晚把明天热水塘的温泉酒店订好（推荐见 D3）。</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- D3 -->
+  <article class="day-card" id="d3">
+    <div class="day-head">
+      <span class="day-badge">D3 · 10.2 周五</span>
+      <h3>赤峰 → 辽代博物馆 → 巴林右旗 → 热水塘 ｜ 契丹辽文化+83℃温泉</h3>
+      <div class="day-meta"><span class="meta-pill drive">🚗 ~350km / 4h</span><span class="meta-pill bed">🛏 宿热水塘（温泉）</span></div>
+    </div>
+    <div class="day-body">
+      <div class="day-pics">
+        <figure class="pic">
+          <svg viewBox="0 0 800 450">
+            <defs>
+              <linearGradient id="hs-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fb8e8"/><stop offset="1" stop-color="#d9eef9"/></linearGradient>
+              <linearGradient id="hs-pool" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5fb3c9"/><stop offset="1" stop-color="#2f8aa8"/></linearGradient>
+            </defs>
+            <rect width="800" height="450" fill="url(#hs-sky)"/>
+            <path d="M0 200 Q 200 140 420 190 T 800 185 V280 H0 Z" fill="#9fbf7a"/>
+            <path d="M0 240 Q 260 185 520 230 T 800 235 V300 H0 Z" fill="#86a862"/>
+            <!-- white pagoda -->
+            <g transform="translate(620,108)">
+              <rect x="-52" y="120" width="104" height="26" fill="#e8e2d2"/>
+              <path d="M-38 120 Q -46 60 0 40 Q 46 60 38 120 Z" fill="#f4efe2"/>
+              <rect x="-8" y="14" width="16" height="30" fill="#f4efe2"/>
+              <circle cx="0" cy="10" r="9" fill="#e0b13e"/>
+              <rect x="-30" y="86" width="60" height="8" fill="#ded6c2"/>
+            </g>
+            <!-- museum building -->
+            <g transform="translate(120,150)">
+              <rect x="0" y="40" width="220" height="90" fill="#c8b294"/>
+              <rect x="-12" y="20" width="244" height="24" fill="#a8916f"/>
+              <rect x="20" y="60" width="36" height="50" fill="#6e5a41"/>
+              <rect x="76" y="60" width="36" height="50" fill="#8a755a"/>
+              <rect x="132" y="60" width="36" height="50" fill="#8a755a"/>
+              <rect x="182" y="60" width="24" height="70" fill="#6e5a41"/>
+            </g>
+            <!-- hot spring pool -->
+            <path d="M0 320 Q 400 285 800 320 V450 H0 Z" fill="url(#hs-pool)"/>
+            <path d="M60 350 Q 200 336 360 350 T 740 352" stroke="#9adbe8" stroke-width="5" fill="none" opacity=".7"/>
+            <path d="M120 395 Q 300 382 500 396" stroke="#9adbe8" stroke-width="4" fill="none" opacity=".5"/>
+            <!-- steam -->
+            <g stroke="#ffffff" stroke-width="7" fill="none" stroke-linecap="round" opacity=".75">
+              <path d="M240 320 q -14 -22 0 -40 q 14 -18 0 -38"/>
+              <path d="M330 325 q -14 -22 0 -40 q 14 -18 0 -38"/>
+              <path d="M430 322 q -14 -22 0 -40 q 14 -18 0 -38"/>
+            </g>
+            <!-- stones -->
+            <ellipse cx="120" cy="330" rx="46" ry="18" fill="#8f8a80"/>
+            <ellipse cx="660" cy="335" rx="54" ry="20" fill="#7e7970"/>
+          </svg>
+          <figcaption>热水塘温泉 · 远处辽代白塔</figcaption>
+        </figure>
+      </div>
+      <div class="timeline">
+        <div class="tl-item"><span class="t">09:00</span><b>辽代历史文化博物馆</b>（红山区钢铁西街，体育场西侧）：免费，带身份证现场领票/预约。全国唯一全面展示宋辽金历史的专题博物馆，镇馆看契丹金银器、辽瓷、陈国公主墓文物复刻。<b>10:00 有免费讲解</b>，跟住讲解员效率翻倍。注意：赤峰博物馆（松山馆区）因消防维修闭馆中，别跑错</div>
+        <div class="tl-item"><span class="t">10:45</span>出发 → 巴林右旗大板镇（G16 丹锡高速，180km/2h）</div>
+        <div class="tl-item"><span class="t">13:00</span>大板午餐：巴林手把肉/涮羊肉（人均60）</div>
+        <div class="tl-item"><span class="t">14:00</span><b>巴林石博物馆</b>（免费，索博日嘎街）：中国四大印石之一的鸡血石/冻石精品，地下一层可看加工车间；步行可达<b>康熙行宫民俗博物馆</b>（国家三级馆，民族服饰+宗教法器）</div>
+        <div class="tl-item"><span class="t">15:45</span>出发 → 热水塘镇（约150km/2h，G16 转经棚方向）</div>
+        <div class="tl-item"><span class="t">18:00</span>抵热水塘，入住温泉酒店，泡 <b>83℃ 天然矿物温泉</b>（含40多种微量元素）</div>
+        <div class="tl-item"><span class="t">19:00</span>晚餐：金泉美食城 / 街边烧烤+烤羊排</div>
+        <div class="tl-note">🏨 住宿推荐：<b>蓝天温泉大酒店</b>（4.2分，标间双浴缸温泉入户，送泡澡袋，约300–400）；<b>山水温泉宾馆</b>（经济款200上下，院里有充电桩，电车友好）；<b>天牧温泉小镇</b>（欧式独栋汤屋，情侣/家庭升级款500+）</div>
+        <div class="tl-warn">可选支线（默认不安排）：若极度痴迷辽文化，可大板→索博日嘎镇（115km）看庆州释迦佛舍利白塔，但要多开230km山路，D3 会爆，慎选。</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- D4 -->
+  <article class="day-card" id="d4">
+    <div class="day-head">
+      <span class="day-badge">D4 · 10.3 周六</span>
+      <h3>热阿线 → 阿斯哈图石林 → 达达线 → 达里湖 → 经棚 ｜ 全天风景驾驶日</h3>
+      <div class="day-meta"><span class="meta-pill drive">🚗 ~260km / 4.5h</span><span class="meta-pill bed">🛏 宿经棚</span></div>
+    </div>
+    <div class="day-body rev">
+      <div class="day-pics">
+        <figure class="pic">
+          <svg viewBox="0 0 800 450">
+            <defs><linearGradient id="sl-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#55a9e8"/><stop offset="1" stop-color="#d2ecfb"/></linearGradient></defs>
+            <rect width="800" height="450" fill="url(#sl-sky)"/>
+            <ellipse cx="150" cy="70" rx="80" ry="22" fill="#fff" opacity=".85"/>
+            <path d="M0 260 Q 260 190 540 245 T 800 250 V450 H0 Z" fill="#e9bd45"/>
+            <path d="M0 320 Q 300 270 620 315 T 800 320 V450 H0 Z" fill="#dfa92f"/>
+            <!-- stone pillars -->
+            <g>
+              <g transform="translate(330,120)"><rect x="-26" y="0" width="52" height="60" rx="14" fill="#8d7f74"/><rect x="-32" y="48" width="64" height="56" rx="14" fill="#7e7166"/><rect x="-26" y="96" width="52" height="70" rx="14" fill="#8d7f74"/><rect x="-34" y="150" width="68" height="60" rx="14" fill="#766a5f"/></g>
+              <g transform="translate(430,150) scale(.85)"><rect x="-26" y="0" width="52" height="60" rx="14" fill="#97897d"/><rect x="-32" y="48" width="64" height="56" rx="14" fill="#867970"/><rect x="-26" y="96" width="52" height="80" rx="14" fill="#97897d"/></g>
+              <g transform="translate(240,170) scale(.7)"><rect x="-26" y="0" width="52" height="60" rx="14" fill="#867970"/><rect x="-32" y="48" width="64" height="56" rx="14" fill="#97897d"/><rect x="-26" y="96" width="52" height="90" rx="14" fill="#7e7166"/></g>
+              <g transform="translate(520,190) scale(.55)"><rect x="-26" y="0" width="52" height="60" rx="14" fill="#8d7f74"/><rect x="-30" y="48" width="60" height="90" rx="14" fill="#766a5f"/></g>
+            </g>
+            <!-- autumn trees -->
+            <circle cx="140" cy="330" r="26" fill="#e8973a"/><circle cx="180" cy="345" r="20" fill="#d4692a"/>
+            <circle cx="660" cy="345" r="24" fill="#e8973a"/><circle cx="700" cy="358" r="17" fill="#c9762e"/>
+          </svg>
+          <figcaption>阿斯哈图石林 · 草原上的花岗岩城堡</figcaption>
+        </figure>
+        <figure class="pic">
+          <svg viewBox="0 0 800 300">
+            <defs><linearGradient id="dl-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb347"/><stop offset="1" stop-color="#ff7e5f"/></linearGradient></defs>
+            <rect width="800" height="300" fill="url(#dl-sky)"/>
+            <circle cx="400" cy="120" r="44" fill="#fff3d6"/>
+            <rect y="150" width="800" height="150" fill="#3f6f8f"/>
+            <rect y="150" width="800" height="10" fill="#5d8ca8"/>
+            <path d="M340 165 h120" stroke="#ffe9b0" stroke-width="7" opacity=".85"/>
+            <path d="M360 190 h80" stroke="#ffe9b0" stroke-width="5" opacity=".6"/>
+            <path d="M375 215 h50" stroke="#ffe9b0" stroke-width="4" opacity=".45"/>
+            <!-- birds -->
+            <g stroke="#2e3a45" stroke-width="3.5" fill="none" stroke-linecap="round">
+              <path d="M150 70 q 8 -9 16 0 q 8 -9 16 0"/>
+              <path d="M210 95 q 7 -8 14 0 q 7 -8 14 0"/>
+              <path d="M540 60 q 8 -9 16 0 q 8 -9 16 0"/>
+              <path d="M590 90 q 6 -7 12 0 q 6 -7 12 0"/>
+              <path d="M480 40 q 6 -7 12 0 q 6 -7 12 0"/>
+            </g>
+            <!-- swans -->
+            <g fill="#ffffff"><path d="M250 230 q 4 -18 16 -20 q 14 -2 12 10 q 14 2 16 12 q 2 10 -12 12 l -26 0 q -10 -6 -6 -14 Z"/><path d="M310 245 q 3 -14 12 -16 q 11 -2 10 8 q 11 2 13 9 q 2 8 -9 10 l -21 0 q -8 -5 -5 -11 Z"/></g>
+            <!-- reeds -->
+            <g stroke="#c98434" stroke-width="5" stroke-linecap="round"><path d="M60 300 v-70"/><path d="M80 300 v-58"/><path d="M100 300 v-66"/><path d="M740 300 v-62"/><path d="M720 300 v-52"/></g>
+            <g fill="#e0b25e"><ellipse cx="60" cy="224" rx="7" ry="14"/><ellipse cx="100" cy="228" rx="7" ry="13"/><ellipse cx="740" cy="232" rx="7" ry="13"/></g>
+          </svg>
+          <figcaption>达里诺尔湖 · 候鸟南迁</figcaption>
+        </figure>
+      </div>
+      <div class="timeline">
+        <div class="tl-item"><span class="t">08:00</span>出发上<b>热阿线</b>（热水塘→黄岗梁→石林，约88km）：前段河谷白桦林，中段翻大兴安岭最高峰<b>黄岗梁</b>（海拔2029m，免费，可短暂停留观景台），后段平缓草原。走走停停拍照约2.5h；途中<b>很黑村</b>（网红地名）买现炒瓜子</div>
+        <div class="tl-item"><span class="t">10:30</span><b>阿斯哈图石林</b>（5A，门票120+观光车40必坐）：花岗岩石林地貌世界独一份，乘观光车串「草原石林区→鲲鹏区→七剑山/城堡区」，栈道一圈约2.5h。<b>周六人多，8:30 开园越早进越好——所以 08:00 必须从热水塘出门</b></div>
+        <div class="tl-item"><span class="t">13:15</span>景区门口农家院午餐（炖菜/手把肉，人均50）</div>
+        <div class="tl-item"><span class="t">14:00</span>上<b>达达线</b>反向（石林→达里湖方向，约80km/2h风景路）：白音敖包<b>沙地云杉林</b>停留30min（世界唯一沙地云杉原始林，门票约30，可选）</div>
+        <div class="tl-item"><span class="t">16:00</span><b>达里诺尔湖</b>（门票约80–90）：内蒙第三大湖、碱性半咸水湖，<b>10月初正值候鸟南迁</b>，带望远镜看天鹅/大雁；顺路尝<b>华子鱼</b>（瓦氏雅罗鱼，干炸最香）</div>
+        <div class="tl-item"><span class="t">17:45</span>出发 → 经棚镇（约90km/1.2h）</div>
+        <div class="tl-item"><span class="t">19:00</span>抵经棚入住（克什克腾旗政府驻地，住宿餐饮最全；今晚<b>给车加满油</b>，明天草原段加油站稀疏）</div>
+        <div class="tl-warn">全天草原腹地手机常无信号，今晚把经棚→大青山→乌兰布统的离线地图更新好。</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- D5 -->
+  <article class="day-card" id="d5">
+    <div class="day-head">
+      <span class="day-badge">D5 · 10.4 周日</span>
+      <h3>经棚 → 大青山 → 乌兰布统 ｜ 岩臼奇观+草原日落</h3>
+      <div class="day-meta"><span class="meta-pill drive">🚗 ~170km / 3h+景区</span><span class="meta-pill bed">🛏 宿乌兰布统</span></div>
+    </div>
+    <div class="day-body">
+      <div class="day-pics">
+        <figure class="pic">
+          <svg viewBox="0 0 800 450">
+            <defs><linearGradient id="dq-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5fb2ec"/><stop offset="1" stop-color="#d6f0fc"/></linearGradient></defs>
+            <rect width="800" height="450" fill="url(#dq-sky)"/>
+            <ellipse cx="640" cy="70" rx="90" ry="24" fill="#fff" opacity=".9"/>
+            <path d="M0 300 L 400 110 L 800 300 V450 H0 Z" fill="#d9b84a"/>
+            <path d="M0 340 Q 400 260 800 340 V450 H0 Z" fill="#c9a437"/>
+            <!-- potholes 九缸十八锅 -->
+            <g fill="#5d513f">
+              <ellipse cx="400" cy="150" rx="26" ry="10"/><ellipse cx="345" cy="185" rx="20" ry="8"/><ellipse cx="455" cy="188" rx="22" ry="8"/><ellipse cx="300" cy="222" rx="17" ry="7"/><ellipse cx="395" cy="225" rx="19" ry="7"/><ellipse cx="490" cy="225" rx="16" ry="7"/><ellipse cx="350" cy="258" rx="15" ry="6"/><ellipse cx="440" cy="258" rx="15" ry="6"/>
+            </g>
+            <g fill="#33291d"><ellipse cx="400" cy="149" rx="19" ry="6.5"/><ellipse cx="455" cy="187" rx="16" ry="5.5"/><ellipse cx="345" cy="184" rx="14" ry="5"/></g>
+            <!-- rocks -->
+            <path d="M150 320 q 10 -70 40 -78 q 34 -8 34 30 q 26 4 22 48 Z" fill="#8d8177"/>
+            <path d="M600 330 q 8 -56 34 -62 q 28 -6 28 26 q 22 4 18 36 Z" fill="#7e7368"/>
+            <!-- cable car -->
+            <path d="M60 240 L 740 180" stroke="#4a4a4a" stroke-width="2.5"/>
+            <g><rect x="250" y="222" width="26" height="22" rx="5" fill="#c94f3d"/><rect x="254" y="226" width="18" height="10" rx="3" fill="#9fc9e8"/><rect x="261" y="214" width="4" height="9" fill="#4a4a4a"/></g>
+            <g><rect x="470" y="204" width="26" height="22" rx="5" fill="#3d7dc9"/><rect x="474" y="208" width="18" height="10" rx="3" fill="#cfe6f5"/><rect x="481" y="196" width="4" height="9" fill="#4a4a4a"/></g>
+            <!-- trees -->
+            <circle cx="80" cy="380" r="30" fill="#4c7a3f"/><circle cx="130" cy="400" r="24" fill="#e8973a"/>
+            <circle cx="730" cy="395" r="28" fill="#4c7a3f"/><circle cx="680" cy="412" r="20" fill="#d4692a"/>
+          </svg>
+          <figcaption>大青山 · 岩臼群「九缸十八锅」与高山索道</figcaption>
+        </figure>
+        <figure class="pic">
+          <svg viewBox="0 0 800 300">
+            <defs><linearGradient id="wl-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5f4a"/><stop offset=".6" stop-color="#ff9e4a"/><stop offset="1" stop-color="#ffd27a"/></linearGradient></defs>
+            <rect width="800" height="300" fill="url(#wl-sky)"/>
+            <circle cx="560" cy="105" r="38" fill="#fff0cf"/>
+            <path d="M0 160 Q 200 120 420 155 T 800 150 V300 H0 Z" fill="#b57a2e"/>
+            <path d="M0 195 Q 260 155 520 190 T 800 195 V300 H0 Z" fill="#8f5f22"/>
+            <!-- lake -->
+            <path d="M280 235 Q 400 215 540 235 Q 560 252 520 262 Q 400 278 300 262 Q 262 250 280 235 Z" fill="#ff9e58"/>
+            <path d="M320 244 h180" stroke="#ffd8a0" stroke-width="4" opacity=".8"/>
+            <!-- birches -->
+            <g><rect x="120" y="150" width="7" height="70" fill="#f2eee0"/><rect x="122" y="165" width="4" height="4" fill="#444"/><rect x="122" y="188" width="4" height="4" fill="#444"/><circle cx="123" cy="142" r="18" fill="#f4f0e2"/>
+            <rect x="160" y="158" width="6" height="60" fill="#f2eee0"/><circle cx="163" cy="150" r="14" fill="#f4f0e2"/>
+            <rect x="660" y="155" width="7" height="66" fill="#f2eee0"/><circle cx="663" cy="147" r="17" fill="#f4f0e2"/></g>
+            <!-- horses -->
+            <g fill="#2e2018">
+              <g transform="translate(350,205)"><ellipse cx="0" cy="0" rx="22" ry="11"/><rect x="14" y="-16" width="7" height="14" rx="3" transform="rotate(18 17 -10)"/><ellipse cx="22" cy="-16" rx="7" ry="5"/><rect x="-16" y="8" width="4" height="16"/><rect x="-4" y="9" width="4" height="16"/><rect x="8" y="9" width="4" height="16"/><rect x="16" y="8" width="4" height="16"/><path d="M-22 -4 q -8 4 -6 12" stroke="#2e2018" stroke-width="4" fill="none"/></g>
+              <g transform="translate(430,215) scale(.8)"><ellipse cx="0" cy="0" rx="22" ry="11"/><rect x="14" y="-16" width="7" height="14" rx="3" transform="rotate(18 17 -10)"/><ellipse cx="22" cy="-16" rx="7" ry="5"/><rect x="-16" y="8" width="4" height="16"/><rect x="-2" y="9" width="4" height="16"/><rect x="12" y="8" width="4" height="16"/></g>
+            </g>
+          </svg>
+          <figcaption>乌兰布统 · 将军泡子日落</figcaption>
+        </figure>
+      </div>
+      <div class="timeline">
+        <div class="tl-item"><span class="t">08:00</span>早餐（经棚对夹/奶茶）后出发</div>
+        <div class="tl-item"><span class="t">08:30</span><b>大青山景区</b>（克什克腾世界地质公园青山园区，经棚东南约25km，经乌线顺路）：门票+索道套票约120–160（<b>索道必坐</b>，1230米内蒙古第一高山索道，单程18分钟；下索道后还需20分钟摆渡车+一段台阶栈道）。山顶看世界最大<b>岩臼群「九缸十八锅」</b>——上千个第四纪冰川凿出的圆坑，大如水缸，如同外星密码；另有巨鹰石、乌龟石等象形石阵+高山草甸。开放8:30–18:30</div>
+        <div class="tl-item"><span class="t">12:00</span>返回经棚方向午餐（或直接路上小饭馆）</div>
+        <div class="tl-item"><span class="t">13:00</span>出发 → 乌兰布统（约110km/2.5h，经乌线本身就是风景路，牛羊成群随时停）</div>
+        <div class="tl-item"><span class="t">15:30</span>抵乌兰布统乡/红山军马场，<b>买大门票120</b>（首次验票录人脸，<b>3天内不限次进出，收好票根</b>）；国庆房价约500–800/晚，比承德贵，忍了</div>
+        <div class="tl-item"><span class="t">16:00</span>顺序打卡：<b>影视基地</b>（还珠格格/康熙王朝取景地，木栈道登顶俯瞰全景）→ <b>将军泡子</b>（湖泊倒影+沙地疏林，日落前光线最美）</div>
+        <div class="tl-item"><span class="t">18:00</span>日落（10月初坝上日落约17:30–17:50）后回镇晚餐：手把肉+草原奶茶（人均70）</div>
+        <div class="tl-note">觉得节奏太赶可砍大青山：08:30 直接出发去乌兰布统，中午到，多出一下午逛盘龙峡谷。</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- D6 -->
+  <article class="day-card" id="d6">
+    <div class="day-head">
+      <span class="day-badge">D6 · 10.5 周一</span>
+      <h3>公主湖晨雾 → 蛤蟆坝/桦木沟 → 古北水镇 ｜ 强度日，按钟点走</h3>
+      <div class="day-meta"><span class="meta-pill drive">🚗 ~400km / 5h</span><span class="meta-pill bed">🛏 宿古北水镇/密云</span></div>
+    </div>
+    <div class="day-body rev">
+      <div class="day-pics">
+        <figure class="pic">
+          <svg viewBox="0 0 800 300">
+            <defs><linearGradient id="gz-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bcd7e8"/><stop offset="1" stop-color="#eef5f2"/></linearGradient></defs>
+            <rect width="800" height="300" fill="url(#gz-sky)"/>
+            <path d="M0 150 Q 240 105 480 140 T 800 145 V300 H0 Z" fill="#c8b06a"/>
+            <rect y="185" width="800" height="115" fill="#a8c6cf"/>
+            <path d="M0 210 Q 200 204 400 210 T 800 210" stroke="#cfe2e6" stroke-width="4" fill="none" opacity=".8"/>
+            <!-- mist -->
+            <ellipse cx="260" cy="175" rx="200" ry="22" fill="#ffffff" opacity=".55"/>
+            <ellipse cx="560" cy="192" rx="230" ry="20" fill="#ffffff" opacity=".45"/>
+            <!-- birches -->
+            <g><rect x="130" y="95" width="8" height="95" fill="#f2eee0"/><rect x="132" y="115" width="5" height="5" fill="#444"/><rect x="132" y="145" width="5" height="5" fill="#444"/><circle cx="134" cy="85" r="24" fill="#f0df9e"/>
+            <rect x="185" y="105" width="7" height="85" fill="#f2eee0"/><circle cx="188" cy="96" r="19" fill="#e8d488"/>
+            <rect x="620" y="100" width="8" height="90" fill="#f2eee0"/><circle cx="624" cy="90" r="22" fill="#f0df9e"/></g>
+            <!-- reflection -->
+            <g opacity=".4"><rect x="130" y="210" width="8" height="60" fill="#d8cfae"/><rect x="620" y="212" width="8" height="55" fill="#d8cfae"/></g>
+          </svg>
+          <figcaption>公主湖 · 白桦晨雾倒影</figcaption>
+        </figure>
+        <figure class="pic">
+          <svg viewBox="0 0 800 450">
+            <defs><linearGradient id="gb-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101c3f"/><stop offset="1" stop-color="#274070"/></linearGradient></defs>
+            <rect width="800" height="450" fill="url(#gb-sky)"/>
+            <g fill="#ffffff"><circle cx="90" cy="50" r="2"/><circle cx="180" cy="30" r="1.6"/><circle cx="300" cy="60" r="2"/><circle cx="430" cy="35" r="1.6"/><circle cx="560" cy="55" r="2"/><circle cx="680" cy="40" r="1.8"/><circle cx="750" cy="80" r="1.5"/></g>
+            <!-- mountain + great wall -->
+            <path d="M0 220 L 200 90 L 380 190 L 560 100 L 800 210 V300 H0 Z" fill="#16294f"/>
+            <path d="M60 205 L 200 108 L 340 195 L 560 118 L 740 200" stroke="#ffca5f" stroke-width="5" fill="none" stroke-linejoin="round"/>
+            <g fill="#ffca5f"><rect x="188" y="96" width="24" height="18"/><rect x="548" y="106" width="24" height="18"/><rect x="330" y="184" width="20" height="14"/></g>
+            <!-- town -->
+            <g>
+              <g transform="translate(90,260)"><rect x="0" y="20" width="110" height="90" fill="#2c3d63"/><path d="M-8 20 L 55 -14 L 118 20 Z" fill="#1d2c4d"/><rect x="16" y="44" width="20" height="24" fill="#ffb84d"/><rect x="62" y="44" width="20" height="24" fill="#ffb84d"/></g>
+              <g transform="translate(250,285)"><rect x="0" y="16" width="95" height="80" fill="#33476e"/><path d="M-7 16 L 47 -12 L 102 16 Z" fill="#223355"/><rect x="14" y="38" width="18" height="22" fill="#ffca6a"/><rect x="56" y="38" width="18" height="22" fill="#ffb84d"/></g>
+              <g transform="translate(580,270)"><rect x="0" y="18" width="120" height="95" fill="#2c3d63"/><path d="M-9 18 L 60 -16 L 129 18 Z" fill="#1d2c4d"/><rect x="18" y="44" width="22" height="26" fill="#ffb84d"/><rect x="72" y="44" width="22" height="26" fill="#ffca6a"/></g>
+            </g>
+            <!-- lanterns -->
+            <g><circle cx="230" cy="300" r="9" fill="#ff5f4a"/><rect x="227" y="291" width="6" height="4" fill="#e0b13e"/><circle cx="420" cy="315" r="9" fill="#ff5f4a"/><rect x="417" y="306" width="6" height="4" fill="#e0b13e"/><circle cx="540" cy="305" r="8" fill="#ff7a4d"/></g>
+            <!-- river -->
+            <rect y="370" width="800" height="80" fill="#14264a"/>
+            <g opacity=".55"><rect x="100" y="378" width="90" height="6" fill="#ffb84d"/><rect x="270" y="390" width="70" height="5" fill="#ffca6a"/><rect x="590" y="384" width="100" height="6" fill="#ffb84d"/><rect x="430" y="404" width="60" height="4" fill="#ff9e58"/></g>
+          </svg>
+          <figcaption>古北水镇 · 司马台长城夜景</figcaption>
+        </figure>
+      </div>
+      <div class="timeline">
+        <div class="tl-item"><span class="t">06:30</span>出门（晨雾8点前散，<b>这是全程最值得早起的一次</b>）。<b>公主湖</b>在主景区外、需再次验票（120大票3天内有效）：白桦+晨雾+湖面倒影，蓝齐儿格格传说地。日出前后气温接近0℃，羽绒服穿足</div>
+        <div class="tl-item"><span class="t">08:00</span>回镇早餐（热奶茶+果子）</div>
+        <div class="tl-item"><span class="t">09:00</span><b>桦木沟蛤蟆坝景区</b>（门票30，距红山军马场20余km，最后几公里乡间土路，轿车慢开可过）：万顷桦林+金蟾湖+摄影基地，沟谷里牛羊、茅屋、栅栏随手拍都是屏保；体力好可去<b>盘龙峡谷</b>（同样主景区外，需验票）</div>
+        <div class="tl-item"><span class="t">11:45</span>回镇午餐，<b>13:00 准时出发</b>（不堵车铁律：今天要跨过整个承德）</div>
+        <div class="tl-item"><span class="t">13:00</span>路线：乌兰布统→四御公路→围场→G45 大广→承德绕城→京承高速→古北水镇，约400km/5h 含一次服务区休息。18:00 前后过承德，避开返京同向车流高峰尾部</div>
+        <div class="tl-item"><span class="t">18:30</span>抵<b>古北水镇</b>（密云古北口；住镇内车停P1/P2停车场，住密云县城更省，房价差近一半）</div>
+        <div class="tl-item"><span class="t">19:00</span><b>夜游水镇</b>（国庆运营至22:30）：司马台长城提灯夜爬、日月岛广场无人机秀/孔明灯、山顶教堂俯瞰全镇灯火、音乐喷泉；逛小吃街（密云烧肉、古北烤梨）。夜游无需再买大门票即可逛部分街区，登长城单独购票（联票约140，以景区小程序当日价为准）</div>
+        <div class="tl-note">周一各博物馆闭馆，但今天只玩水镇，无影响。</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- D7 -->
+  <article class="day-card" id="d7">
+    <div class="day-head">
+      <span class="day-badge">D7 · 10.6 周二</span>
+      <h3>古北水镇 → 北京 ｜ 晨雾补拍，午前到家</h3>
+      <div class="day-meta"><span class="meta-pill drive">🚗 140km / 2h</span><span class="meta-pill bed">🏠 到家</span></div>
+    </div>
+    <div class="day-body">
+      <div class="day-pics">
+        <figure class="pic">
+          <svg viewBox="0 0 800 450">
+            <defs><linearGradient id="d7-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a8d4ee"/><stop offset="1" stop-color="#eef8fd"/></linearGradient></defs>
+            <rect width="800" height="450" fill="url(#d7-sky)"/>
+            <ellipse cx="620" cy="80" rx="90" ry="24" fill="#fff" opacity=".9"/>
+            <path d="M0 200 L 220 100 L 420 190 L 620 110 L 800 200 V260 H0 Z" fill="#8fa8bc"/>
+            <path d="M40 208 L 220 118 L 400 198" stroke="#c9a75f" stroke-width="4" fill="none"/>
+            <!-- town day -->
+            <g>
+              <g transform="translate(80,240)"><rect x="0" y="20" width="130" height="100" fill="#e8e0d0"/><path d="M-10 20 L 65 -18 L 140 20 Z" fill="#5a6a7a"/><rect x="20" y="48" width="24" height="30" fill="#7a8a9a"/><rect x="76" y="48" width="24" height="30" fill="#7a8a9a"/></g>
+              <g transform="translate(270,265)"><rect x="0" y="16" width="110" height="85" fill="#ddd4c2"/><path d="M-8 16 L 55 -14 L 118 16 Z" fill="#4c5c6c"/><rect x="16" y="40" width="22" height="26" fill="#6a7a8a"/><rect x="64" y="40" width="22" height="26" fill="#6a7a8a"/></g>
+              <g transform="translate(560,250)"><rect x="0" y="18" width="140" height="105" fill="#e8e0d0"/><path d="M-11 18 L 70 -20 L 151 18 Z" fill="#5a6a7a"/><rect x="22" y="50" width="26" height="32" fill="#7a8a9a"/><rect x="86" y="50" width="26" height="32" fill="#7a8a9a"/></g>
+            </g>
+            <!-- dyed cloth 永顺染坊 -->
+            <g><rect x="430" y="230" width="8" height="120" fill="#8a6a45"/><rect x="530" y="230" width="8" height="120" fill="#8a6a45"/><rect x="428" y="228" width="112" height="6" fill="#8a6a45"/>
+            <rect x="442" y="234" width="24" height="70" fill="#3d6ea8"/><rect x="472" y="234" width="24" height="78" fill="#4c82c0"/><rect x="502" y="234" width="24" height="66" fill="#355f92"/></g>
+            <!-- river & bridge -->
+            <rect y="370" width="800" height="80" fill="#7fa8bd"/>
+            <path d="M340 372 Q 400 340 460 372" stroke="#9a8a72" stroke-width="10" fill="none"/>
+            <path d="M0 400 Q 200 392 400 400 T 800 400" stroke="#a8ccd8" stroke-width="4" fill="none" opacity=".7"/>
+            <ellipse cx="240" cy="240" rx="150" ry="18" fill="#ffffff" opacity=".5"/>
+          </svg>
+          <figcaption>水镇清晨 · 永顺染坊蓝印花布</figcaption>
+        </figure>
+      </div>
+      <div class="timeline">
+        <div class="tl-item"><span class="t">07:30</span>早起在镇里拍晨雾（水镇清晨没人，<b>是最出片时段</b>）；镇内早餐</div>
+        <div class="tl-item"><span class="t">09:00</span>白天补拍：<b>永顺染坊</b>（蓝印花布晾晒场）、<b>英华书院</b>、<b>镖局展馆</b>——白天场3个点位逛完就撤（重头戏昨晚已看）</div>
+        <div class="tl-item"><span class="t">10:00</span>出发：京承高速→北京，约140km/2h</div>
+        <div class="tl-item"><span class="t">12:00</span>到家。全国返程最高峰是今天下午13:00后和明天10.7，你在午饭后就躺沙发了 😎</div>
+        <div class="tl-note">回程正好错峰：出京方向的拥堵与你无关，返京高峰又还没开始。</div>
+      </div>
+    </div>
+  </article>
+</section>
+
 </div>
-            
-            <div class="share_help_entry"></div>
-			<div class="card_help"></div>
-			<div id="newyearcar3" class="newyearcar"></div>
-		</div>
-	</div>
-		
-	<div id="preload" style="display:none" >
-		<img src="images/reindeer_2.png">
-		<img src="images/flower_1.png">
-		<img src="images/flower_2.png">
-		<img src="images/flower_3.png">
-		<img src="images/flower_4.png">
-		<img src="images/flower_5.png">
-		<img src="images/flower_6.png">
-		<img src="images/flower_7.png">
-		<img src="images/flower_8.png">
-		<img src="images/flower_9.png">
-		<img src="images/flower_10.png">
-		<img src="images/flower_11.png">
-		<img src="images/flower_12.png">
-		<img src="images/flower_13.png">
-		<img src="images/flower_14.png">
-	</div>
- 
 
-
-
-<script type="text/javascript">
-
-function doit(){
-	 window.location = "?hkid="+$("#bjid").val()+"&name="+encodeURIComponent($.trim($(".name").html()))+"&dh="+$("#bjdh").val()+"&info="+encodeURIComponent($.trim($(".message").html()));
-}
-function changeText(cont1,cont2,speed){
-	var Otext=cont1.text();
-	var Ocontent=Otext.split("");
-	var i=0;
-	function show(){
-		if(i<Ocontent.length)
-		{		
-			cont2.append(Ocontent[i]);
-			i=i+1;
-		} 
-		 
-	};
-		var Otimer=setInterval(show,speed);	
-};
- 	
-
-$(document).ready(function(){
-
-	$(".name").click(function(){
-		
-	 
-		
-		$(".dh").show();
-			if($(this).find(".sort_input").attr("type") == "text"){return false;}
-			var name = $.trim($(this).html());
-			var m = $.trim($(this).text());
-			$(this).html("<input type=text value=\""+name+"\" class=\"sort_input\">");
-			$(this).find(".sort_input").focus();
-			$(this).find(".sort_input").bind("blur", function(){
-				var n = $.trim($(this).val());
-				if(n != m && n != ""){
-					//window.location = "sort.php?val="+encodeURIComponent(n);
-					//发送信息
-					$(this).parent().html(n);
-				}else{
-					$(this).parent().html(name);
-				}
-			});
-	});
-	$(".message").click(function(){
-		 
-		$(".dh").show();
-			if($(this).find(".sort_textarea").attr("name") == "textarea"){return false;}
-			var message = $.trim($(this).html());
-			var mm = $.trim($(this).text());
-			$(this).html("<textarea name=\"textarea\" class=\"sort_textarea\">"+message+"</textarea>");
-			$(this).find(".sort_textarea").focus();
-			//$(this).find(".sort_textarea").select() ;
-			$(this).find(".sort_textarea").bind("blur", function(){
-				 
-				var nn = $.trim($(this).val());
-				if(nn != mm && nn != ""){
-					//window.location = "sort.php?val="+encodeURIComponent(n);
-					//发送信息
-					$(this).parent().html(nn);
-				}else{
-					$(this).parent().html(message);
-				}
-			});
-	});
-	
-	/*changeText($(".message"),$(".message2"),150);
-	clearInterval(Otimer);*/
-});
-
- 
-   document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-        
-        // 发送给好友
-        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
-            WeixinJSBridge.invoke('sendAppMessage', { 
-                "img_url": "images/reindeer_2.png",
-                "img_width": "640",
-                "img_height": "640",
-                "link": "index.php?hkid=2433&name="+encodeURIComponent($.trim($(".name").html()))+"&dh="+$("#bjdh").val()+"&info="+encodeURIComponent($.trim($(".message").html()))+"&from=app",
-                "desc":  $(".message").html(),
-                "title": $(".message").html()
-            }, function (res) {
-                //_report('send_msg', res.err_msg);
-				<?=$contont_weixin?>
-            })
-        });
-
-        // 分享到朋友圈
-        WeixinJSBridge.on('menu:share:timeline', function (argv) {
-            WeixinJSBridge.invoke('shareTimeline', {
-                "img_url": "images/reindeer_2.png",
-                "img_width": "640",
-                "img_height": "640",
-                 "link": "index.php?hkid=2433&name="+encodeURIComponent($.trim($(".name").html()))+"&dh="+$("#bjdh").val()+"&info="+encodeURIComponent($.trim($(".message").html()))+"&from=app",
-                "desc":  $(".message").html(),
-                "title": $(".message").html()
-            }, function (res) {
-                //_report('timeline', res.err_msg);
-				<?=$contont_weixin?>
-            });
-        });
-
-        // 分享到微博
-        WeixinJSBridge.on('menu:share:weibo', function (argv) {
-            WeixinJSBridge.invoke('shareWeibo', {
-                "content": $(".message").html(),
-                "url": "index.php?hkid=2433&name="+encodeURIComponent($.trim($(".name").html()))+"&dh="+$("#bjdh").val()+"&info="+encodeURIComponent($.trim($(".message").html()))+"&from=app"
-            }, function (res) {
-                //_report('weibo', res.err_msg);
-				<?=$contont_weixin?>
-            });
-        });
-        }, false)
-</script>
- 
-
- 
-<script type="text/javascript">
-document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-WeixinJSBridge.call('hideToolbar');
-});
-</script>
-
- <div class="copyright">  </div>
-
+<footer>
+  🍂 祝一路顺风，秋色正好 🍂
+</footer>
 
 </body>
 </html>
