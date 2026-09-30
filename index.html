@@ -11,6 +11,23 @@
     background: #f5f7fa; color: #2c3e50; line-height: 1.8; padding: 20px;
   }
   .container { max-width: 960px; margin: 0 auto; }
+
+  .tabs {
+    position: sticky; top: 0; z-index: 100;
+    background: #fff; border-radius: 12px; padding: 8px;
+    display: flex; flex-wrap: wrap; gap: 6px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+    margin-bottom: 24px;
+  }
+  .tab {
+    border: none; background: #f0f5f7; color: #2c5f6f;
+    padding: 8px 16px; border-radius: 8px; font-size: 14px;
+    cursor: pointer; font-family: inherit; font-weight: 500;
+    transition: all 0.2s; white-space: nowrap;
+  }
+  .tab:hover { background: #e0eef2; }
+  .tab.active { background: #1a5f7a; color: #fff; box-shadow: 0 2px 8px rgba(26,95,122,0.3); }
+
   .hero {
     background: linear-gradient(135deg, #1a5f7a 0%, #2d8b8b 50%, #3ba89f 100%);
     color: #fff; border-radius: 16px; padding: 48px 40px; margin-bottom: 32px;
@@ -23,14 +40,31 @@
     background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.35);
     border-radius: 20px; padding: 4px 14px; font-size: 13px;
   }
-  .overview, .cost-section, .booking-section, .tips-section {
+
+  .overview, .cost-section, .booking-section, .tips-section, .route-section {
     background: #fff; border-radius: 14px; padding: 28px 32px; margin-bottom: 32px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
-  .overview h2, .cost-section h2, .booking-section h2, .tips-section h2 {
+  .overview h2, .cost-section h2, .booking-section h2, .tips-section h2, .route-section h2 {
     font-size: 20px; color: #1a5f7a; margin-bottom: 18px; padding-bottom: 10px;
     border-bottom: 2px solid #e8f0f2;
   }
+  .overview h2 .no, .cost-section h2 .no, .booking-section h2 .no,
+  .tips-section h2 .no, .route-section h2 .no {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 8px; background: #1a5f7a;
+    color: #fff; font-size: 14px; margin-right: 10px; flex: none;
+  }
+
+  .mapbox {
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(180deg, #e8f4fa 0%, #dceef5 100%);
+    border-radius: 18px; padding: 16px; border: 1px solid #cfe5ee;
+    overflow-x: auto;
+  }
+  .mapbox svg { width: 100%; max-width: 900px; height: auto; display: block; }
+  @media (max-width: 900px) { .mapbox svg { max-width: 100%; min-width: 680px; } }
+
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
   thead th {
     background: #1a5f7a; color: #fff; padding: 10px 12px; text-align: left;
@@ -42,43 +76,65 @@
   tbody tr:hover { background: #f0f8fa; }
   tbody tr:last-child td { border-bottom: none; }
   tfoot td { font-weight: 700; background: #e8f4f6; color: #1a5f7a; font-size: 15px; padding: 14px 12px; }
+
+  .tl { position: relative; padding-left: 34px; }
+  .tl::before {
+    content: ""; position: absolute; left: 11px; top: 8px; bottom: 8px;
+    width: 3px; border-radius: 3px;
+    background: linear-gradient(#1273a3, #2d7d5f);
+  }
+  .day { position: relative; margin-bottom: 26px; }
+  .day::before {
+    content: ""; position: absolute; left: -30px; top: 22px;
+    width: 15px; height: 15px; border-radius: 50%;
+    background: #fff; border: 4px solid #1273a3;
+  }
+  .day.night::before { border-color: #2d7d5f; }
+
   .day-card {
-    background: #fff; border-radius: 14px; margin-bottom: 24px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden; border-left: 5px solid #2d8b8b;
+    background: #fff; border: 1px solid #e2eaec; border-radius: 16px;
+    padding: 22px 26px; box-shadow: 0 1px 4px rgba(20,50,60,.05);
   }
-  .day-header {
-    background: #e8f4f6; padding: 16px 28px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  .dhead { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .dbadge {
+    background: #0f4c5c; color: #fff; border-radius: 12px;
+    padding: 6px 14px; font-weight: 700; font-size: 15px; flex: none;
   }
-  .day-header .day-num {
-    background: #1a5f7a; color: #fff; width: 42px; height: 42px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; flex-shrink: 0;
+  .dbadge b { font-size: 17px; }
+  .dtitle { font-size: 18.5px; font-weight: 700; }
+  .dtag {
+    font-size: 12.5px; color: #fff; background: #c98a2d;
+    border-radius: 8px; padding: 3px 10px;
   }
-  .day-header .day-title { font-size: 17px; font-weight: 700; color: #1a5f7a; }
-  .day-header .day-date {
-    font-size: 13px; color: #5a7a8a; margin-left: auto; background: #fff;
-    padding: 3px 12px; border-radius: 12px; border: 1px solid #cde0e4;
+  .seg { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+  .seg .t {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #eaf4f8; color: #0f4c5c; border: 1px solid #cfe5ee;
+    border-radius: 999px; padding: 5px 13px; font-size: 13.5px; font-weight: 600;
   }
-  .day-body { padding: 22px 28px 26px; }
-  .timeline { position: relative; padding-left: 26px; }
-  .timeline::before { content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: #cde0e4; }
-  .tl-item { position: relative; margin-bottom: 16px; }
-  .tl-item:last-child { margin-bottom: 0; }
-  .tl-item::before {
-    content: ''; position: absolute; left: -22px; top: 8px; width: 10px; height: 10px;
-    border-radius: 50%; background: #2d8b8b; border: 2px solid #fff; box-shadow: 0 0 0 2px #2d8b8b;
+  .acts { margin: 10px 0 0; padding: 0; list-style: none; }
+  .acts li { display: flex; gap: 10px; padding: 5px 0; font-size: 15px; }
+  .acts .tm {
+    color: #1273a3; font-weight: 700; min-width: 96px; flex: none;
+    font-variant-numeric: tabular-nums;
   }
-  .tl-item .tl-time {
-    display: inline-block; background: #1a5f7a; color: #fff; font-size: 12px;
-    font-weight: 600; padding: 2px 10px; border-radius: 10px; margin-bottom: 4px;
-  }
-  .tl-item .tl-content { font-size: 14.5px; color: #3a4a5a; }
-  .tl-item .tl-content strong { color: #1a5f7a; }
+  .acts .memo { color: #5f7480; font-size: 13.5px; }
+
+  .foot-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+  @media(max-width: 680px) { .foot-row { grid-template-columns: 1fr; } }
+  .mini { border-radius: 12px; padding: 12px 15px; font-size: 13.8px; }
+  .mini.food { background: #fdf6ec; border: 1px solid #f0dfc0; }
+  .mini.hotel { background: #eef7f2; border: 1px solid #cfe6da; }
+  .mini.lupin { background: #f3ecfa; border: 1px solid #dfc9ee; }
+  .mini b { display: block; margin-bottom: 3px; color: #0f4c5c; }
+
   .info-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
   .info-tag {
     display: inline-flex; align-items: center; gap: 5px; background: #f0f8fa;
     border: 1px solid #d4e8ec; border-radius: 8px; padding: 5px 12px; font-size: 13px; color: #2c5f6f;
   }
   .info-tag .icon { font-size: 14px; }
+
   .highlight-box {
     background: #fff8e6; border-left: 4px solid #f0b429; border-radius: 0 8px 8px 0;
     padding: 12px 18px; margin-top: 14px; font-size: 13.5px; color: #6b5a1e;
@@ -98,6 +154,7 @@
     padding: 12px 18px; margin-top: 14px; font-size: 13.5px; color: #1e6b3a;
   }
   .booking-box strong { color: #1a7a3a; }
+
   .booking-list { list-style: none; counter-reset: booking; }
   .booking-list li {
     counter-increment: booking; position: relative; padding: 12px 0 12px 48px;
@@ -105,8 +162,9 @@
   }
   .booking-list li:last-child { border-bottom: none; }
   .booking-list li::before {
-    content: counter(booking); position: absolute; left: 0; top: 14px; width: 28px; height: 28px;
-    background: #1a5f7a; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    content: counter(booking); position: absolute; left: 0; top: 14px;
+    width: 28px; height: 28px; background: #1a5f7a; color: #fff;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
     font-size: 13px; font-weight: 700;
   }
   .booking-list li strong { color: #1a5f7a; }
@@ -118,31 +176,61 @@
     display: inline-block; background: #e8f4e8; color: #1e6b3a; font-size: 12px;
     padding: 1px 8px; border-radius: 8px; margin-left: 4px;
   }
+
   .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .tip-card {
-    background: #f8fbfc; border-radius: 10px; padding: 18px 20px; border: 1px solid #e4eef1;
+    background: #f8fbfc; border-radius: 10px; padding: 18px 20px;
+    border: 1px solid #e4eef1; border-left: 4px solid #2d8b8b;
   }
+  .tip-card.warn { border-left-color: #e74c3c; }
+  .tip-card.info { border-left-color: #3498db; }
   .tip-card h3 { font-size: 15px; color: #1a5f7a; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
   .tip-card p, .tip-card ul { font-size: 13.5px; color: #4a5a6a; }
   .tip-card ul { padding-left: 18px; }
-  .tip-card ul li { margin-bottom: 4px; }
+  .tip-card ul li { margin-bottom: 5px; }
+
+  .tab-section { display: block; }
+  .tab-section.hidden { display: none; }
+
   .footer { text-align: center; padding: 24px; font-size: 13px; color: #8a9aaa; }
+
   @media (max-width: 640px) {
     body { padding: 12px; }
+    .tabs { padding: 6px; gap: 4px; }
+    .tab { padding: 6px 10px; font-size: 12.5px; }
     .hero { padding: 28px 22px; }
     .hero h1 { font-size: 22px; }
-    .day-header { padding: 14px 18px; }
-    .day-body { padding: 18px 18px 22px; }
-    .overview, .cost-section, .booking-section, .tips-section { padding: 20px 18px; }
+    .day-card { padding: 16px 18px; }
+    .overview, .cost-section, .booking-section, .tips-section, .route-section { padding: 20px 18px; }
     .tips-grid { grid-template-columns: 1fr; }
-    .day-header .day-date { margin-left: 0; }
+    .acts .tm { min-width: 76px; }
     table { font-size: 12.5px; }
     thead th, tbody td { padding: 8px 6px; }
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .tabs { display: none; }
+    .tab-section.hidden { display: block !important; }
+    .day-card, .overview, .cost-section, .booking-section, .tips-section, .route-section {
+      box-shadow: none; border: 1px solid #ddd;
+    }
   }
 </style>
 </head>
 <body>
 <div class="container">
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-tab="all">📖 全部</button>
+    <button class="tab" data-tab="overview">📋 总览</button>
+    <button class="tab" data-tab="route">🗺️ 路线图</button>
+    <button class="tab" data-tab="itinerary">📅 每日行程</button>
+    <button class="tab" data-tab="lupin">🌸 鲁冰花</button>
+    <button class="tab" data-tab="cost">💰 费用明细</button>
+    <button class="tab" data-tab="booking">📌 预约清单</button>
+    <button class="tab" data-tab="tips">⚠️ 注意事项</button>
+  </div>
 
   <div class="hero">
     <h1>🇳🇿 新西兰南北岛双人自由行攻略</h1>
@@ -161,560 +249,846 @@
     </div>
   </div>
 
-  <!-- 行程总览 -->
-  <div class="overview">
-    <h2>📋 行程总览</h2>
-    <table>
-      <thead>
-        <tr><th>日期</th><th>行程</th><th>交通方式</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>10.17</td><td>北京 → 奥克兰</td><td>国际航班</td></tr>
-        <tr><td>10.18</td><td>16:35 落地奥克兰 · 皇后街夜景</td><td>步行</td></tr>
-        <tr><td>10.19</td><td>霍比特人村 + 怀托摩萤火虫洞一日游</td><td>一日游团</td></tr>
-        <tr><td>10.20</td><td>白天北岛一日游（蓝泉/罗托鲁瓦）→ 20:55 飞基督城</td><td>一日游团 + 国内航班</td></tr>
-        <tr><td>10.21</td><td>基督城 → 蒂卡波湖 · 🌸 湖畔鲁冰花</td><td>InterCity 08:30</td></tr>
-        <tr><td>10.22</td><td>库克山一日游 · 🌸 普卡基湖鲁冰花</td><td>接驳车 08:00</td></tr>
-        <tr><td>10.23</td><td>蒂卡波湖 → 瓦纳卡</td><td>InterCity 12:50 + Ritchies</td></tr>
-        <tr><td>10.24</td><td>瓦纳卡 → 皇后镇</td><td>InterCity 下午</td></tr>
-        <tr><td>10.25</td><td>皇后镇：跳伞（或喷射快艇/滑翔伞） + Skyline + Luge</td><td>步行/缆车</td></tr>
-        <tr><td>10.26</td><td>米尔福德峡湾一日游</td><td>一日游团 06:30</td></tr>
-        <tr><td>10.27</td><td>皇后镇 → 格林诺奇 / 箭镇</td><td>巴士/一日游</td></tr>
-        <tr><td>10.28</td><td>🚢 TSS蒸汽船 + 瓦尔特峰农场 + 皇后镇花园</td><td>蒸汽船/步行</td></tr>
-        <tr><td>10.29</td><td>皇后镇上午自由 → 17:30 飞奥克兰</td><td>国内航班</td></tr>
-        <tr><td>10.30</td><td>奥克兰市区一日游 → 22:00 飞北京</td><td>巴士/轮渡/步行</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Day 1 -->
-  <div class="day-card">
-    <div class="day-header"><div class="day-num">1</div><div class="day-title">北京 → 奥克兰</div><div class="day-date">10月17日</div></div>
-    <div class="day-body">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-content">从北京搭乘国际航班飞往奥克兰，飞行约 <strong>12–13 小时</strong>。建议选傍晚起飞的航班，在飞机上睡觉，落地后适应时差。</div></div>
-      </div>
-      <div class="info-row"><span class="info-tag"><span class="icon">🏨</span> 住宿：奥克兰 CBD · Haka House Auckland 或 Adina CityLife Auckland</span></div>
-      <div class="warn-box"><strong>⚠️ 入境提醒：</strong>新西兰对入境物品查验极严，任何动植物制品、蜂蜜、中药材、新鲜果蔬<strong>必须申报</strong>，未申报最低罚款 <strong>400 纽币</strong>。</div>
+  <div class="tab-section" id="section-overview">
+    <div class="overview">
+      <h2><span class="no">1</span>行程总览</h2>
+      <table>
+        <thead><tr><th>日期</th><th>行程</th><th>交通方式</th></tr></thead>
+        <tbody>
+          <tr><td>10.17</td><td>北京 → 奥克兰</td><td>国际航班</td></tr>
+          <tr><td>10.18</td><td>16:35 落地奥克兰 · 皇后街夜景</td><td>步行</td></tr>
+          <tr><td>10.19</td><td>霍比特人村 + 怀托摩萤火虫洞一日游</td><td>一日游团</td></tr>
+          <tr><td>10.20</td><td>白天北岛一日游（蓝泉/罗托鲁瓦）→ 20:55 飞基督城</td><td>一日游团 + 国内航班</td></tr>
+          <tr><td>10.21</td><td>基督城 → 蒂卡波湖 · 🌸 湖畔鲁冰花</td><td>InterCity 08:30</td></tr>
+          <tr><td>10.22</td><td>库克山一日游 · 🌸 普卡基湖鲁冰花</td><td>接驳车 08:00</td></tr>
+          <tr><td>10.23</td><td>蒂卡波湖 → 瓦纳卡</td><td>InterCity 12:50 + Ritchies</td></tr>
+          <tr><td>10.24</td><td>瓦纳卡 → 皇后镇</td><td>InterCity 下午</td></tr>
+          <tr><td>10.25</td><td>皇后镇：跳伞（或喷射快艇/滑翔伞） + Skyline + Luge</td><td>步行/缆车</td></tr>
+          <tr><td>10.26</td><td>米尔福德峡湾一日游</td><td>一日游团 06:30</td></tr>
+          <tr><td>10.27</td><td>皇后镇 → 格林诺奇 / 箭镇</td><td>巴士/一日游</td></tr>
+          <tr><td>10.28</td><td>🚢 TSS蒸汽船 + 瓦尔特峰农场 + 皇后镇花园</td><td>蒸汽船/步行</td></tr>
+          <tr><td>10.29</td><td>皇后镇上午自由 → 17:30 飞奥克兰</td><td>国内航班</td></tr>
+          <tr><td>10.30</td><td>奥克兰市区一日游 → 22:00 飞北京</td><td>巴士/轮渡/步行</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
-  <!-- Day 2 -->
-  <div class="day-card">
-    <div class="day-header"><div class="day-num">2</div><div class="day-title">16:35 落地奥克兰 · 皇后街夜景</div><div class="day-date">10月18日</div></div>
-    <div class="day-body">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-time">16:35</div><div class="tl-content">抵达奥克兰国际机场，入境取行李约 <strong>1–1.5 小时</strong>。</div></div>
-        <div class="tl-item"><div class="tl-time">18:00</div><div class="tl-content">机场到市区：<strong>SkyDrive 巴士</strong>约 30–45 分钟，或打车约 30 分钟（50–70 纽币）。</div></div>
-        <div class="tl-item"><div class="tl-time">19:00</div><div class="tl-content">入住后步行逛 <strong>皇后街 Queen Street</strong>。</div></div>
-        <div class="tl-item"><div class="tl-time">20:00</div><div class="tl-content">步行到 <strong>Queens Wharf</strong> 看海港夜景，远眺天空塔。</div></div>
-        <div class="tl-item"><div class="tl-time">20:30</div><div class="tl-content"><strong>晚餐：</strong>Depot Eatery（生蚝、烤羊排）或 Elliott Stables 美食广场。</div></div>
-      </div>
-      <div class="info-row"><span class="info-tag"><span class="icon">🚶</span> 步行：皇后街 → 皇后码头 约10分钟</span><span class="info-tag"><span class="icon">🏨</span> 住宿：奥克兰 CBD</span></div>
-    </div>
-  </div>
+  <!-- ===== 路线图 ===== -->
+  <div class="tab-section" id="section-route">
+    <div class="route-section">
+      <h2><span class="no">2</span>整体行程路线图</h2>
+      <div class="mapbox">
+        <svg viewBox="0 0 620 780" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,'PingFang SC',sans-serif">
+          <rect x="0" y="0" width="620" height="780" rx="18" fill="#e8f4fa"/>
+          <text x="310" y="28" text-anchor="middle" font-size="15" font-weight="700" fill="#0f4c5c">新西兰行程路线图 · 2026.10.17 - 10.30</text>
+          <text x="112" y="330" font-size="13" fill="#a3bfcc" font-style="italic" letter-spacing="4">塔 斯 曼 海</text>
+          <text x="548" y="300" font-size="13" fill="#a3bfcc" font-style="italic">南太平洋</text>
+          <g transform="translate(56,86)">
+            <line x1="0" y1="14" x2="0" y2="-12" stroke="#5f7480" stroke-width="2"/>
+            <path d="M0,-20 L5,-7 L-5,-7 Z" fill="#5f7480"/>
+            <text x="0" y="34" font-size="12" fill="#5f7480" text-anchor="middle">北</text>
+          </g>
 
-  <!-- Day 3 -->
-  <div class="day-card">
-    <div class="day-header"><div class="day-num">3</div><div class="day-title">霍比特人村 + 怀托摩萤火虫洞一日游</div><div class="day-date">10月19日</div></div>
-    <div class="day-body">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-time">07:00–08:00</div><div class="tl-content">一日游团酒店接人，出发前往 <strong>霍比特人村</strong>，车程约 <strong>2 小时</strong>。</div></div>
-        <div class="tl-item"><div class="tl-time">09:30</div><div class="tl-content">参观霍比特人村约 <strong>2.5 小时</strong>，绿龙酒馆可喝免费姜汁啤酒。含自助午餐。</div></div>
-        <div class="tl-item"><div class="tl-time">13:00</div><div class="tl-content">前往 <strong>怀托摩萤火虫洞</strong>，车程约 1 小时。乘船进入洞穴，头顶是成千上万萤火虫。</div></div>
-        <div class="tl-item"><div class="tl-time">14:30</div><div class="tl-content">游览萤火虫洞约 45 分钟，<strong>洞内禁止拍照和喧哗</strong>。</div></div>
-        <div class="tl-item"><div class="tl-time">19:00–20:30</div><div class="tl-content">返回奥克兰市区，全程约 <strong>11–12 小时</strong>。</div></div>
-      </div>
-      <div class="info-row"><span class="info-tag"><span class="icon">💰</span> 约 1361 元/人起（含接送午餐）</span><span class="info-tag"><span class="icon">🏨</span> 住宿：奥克兰 CBD</span></div>
-      <div class="booking-box"><strong>📌 预订方式：</strong>Klook 搜索“奥克兰霍比屯怀托摩萤火虫洞一日游”，或 GetYourGuide 搜索“Hobbiton Waitomo Day Tour”。<strong>提前 1 周预订</strong>。</div>
-    </div>
-  </div>
+          <!-- 北岛轮廓 -->
+          <path d="M283,48 C298,56 316,66 332,80 C342,92 350,108 356,126 C360,138 362,150 364,160 C368,168 372,172 376,176 C384,184 392,190 402,194 C410,186 417,172 424,158 C431,168 436,180 440,196 C444,210 452,222 464,230 C488,236 512,230 534,224 C540,222 544,220 547,220 C541,236 532,252 524,266 C516,278 508,288 500,298 C494,310 490,318 486,326 C472,338 456,348 440,358 C424,370 410,386 400,400 C392,406 384,408 378,408 L396,420 C384,424 372,420 366,412 C362,404 364,394 366,384 C364,372 362,360 358,348 C350,334 342,326 336,318 C332,314 331,310 332,306 C333,296 334,288 336,280 C342,268 348,260 354,252 C364,242 372,238 378,234 C376,222 372,208 368,196 C366,190 364,186 363,182 C358,172 354,160 350,148 C344,132 336,114 326,98 C318,86 306,72 296,60 C291,55 287,51 283,48 Z" fill="#cfe3d2" stroke="#9dbfa4" stroke-width="2"/>
+          <!-- 南岛轮廓 -->
+          <path d="M313,362 C305,366 298,370 293,373 C282,380 268,388 254,400 C244,410 238,419 236,428 C228,452 218,464 206,478 C192,502 176,510 163,518 C142,530 128,536 119,540 C105,548 94,560 86,574 C77,590 70,606 66,624 C62,642 68,660 80,674 C88,683 100,690 114,691 C132,692 150,686 163,672 C172,663 178,655 185,647 L198,653 C203,646 209,638 216,628 C224,615 228,600 222,586 C224,572 232,562 244,560 C258,558 275,552 292,544 C304,548 312,540 306,528 C298,518 290,510 283,502 C294,488 306,474 318,464 C330,452 340,438 347,425 C340,408 328,394 314,384 C306,378 298,375 293,373 Z" fill="#cfe3d2" stroke="#9dbfa4" stroke-width="2"/>
+          <ellipse cx="54" cy="712" rx="24" ry="14" fill="#cfe3d2" stroke="#9dbfa4" stroke-width="2"/>
 
-  <!-- Day 4 -->
-  <div class="day-card">
-    <div class="day-header"><div class="day-num">4</div><div class="day-title">白天北岛一日游（蓝泉/罗托鲁瓦）→ 20:55 飞基督城</div><div class="day-date">10月20日</div></div>
-    <div class="day-body">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-time">05:45–06:00</div><div class="tl-content">一日游团从奥克兰 CBD 酒店接人，出发前往 <strong>罗托鲁瓦方向</strong>。</div></div>
-        <div class="tl-item"><div class="tl-time">08:00</div><div class="tl-content">途经 <strong>Tīrau 铁皮小镇</strong>，停留 15 分钟休息喝咖啡。</div></div>
-        <div class="tl-item"><div class="tl-time">09:00</div><div class="tl-content">抵达 <strong>蒂普亚（Te Puia）</strong>，游览地热公园约 3 小时：波胡图间歇泉、泥浆池、奇异鸟保护中心、毛利文化表演 + Hangi 自助午餐。</div></div>
-        <div class="tl-item"><div class="tl-time">13:00</div><div class="tl-content">在 <strong>波利尼西亚温泉（Polynesian Spa）</strong> 泡温泉放松约 1 小时，欣赏罗托鲁瓦湖景。</div></div>
-        <div class="tl-item"><div class="tl-time">15:00</div><div class="tl-content">回程途中停靠 <strong>蓝泉（Blue Springs / Te Waihou Walkway）</strong> 约 30 分钟，清澈见底的绿松石色泉水。</div></div>
-        <div class="tl-item"><div class="tl-time">17:30</div><div class="tl-content">返回奥克兰市区。拿好行李，直接前往机场。</div></div>
-        <div class="tl-item"><div class="tl-time">18:30</div><div class="tl-content">抵达奥克兰国内航站楼，办理登机手续（<strong>提前 2 小时</strong>）。</div></div>
-        <div class="tl-item"><div class="tl-time">20:55</div><div class="tl-content">✈️ <strong>奥克兰（AKL）→ 基督城（CHC）</strong>，飞行约 <strong>1 小时 25 分</strong>。</div></div>
-        <div class="tl-item"><div class="tl-time">22:20</div><div class="tl-content">抵达基督城。打车或坐机场巴士到市区酒店（约 20–40 纽币，15–30 分钟）。</div></div>
-      </div>
-      <div class="info-row"><span class="info-tag"><span class="icon">💰</span> 一日游约 1500–1800 元/人（含门票、午餐、温泉）</span><span class="info-tag"><span class="icon">🏨</span> 住宿：Quest on Cambridge 或 Haka House Christchurch</span></div>
-      <div class="booking-box"><strong>📌 预订方式：</strong>GetYourGuide 搜索“Te Puia Blue Springs Day Tour from Auckland”，含蒂普亚门票、Hangi 午餐、波利尼西亚温泉、蓝泉停靠。<strong>提前 1 周预订。</strong></div>
-      <div class="warn-box"><strong>⚠️ 时间衔接提醒：</strong>一日游约 17:30 回奥克兰，距 20:55 航班有约 3.5 小时缓冲。如果当天回程因路况延误，请提前告知导游你需要赶 20:55 的航班。</div>
-    </div>
-  </div>
+          <!-- 湖泊点缀 -->
+          <g fill="#bfe0ef" stroke="#9cc8dd" stroke-width="0.8">
+            <ellipse cx="98" cy="610" rx="8" ry="4" transform="rotate(-40 98 610)"/>
+            <ellipse cx="133" cy="590" rx="7" ry="3.5" transform="rotate(-25 133 590)"/>
+            <ellipse cx="172" cy="555" rx="8" ry="3.5" transform="rotate(-20 172 555)"/>
+          </g>
 
-  <!-- Day 5 -->
-  <div class="day-card">
-    <div class="day-header"><div class="day-num">5</div><div class="day-title">基督城 → 蒂卡波湖 · 🌸 鲁冰花</div><div class="day-date">10月21日</div></div>
-    <div class="day-body">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-time">08:30</div><div class="tl-content"><strong>InterCity 巴士</strong>：基督城 → 蒂卡波湖，约 <strong>3 小时 35 分</strong>，每天仅一班。票价约 <strong>50–75 纽币</strong>。建议坐<strong>巴士右侧</strong>。</div></div>
-        <div class="tl-item"><div class="tl-time">12:05</div><div class="tl-content">抵达蒂卡波，步行前往 <strong>好牧羊人教堂</strong>。</div></div>
-        <div class="tl-item"><div class="tl-time">下午</div><div class="tl-content">蒂卡波湖边散步，冰川蓝湖水。</div></div>
-        <div class="tl-item"><div class="tl-time">🌸 花点</div><div class="tl-content">沿湖畔步道往 <strong>约翰山方向</strong> 步行 10–15 分钟，鲁冰花丛更密、游客更少。黄昏光线拍花最美。</div></div>
-        <div class="tl-item"><div class="tl-time">晚上</div><div class="tl-content">蒂卡波是<strong>国际暗天保护区</strong>，可在好牧羊人教堂附近观星，或预订 <strong>Mt John 天文台观星团</strong>（约 150–180 纽币/人）。</div></div>
-      </div>
-      <div class="info-row"><span class="info-tag"><span class="icon">🏨</span> 住宿：Haka House Tekapo</span></div>
-      <div class="booking-box"><strong>📌 预订方式：</strong>InterCity 官网 intercity.co.nz 购买 FlexiPass（15 小时 199 纽币/人），再登录锁定座位。观星团在 Klook 或 Dark Sky Project 官网搜索“Mt John Observatory Tour”。</div>
-      <div class="lupin-box"><strong>🌸 鲁冰花提示：</strong>蒂卡波湖畔是新西兰最经典鲁冰花拍摄地，10 月下旬属早花期，通常已有成片紫色、粉色鲁冰花。</div>
-      <div class="warn-box"><strong>⚠️ 观星提醒：</strong>蒂卡波夜间从镇上走到教堂的路<strong>没有路灯</strong>，带手电或确保手机有电。</div>
-    </div>
-  </div>
+          <!-- 库克海峡 -->
+          <path d="M377,408 L326,402" stroke="#8e9aa2" stroke-width="1.6" stroke-dasharray="3 4"/>
+          <circle cx="326" cy="402" r="3" fill="#8e9aa2"/>
+          <text x="352" y="438" font-size="10" fill="#9db8c4" font-style="italic">库克海峡（渡轮·本行程不乘）</text>
 
-  <!-- Day 6 -->
-  <div class="day-card">
-    <div class="day-header"><div class="day-num">6</div><div class="day-title">库克山一日游 · 🌸 普卡基湖鲁冰花</div><div class="day-date">10月22日</div></div>
-    <div class="day-body">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-time">08:00</div><div class="tl-content">在 <strong>Tekapo Four Square 超市停车场</strong> 集合，搭乘 <strong>Tekapo Shuttle</strong> 出发。</div></div>
-        <div class="tl-item"><div class="tl-time">09:00</div><div class="tl-content"><strong>Peter's Lookout</strong> 停靠，欣赏普卡基湖和库克山全景。</div></div>
-        <div class="tl-item"><div class="tl-time">09:45</div><div class="tl-content"><strong>塔斯曼冰川观景步道</strong>，约 300 台阶，看冰川和冰川湖。</div></div>
-        <div class="tl-item"><div class="tl-time">10:45</div><div class="tl-content"><strong>Hooker Valley Track</strong> 自助徒步，约 1.5–2 小时，终点是冰川湖。全程平缓，三座吊桥。</div></div>
-        <div class="tl-item"><div class="tl-time">🌸 花点</div><div class="tl-content">普卡基湖停靠时往 <strong>湖边草丛和塔斯曼河河岸</strong> 走几步，有成片鲁冰花。蓝湖 + 雪山 + 花海。</div></div>
-        <div class="tl-item"><div class="tl-time">15:00</div><div class="tl-content">在 <strong>Hermitage Hotel</strong> 门口集合，返回蒂卡波。</div></div>
-        <div class="tl-item"><div class="tl-time">16:00</div><div class="tl-content">停靠 <strong>普卡基湖</strong>，参观高山三文鱼商店。</div></div>
-        <div class="tl-item"><div class="tl-time">16:30–17:00</div><div class="tl-content">返回蒂卡波湖。</div></div>
-      </div>
-      <div class="info-row"><span class="info-tag"><span class="icon">💰</span> 约 149 纽币/人</span><span class="info-tag"><span class="icon">🏨</span> 住宿：Haka House Tekapo</span></div>
-      <div class="booking-box"><strong>📌 预订方式：</strong>GetYourGuide 搜索“Tekapo Shuttle Mt Cook Day Tour”，或 Cool Destinations。<strong>提前 1 周预订。</strong></div>
-      <div class="lupin-box"><strong>🌸 鲁冰花提示：</strong>普卡基湖北岸和塔斯曼河河岸是鲁冰花集中区域之一，10 月下旬通常比蒂卡波更早开花。</div>
-    </div>
-  </div>
+          <!-- 航线 -->
+          <path d="M373,175 C300,260 160,440 102,600" stroke="#e67e22" stroke-width="3" stroke-dasharray="8 6" fill="none" opacity="0.85"/>
+          <text x="243" y="372" font-size="11" font-weight="600" fill="#b35c12" transform="rotate(56 243 372)">✈ 10.29 · 1h50m</text>
+          <path d="M280,522 C330,420 362,280 373,175" stroke="#e67e22" stroke-width="3" stroke-dasharray="8 6" fill="none" opacity="0.85"/>
+          <text x="345" y="308" font-size="11" font-weight="600" fill="#b35c12" text-anchor="end" transform="rotate(-19 345 308)">✈ 10.20 · 1h25m</text>
 
-  <!-- Day 7 -->
-  <div class="day-card">
-    <div class="day-header"><div class="day-num">7</div><div class="day-title">蒂卡波湖 → 瓦纳卡 · 🌸 沿途花丛</div><div class="day-date">10月23日</div></div>
-    <div class="day-body">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-time">12:50</div><div class="tl-content"><strong>InterCity 巴士</strong>：蒂卡波 → Cromwell，约 <strong>2 小时 39 分</strong>，每天仅一班。抵达 Cromwell 约 15:29。</div></div>
-        <div class="tl-item"><div class="tl-time">15:30</div><div class="tl-content">在 Cromwell 中转，换乘 <strong>Ritchies 大巴</strong>：Cromwell → 瓦纳卡，约 <strong>45 分钟</strong>，票价约 <strong>9–11 纽币</strong>。</div></div>
-        <div class="tl-item"><div class="tl-time">🌸 花点</div><div class="tl-content">Cromwell 一带公路两旁常有鲁冰花，中转等车时留意路边花丛。</div></div>
-        <div class="tl-item"><div class="tl-time">16:30</div><div class="tl-content">抵达瓦纳卡，步行前往 <strong>孤独的树（That Wanaka Tree）</strong>，日落时分最美。</div></div>
-      </div>
-      <div class="info-row"><span class="info-tag"><span class="icon">🏨</span> 住宿：Haka House Wanaka</span></div>
-      <div class="highlight-box"><strong>💡 注意：</strong>蒂卡波到瓦纳卡<strong>没有直达 InterCity 巴士</strong>，必须在 Cromwell 中转。</div>
-      <div class="booking-box"><strong>📌 预订方式：</strong>InterCity 段在官网用 FlexiPass 预订。Ritchies 段在 ritchies.co.nz 或上车购票。</div>
-    </div>
-  </div>
+          <!-- 大巴主线 -->
+          <path d="M102,600 C110,593 116,589 124,582 C134,566 150,540 166,525 C172,533 178,540 184,546 C210,544 248,534 280,522" stroke="#1273a3" stroke-width="3.2" fill="none"/>
+          <text x="140" y="618" font-size="10.5" font-weight="600" fill="#0e5a7a">🚌 1h</text>
+          <text x="98" y="554" font-size="10.5" font-weight="600" fill="#0e5a7a" text-anchor="middle">Cromwell 换乘 3h</text>
+          <text x="232" y="548" font-size="10.5" font-weight="600" fill="#0e5a7a">🚌 3.5h</text>
 
-  <!-- Day 8 -->
-  <div class="day-card">
-    <div class="day-header"><div class="day-num">8</div><div class="day-title">瓦纳卡 → 皇后镇 · 🌸 Lindis River 沿途</div><div class="day-date">10月24日</div></div>
-    <div class="day-body">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-time">上午</div><div class="tl-content">瓦纳卡湖边散步，可走 <strong>Beacon Point</strong> 步道。</div></div>
-        <div class="tl-item"><div class="tl-time">下午</div><div class="tl-content"><strong>InterCity 巴士</strong>：瓦纳卡 → 皇后镇，约 <strong>1 小时</strong>。具体班次以 InterCity 官网为准，每天多班。</div></div>
-        <div class="tl-item"><div class="tl-time">🌸 花点</div><div class="tl-content">沿途 <strong>Lindis River 附近</strong> 可能看到鲁冰花。坐<strong>巴士右侧</strong>，留意窗外。</div></div>
-        <div class="tl-item"><div class="tl-time">傍晚</div><div class="tl-content">抵达皇后镇，步行逛镇中心。</div></div>
-        <div class="tl-item"><div class="tl-time">晚餐</div><div class="tl-content">去 <strong>Fergburger</strong> 吃大脸汉堡，避开正午和傍晚高峰。</div></div>
-      </div>
-      <div class="info-row"><span class="info-tag"><span class="icon">🏨</span> 住宿：Haka House Queenstown 或 LyLo Queenstown</span></div>
-      <div class="booking-box"><strong>📌 预订方式：</strong>InterCity 官网用 FlexiPass 预订，提前 2 小时以上锁定座位。</div>
-    </div>
-  </div>
+          <!-- 方向箭头 -->
+          <g fill="#1273a3">
+            <path d="M0,-4.5 L9,0 L0,4.5 Z" transform="translate(234,537) rotate(166)"/>
+            <path d="M0,-4.5 L9,0 L0,4.5 Z" transform="translate(176,535) rotate(-131)"/>
+            <path d="M0,-4.5 L9,0 L0,4.5 Z" transform="translate(146,556) rotate(126)"/>
+            <path d="M0,-4.5 L9,0 L0,4.5 Z" transform="translate(112,592) rotate(141)"/>
+          </g>
+          <g fill="#e67e22">
+            <path d="M0,-4.5 L9,0 L0,4.5 Z" transform="translate(310,430) rotate(105)"/>
+            <path d="M0,-4.5 L9,0 L0,4.5 Z" transform="translate(160,470) rotate(-57)"/>
+          </g>
 
-  <!-- Day 9（更新：跳伞保留，新增备选） -->
-  <div class="day-card">
-    <div class="day-header"><div class="day-num">9</div><div class="day-title">皇后镇：跳伞（或喷射快艇/滑翔伞） + Skyline + Luge</div><div class="day-date">10月25日</div></div>
-    <div class="day-body">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-time">上午</div><div class="tl-content"><strong>NZONE 高空跳伞</strong>（首选）。15000 英尺跳伞约 <strong>2247 元人民币</strong>，GoPro 摄影约 <strong>861 元</strong>。在 NZONE 中心（Shotover 街 35 号）集合，有车接送往返跳伞场地。</div></div>
-        <div class="tl-item"><div class="tl-time">备选 A</div><div class="tl-content"><strong>沙特欧瓦河喷射快艇（Shotover Jet）</strong>：如果不敢跳伞，可以改玩这个。从皇后镇码头出发，穿越沙特欧瓦峡谷，体验 360 度旋转和贴近岩壁的刺激。全程约 <strong>1 小时</strong>，价格约 <strong>159 纽币/人</strong>。可在 Klook 或 GetYourGuide 搜索“Shotover Jet Queenstown”预订，提前 1–2 天。</div></div>
-        <div class="tl-item"><div class="tl-time">备选 B</div><div class="tl-content"><strong>天际线滑翔伞（Gforce Paragliding）</strong>：从鲍勃峰（Skyline 缆车山顶）起飞，在空中缓慢盘旋，俯瞰瓦卡蒂普湖和皇后镇全景。全程约 <strong>1.5–2 小时</strong>（含准备），价格约 <strong>249 纽币/人</strong>。可在 Klook 或 Gforce Paragliding 官网预订，提前 1–2 天。与 Skyline 缆车同地点，可安排在同一天。</div></div>
-        <div class="tl-item"><div class="tl-time">下午</div><div class="tl-content"><strong>Skyline 缆车</strong> 上山，俯瞰皇后镇全景。<strong>Luge 滑板车</strong> 3 圈约 <strong>89 纽币</strong>。Luge 19:00 关闭，每圈约 20 分钟。</div></div>
-        <div class="tl-item"><div class="tl-time">餐饮</div><div class="tl-content">推荐 <strong>Patagonia</strong> 冰淇淋（码头边）和 <strong>Saigon Kingdom</strong> 越南粉。</div></div>
-      </div>
-      <div class="info-row">
-        <span class="info-tag"><span class="icon">🪂</span> 跳伞首选，提前1–2周预订</span>
-        <span class="info-tag"><span class="icon">🚤</span> 备选：喷射快艇约159纽币/人</span>
-        <span class="info-tag"><span class="icon">🪂</span> 备选：滑翔伞约249纽币/人</span>
-        <span class="info-tag"><span class="icon">🏨</span> 住宿：皇后镇</span>
-      </div>
-      <div class="booking-box"><strong>📌 预订方式：</strong>跳伞在 NZONE 官网 book.nzoneskydive.co.nz 预订，或 Klook 搜索“皇后镇高空跳伞 NZONE”。<strong>提前 1–2 周预订，并留出 1 天备用日</strong>。缆车 + Luge 在 KKday、携程或 Skyline 官网预订。喷射快艇或滑翔伞可在 Klook / GetYourGuide 搜索预订。</div>
-    </div>
-  </div>
+          <!-- 北岛一日游虚线 -->
+          <g stroke="#8aa3ad" stroke-width="2" stroke-dasharray="2.5 4" fill="none">
+            <path d="M373,175 C368,210 378,235 391,247 C402,242 412,232 423,224 C412,210 395,188 373,175"/>
+            <path d="M423,224 L441,241"/>
+          </g>
+          <text x="428" y="292" font-size="10.5" fill="#5f7480" text-anchor="middle">D2·D3 北岛一日游</text>
 
-  <!-- Day 10 -->
-  <div class="day-card">
-    <div class="day-header"><div class="day-num">10</div><div class="day-title">米尔福德峡湾一日游</div><div class="day-date">10月26日</div></div>
-    <div class="day-body">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-time">06:30</div><div class="tl-content">从皇后镇出发，巴士沿 <strong>米尔福德路</strong> 行驶，途中在镜湖、Knobs Flat 等地停靠。</div></div>
-        <div class="tl-item"><div class="tl-time">12:00</div><div class="tl-content">抵达米尔福德峡湾，乘坐游船约 <strong>1 小时 40 分钟</strong>，看瀑布、海豹，运气好有企鹅海豚。船上提供免费茶和咖啡。</div></div>
-        <div class="tl-item"><div class="tl-time">14:00</div><div class="tl-content">乘巴士返回皇后镇，全程约 <strong>12 小时</strong>。</div></div>
-        <div class="tl-item"><div class="tl-time">18:00–19:00</div><div class="tl-content">返回皇后镇。</div></div>
-      </div>
-      <div class="info-row"><span class="info-tag"><span class="icon">🧥</span> 峡湾常年多雨，务必带防水外套</span><span class="info-tag"><span class="icon">🏨</span> 住宿：皇后镇</span></div>
-      <div class="booking-box"><strong>📌 预订方式：</strong>Klook 搜索“皇后镇米尔福德峡湾一日游”，约 1596 元/人；或 GetYourGuide 搜索“Milford Sound Day Tour from Queenstown”。<strong>提前 1–2 周预订。</strong></div>
-    </div>
-  </div>
+          <!-- 北岛 POI -->
+          <g font-size="10.5" fill="#2d7d5f">
+            <circle cx="391" cy="247" r="3.5" fill="#2d7d5f"/><text x="398" y="251">怀托摩萤火虫洞</text>
+            <circle cx="423" cy="224" r="3.5" fill="#2d7d5f"/><text x="430" y="220">霍比特人村</text>
+            <circle cx="441" cy="241" r="3.5" fill="#2d7d5f"/><text x="449" y="245">罗托鲁瓦</text>
+          </g>
+          <circle cx="377" cy="408" r="4.5" fill="#8e9aa2"/>
+          <text x="385" y="412" font-size="10.5" fill="#5f7480">惠灵顿</text>
 
-  <!-- Day 11 -->
-  <div class="day-card">
-    <div class="day-header"><div class="day-num">11</div><div class="day-title">皇后镇 → 格林诺奇 / 箭镇</div><div class="day-date">10月27日</div></div>
-    <div class="day-body">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-time">方案 A</div><div class="tl-content"><strong>格林诺奇半日游</strong>，约 4.5 小时，往返约 <strong>78 纽币</strong>。这里是《魔戒》取景地，沿途公路被誉为世界十大最美公路之一。</div></div>
-        <div class="tl-item"><div class="tl-time">方案 B</div><div class="tl-content">公交去 <strong>箭镇</strong>，逛主街和河边步道。历史小镇，春天花也很美。</div></div>
-      </div>
-      <div class="info-row"><span class="info-tag"><span class="icon">🏨</span> 住宿：皇后镇</span></div>
-      <div class="booking-box"><strong>📌 预订方式：</strong>格林诺奇在 Klook 搜索“格林诺奇天堂半日游”，或 GetYourGuide 搜索“Glenorchy Paradise Half Day Tour”。<strong>提前 3–5 天预订。</strong></div>
-    </div>
-  </div>
+          <!-- 凯库拉（可选） -->
+          <circle cx="317" cy="465" r="3.5" fill="#8e9aa2"/>
+          <text x="325" y="469" font-size="10" fill="#7a8a98">凯库拉·观鲸(可选)</text>
 
-  <!-- Day 12 -->
-  <div class="day-card">
-    <div class="day-header"><div class="day-num">12</div><div class="day-title">🚢 TSS蒸汽船 + 瓦尔特峰农场 + 皇后镇花园</div><div class="day-date">10月28日</div></div>
-    <div class="day-body">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-time">09:00</div><div class="tl-content">前往皇后镇码头，登上百年蒸汽船 <strong>TSS厄恩斯劳号（TSS Earnslaw）</strong>。建议选上午班次，提前 20 分钟到码头换票。</div></div>
-        <div class="tl-item"><div class="tl-time">09:30–10:00</div><div class="tl-content">蒸汽船横穿瓦卡蒂普湖，约 <strong>45 分钟</strong>，抵达对岸的 <strong>瓦尔特峰高原农场（Walter Peak High Country Farm）</strong>。船上可参观蒸汽机舱、在咖啡吧喝杯咖啡。</div></div>
-        <div class="tl-item"><div class="tl-time">10:00–12:00</div><div class="tl-content">农场体验：观看<strong>剪羊毛表演、牧羊犬赶羊</strong>，亲手喂食农场动物。含 <strong>BBQ 自助午餐</strong>（或上午茶，视所选套餐而定）。</div></div>
-        <div class="tl-item"><div class="tl-time">12:30–13:15</div><div class="tl-content">乘蒸汽船返回皇后镇码头。全程约 <strong>3.5–4 小时</strong>。</div></div>
-        <div class="tl-item"><div class="tl-time">14:00–17:00</div><div class="tl-content">下午轻松活动：步行去 <strong>皇后镇花园（Queenstown Gardens）</strong> 散步，沿 <strong>Lake Wakatipu 湖边步道</strong> 走走，找找早开的鲁冰花。之后在镇中心 <strong>买纪念品</strong>，或去 Patagonia 吃冰淇淋。</div></div>
-        <div class="tl-item"><div class="tl-time">傍晚</div><div class="tl-content">整理行李，早点休息，为第二天飞奥克兰养足精神。</div></div>
+          <!-- ===== 南岛一日游虚线（重点调整：错开连接） ===== -->
+
+          <!-- 皇后镇→米尔福德峡湾（往左下） -->
+          <path d="M102,600 C90,612 75,628 60,638" stroke="#8aa3ad" stroke-width="1.8" stroke-dasharray="2.5 4" fill="none"/>
+          <!-- 皇后镇→格林诺奇（往左上） -->
+          <path d="M102,600 C92,592 82,584 74,578" stroke="#8aa3ad" stroke-width="1.8" stroke-dasharray="2.5 4" fill="none"/>
+          <!-- 皇后镇→箭镇（往右侧） -->
+          <path d="M102,600 C110,596 120,592 128,590" stroke="#8aa3ad" stroke-width="1.8" stroke-dasharray="2.5 4" fill="none"/>
+
+          <!-- 库克山一日游虚线（从特卡波出发往返） -->
+          <path d="M184,546 C176,540 170,534 166,528" stroke="#8aa3ad" stroke-width="1.8" stroke-dasharray="2.5 4" fill="none"/>
+          <path d="M166,528 C170,534 176,540 184,546" stroke="#8aa3ad" stroke-width="1.8" stroke-dasharray="2.5 4" fill="none" opacity="0.5"/>
+
+          <!-- 特卡波→基督城（大巴已画主线，这里补充一日游虚线到凯库拉） -->
+          <path d="M280,522 C295,505 308,484 317,465" stroke="#8aa3ad" stroke-width="1.8" stroke-dasharray="2.5 4" fill="none" opacity="0.6"/>
+
+          <!-- ===== 南岛 POI（重新散开布局） ===== -->
+
+          <!-- 米尔福德峡湾：左下角独立 -->
+          <circle cx="58" cy="640" r="3.5" fill="#2d7d5f"/>
+          <text x="58" y="654" font-size="10" fill="#2d7d5f" text-anchor="middle">米尔福德峡湾</text>
+
+          <!-- 格林诺奇：左上独立 -->
+          <circle cx="72" cy="576" r="3.5" fill="#2d7d5f"/>
+          <text x="72" y="566" font-size="10" fill="#2d7d5f" text-anchor="middle">格林诺奇</text>
+
+          <!-- 箭镇：右侧独立 -->
+          <circle cx="130" cy="590" r="3.5" fill="#2d7d5f"/>
+          <text x="140" y="592" font-size="10" fill="#2d7d5f">箭镇</text>
+
+          <!-- ===== 南岛过夜城市（重新散开布局） ===== -->
+
+          <!-- 基督城 -->
+          <circle cx="280" cy="522" r="6" fill="#0f4c5c" stroke="#fff" stroke-width="2"/>
+          <text x="290" y="518" font-size="11.5" font-weight="700" fill="#1a2b32">基督城</text>
+          <text x="290" y="532" font-size="10" fill="#5f7480" font-weight="600">10.20-21</text>
+
+          <!-- 库克山（三角形，D5 一日游） -->
+          <polygon points="166,522 160,532 172,532" fill="#2c3e50" stroke="#fff" stroke-width="1.5"/>
+          <text x="178" y="526" font-size="11" font-weight="700" fill="#1a2b32">库克山</text>
+          <text x="178" y="538" font-size="10" fill="#5f7480" font-weight="600">D5 一日游</text>
+
+          <!-- 特卡波 -->
+          <circle cx="184" cy="552" r="6" fill="#0f4c5c" stroke="#fff" stroke-width="2"/>
+          <text x="194" y="548" font-size="11.5" font-weight="700" fill="#1a2b32">特卡波</text>
+          <text x="194" y="562" font-size="10" fill="#5f7480" font-weight="600">10.21-23</text>
+
+          <!-- 瓦纳卡 -->
+          <circle cx="124" cy="582" r="6" fill="#0f4c5c" stroke="#fff" stroke-width="2"/>
+          <text x="110" y="576" font-size="11.5" font-weight="700" fill="#1a2b32" text-anchor="end">瓦纳卡</text>
+          <text x="110" y="590" font-size="10" fill="#5f7480" font-weight="600" text-anchor="end">10.23-24</text>
+
+          <!-- 皇后镇（橙色高亮，单独放） -->
+          <circle cx="102" cy="604" r="7" fill="#e67e22" stroke="#fff" stroke-width="2.5"/>
+          <text x="102" y="626" font-size="12" font-weight="700" fill="#c0580a" text-anchor="middle">皇后镇</text>
+          <text x="102" y="640" font-size="10.5" fill="#c0580a" font-weight="600" text-anchor="middle">10.24-29</text>
+
+          <!-- 奥克兰（北岛） -->
+          <circle cx="373" cy="175" r="6.5" fill="#0f4c5c" stroke="#fff" stroke-width="2"/>
+          <text x="388" y="172" font-size="12" font-weight="700" fill="#1a2b32">奥克兰</text>
+          <text x="388" y="186" font-size="10.5" fill="#5f7480" font-weight="600">10.18-20</text>
+
+          <!-- 图例 -->
+          <g font-size="11" fill="#1a2b32">
+            <rect x="430" y="468" width="180" height="122" rx="10" fill="#ffffff" opacity="0.95" stroke="#cfe5ee"/>
+            <line x1="442" y1="490" x2="472" y2="490" stroke="#e67e22" stroke-width="3" stroke-dasharray="7 5"/>
+            <text x="480" y="494" font-size="10.5">航班 · 奥克兰进出</text>
+            <line x1="442" y1="514" x2="472" y2="514" stroke="#1273a3" stroke-width="3"/>
+            <text x="480" y="518" font-size="10.5">长途巴士（含时长）</text>
+            <line x1="442" y1="538" x2="472" y2="538" stroke="#8aa3ad" stroke-width="2" stroke-dasharray="2.5 4"/>
+            <text x="480" y="542" font-size="10.5">一日游 · 当天往返</text>
+            <circle cx="457" cy="562" r="5" fill="#0f4c5c"/><text x="480" y="566" font-size="10.5">过夜城市 + 日期</text>
+            <text x="446" y="584" fill="#2d7d5f" font-size="12">●</text><text x="480" y="584" font-size="10.5">景点（当天往返）</text>
+          </g>
+        </svg>
       </div>
-      <div class="info-row">
-        <span class="info-tag"><span class="icon">💰</span> 约 645 元/人（150纽币，含BBQ午餐）</span>
-        <span class="info-tag"><span class="icon">🏨</span> 住宿：皇后镇</span>
-      </div>
-      <div class="booking-box">
-        <strong>📌 预订方式：</strong>Klook / GetYourGuide 搜索“TSS Earnslaw Walter Peak Farm”，或 RealNZ 官网 realnz.com 直接预订。选含 BBQ 午餐的套餐，<strong>提前 3–5 天预订</strong>。蒸汽船码头在皇后镇中心，步行可达。
-      </div>
-      <div class="lupin-box">
-        <strong>🌸 鲁冰花提示：</strong>皇后镇花园和湖边步道春天也有花卉，但鲁冰花不如蒂卡波集中。如果前面几天花况不理想，今天可以再碰碰运气。
+      <div class="highlight-box" style="margin-top:20px;">
+        <strong>💡 路线说明：</strong>北岛以奥克兰为基地，10.19 去霍比特人村+怀托摩，10.20 去罗托鲁瓦+蓝泉，当晚 20:55 飞基督城。南岛从基督城出发，经蒂卡波湖（往返库克山）、瓦纳卡，最后抵达皇后镇，以皇后镇为基地玩周边（米尔福德峡湾、格林诺奇等）。全程不自驾，靠 InterCity 巴士 + 国内航班串联。
       </div>
     </div>
   </div>
 
-  <!-- Day 13 -->
-  <div class="day-card">
-    <div class="day-header"><div class="day-num">13</div><div class="day-title">皇后镇上午自由 → 17:30 飞奥克兰</div><div class="day-date">10月29日</div></div>
-    <div class="day-body">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-time">上午</div><div class="tl-content">睡到自然醒，去 <strong>皇后镇花园</strong> 散步，湖边坐坐。或去 <strong>Patagonia</strong> 吃冰淇淋，买纪念品。</div></div>
-        <div class="tl-item"><div class="tl-time">中午</div><div class="tl-content">镇中心吃午饭，推荐 Fergburger 或 Saigon Kingdom。</div></div>
-        <div class="tl-item"><div class="tl-time">14:30</div><div class="tl-content">前往皇后镇机场。机场离市区约 <strong>8 公里</strong>，打车约 <strong>15 分钟</strong>（30–40 纽币），或坐 <strong>Orbus 公交 1 路</strong> 约 20 分钟（约 10 纽币）。提前 <strong>2 小时</strong> 到机场。</div></div>
-        <div class="tl-item"><div class="tl-time">17:30</div><div class="tl-content">✈️ <strong>皇后镇（ZQN）→ 奥克兰（AKL）</strong>，飞行约 <strong>1 小时 50 分</strong>。</div></div>
-        <div class="tl-item"><div class="tl-time">19:20</div><div class="tl-content">抵达奥克兰。入住机场附近酒店，推荐 <strong>Pullman Auckland Airport</strong>，步行约 10 分钟到国际航站楼。晚餐在机场或酒店解决，早点休息。</div></div>
+  <!-- ===== 每日行程 ===== -->
+  <div class="tab-section" id="section-itinerary">
+    <div class="tl">
+
+      <div class="day">
+        <div class="day-card">
+          <div class="dhead"><span class="dbadge">D1 <b>10.17</b> 周六</span><span class="dtitle">北京 → 奥克兰</span><span class="dtag">飞行</span></div>
+          <div class="seg"><span class="t">✈️ 北京 → 奥克兰 · 直飞约 12–13h（已订）</span></div>
+          <ul class="acts"><li><span class="tm">全天</span><span>机上过夜；航班上发放<b>新西兰入境卡</b>，食品药品务必如实申报 <span class="memo">谎报罚款 NZ$400 起</span></span></li></ul>
+          <div class="foot-row">
+            <div class="mini hotel"><b>🏨 住宿</b>奥克兰 CBD · Haka House Auckland 或 Adina CityLife Auckland</div>
+            <div class="mini food"><b>⚠️ 入境</b>新西兰对入境物品查验极严，蜂蜜、中药材、新鲜果蔬必须申报</div>
+          </div>
+        </div>
       </div>
-      <div class="info-row"><span class="info-tag"><span class="icon">🏨</span> 住宿：Pullman Auckland Airport 或机场附近酒店</span></div>
+
+      <div class="day">
+        <div class="day-card">
+          <div class="dhead"><span class="dbadge">D2 <b>10.18</b> 周日</span><span class="dtitle">16:35 落地奥克兰 · 皇后街夜景</span><span class="dtag">奥克兰 第1晚</span></div>
+          <div class="seg">
+            <span class="t">🛬 16:35 落地 AKL</span>
+            <span class="t">🚌 SkyDrive 巴士 → 市区 30-45min · NZ$19/人</span>
+            <span class="t">🚖 备选：打车 30min · NZ$50-70</span>
+          </div>
+          <ul class="acts">
+            <li><span class="tm">16:35</span><span>抵达奥克兰国际机场，入境取行李约 <b>1–1.5 小时</b></span></li>
+            <li><span class="tm">18:00</span><span>机场到市区，入住酒店放行李</span></li>
+            <li><span class="tm">19:00</span><span>步行逛 <b>皇后街 Queen Street</b></span></li>
+            <li><span class="tm">20:00</span><span>步行到 <b>Queens Wharf</b> 看海港夜景，远眺天空塔</span></li>
+            <li><span class="tm">20:30</span><span>晚餐：Depot Eatery（生蚝、烤羊排）或 Elliott Stables 美食广场</span></li>
+          </ul>
+          <div class="foot-row">
+            <div class="mini food"><b>🍽 晚餐</b>Depot / Elliott Stables 美食广场</div>
+            <div class="mini hotel"><b>🏨 住宿</b>奥克兰 CBD（步行至皇后街约 5-10 分钟）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-card">
+          <div class="dhead"><span class="dbadge">D3 <b>10.19</b> 周一</span><span class="dtitle">霍比特人村 + 怀托摩萤火虫洞一日游</span><span class="dtag">北岛精华 · 全天 11-12h</span></div>
+          <div class="seg">
+            <span class="t">🚌 一日游巴士含市区酒店接送</span>
+            <span class="t">07:00-08:00 出发 · 19:00-20:30 返回</span>
+          </div>
+          <ul class="acts">
+            <li><span class="tm">07:00</span><span>一日游团酒店接人，出发前往 <b>霍比特人村</b>，车程约 2h</span></li>
+            <li><span class="tm">09:30</span><span>参观霍比特人村约 2.5h，绿龙酒馆可喝免费姜汁啤酒，含自助午餐</span></li>
+            <li><span class="tm">13:00</span><span>前往 <b>怀托摩萤火虫洞</b>，车程约 1h。乘船进入洞穴，头顶是成千上万萤火虫</span></li>
+            <li><span class="tm">14:30</span><span>游览萤火虫洞约 45min，<b>洞内禁止拍照和喧哗</b></span></li>
+            <li><span class="tm">19:00</span><span>返回奥克兰市区</span></li>
+          </ul>
+          <div class="foot-row">
+            <div class="mini food"><b>📌 预订</b>Klook 搜"奥克兰霍比屯怀托摩萤火虫洞一日游"，或 GetYourGuide 搜 "Hobbiton Waitomo Day Tour"，<b>提前 1 周</b></div>
+            <div class="mini hotel"><b>🏨 住宿</b>奥克兰 CBD（第 2 晚）· 约 1361 元/人起（含接送午餐）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-card">
+          <div class="dhead"><span class="dbadge">D4 <b>10.20</b> 周二</span><span class="dtitle">白天北岛一日游（蓝泉/罗托鲁瓦）→ 20:55 飞基督城</span><span class="dtag">一日游团 · 约 12h</span></div>
+          <div class="seg">
+            <span class="t">🚐 一日游团 05:45-06:00 奥克兰 CBD 酒店接（GetYourGuide 搜 "Te Puia Blue Springs Day Tour"，含门票+午餐+温泉+蓝泉，约 1500–1800 元/人，提前 1 周订）</span>
+            <span class="t">✈️ AKL→CHC 20:55-22:20（已订）· 18:30 前回到国内航站楼</span>
+          </div>
+          <ul class="acts">
+            <li><span class="tm">08:00</span><span>途经 Tīrau 铁皮小镇，停留 15min 喝咖啡</span></li>
+            <li><span class="tm">09:00</span><span>蒂普亚 Te Puia 约 3h：波胡图间歇泉 + 泥浆池 + 奇异鸟保护中心 + 毛利文化表演，含 Hangi 自助午餐</span></li>
+            <li><span class="tm">13:00</span><span>波利尼西亚温泉泡 1h（罗托鲁瓦湖景，世界十大温泉）</span></li>
+            <li><span class="tm">15:00</span><span>回程停靠 <b>蓝泉</b> 约 30min（绿松石泉水清澈见底）</span></li>
+            <li><span class="tm">17:30</span><span>返抵奥克兰直奔国内航站楼 <span class="memo">⚠️ 上车就告知导游赶 20:55 航班；万一回程堵车有 3.5h 缓冲</span></span></li>
+            <li><span class="tm">20:55</span><span>✈️ 22:20 抵基督城，打车/公交 15-30min 进市区酒店</span></li>
+          </ul>
+          <div class="foot-row">
+            <div class="mini food"><b>🍽 餐饮</b>午餐 Hangi 自助已含；晚餐机场或酒店简餐</div>
+            <div class="mini hotel"><b>🏨 住宿</b>Quest on Cambridge（Bus Interchange 对面，明早 8:30 巴士顺路）/ Haka House Christchurch</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-card">
+          <div class="dhead"><span class="dbadge">D5 <b>10.21</b> 周三</span><span class="dtitle">基督城 → 蒂卡波湖 · 🌸 鲁冰花</span><span class="dtag">3h35m · 256km</span></div>
+          <div class="seg">
+            <span class="t">🚌 InterCity 08:30 基督城 Bus Interchange → 12:05 蒂卡波湖，约 3h35m，每天仅一班</span>
+            <span class="t">🪟 坐右侧靠窗：坎特伯雷平原与南阿尔卑斯山</span>
+          </div>
+          <ul class="acts">
+            <li><span class="tm">12:05</span><span>抵达蒂卡波，步行前往 <b>好牧羊人教堂</b>（窗户正对湖面和雪山）</span></li>
+            <li><span class="tm">下午</span><span>蒂卡波湖边散步，冰川蓝湖水</span></li>
+            <li><span class="tm">🌸 花点</span><span>沿湖畔步道往<b>约翰山方向</b>步行 10-15min，鲁冰花丛更密、游客更少。黄昏光线拍花最美</span></li>
+            <li><span class="tm">晚上</span><span>蒂卡波是<b>国际暗天保护区</b>，可在好牧羊人教堂附近观星，或预订 <b>Mt John 天文台观星团</b>（约 150-180 纽币/人）</span></li>
+          </ul>
+          <div class="foot-row">
+            <div class="mini hotel"><b>🏨 住宿（2 晚）</b>Haka House Tekapo（紧邻巴士站）· Lake Tekapo Village Motel</div>
+            <div class="mini lupin"><b>🌸 鲁冰花</b>蒂卡波湖畔是新西兰最经典鲁冰花拍摄地，10 月下旬属早花期，通常已有成片紫色、粉色鲁冰花</div>
+          </div>
+          <div class="booking-box"><b>📌 预订：</b>InterCity 官网 intercity.co.nz 购买 FlexiPass（15 小时 199 纽币/人），再登录锁定座位。观星团在 Klook 或 Dark Sky Project 官网搜索 "Mt John Observatory Tour"</div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-card">
+          <div class="dhead"><span class="dbadge">D6 <b>10.22</b> 周四</span><span class="dtitle">库克山一日游 · 🌸 普卡基湖鲁冰花</span><span class="dtag">Tekapo Shuttle · 约 8h</span></div>
+          <div class="seg">
+            <span class="t">🚐 Tekapo Shuttle 08:00 Four Square 超市停车场集合（约 149 纽币/人，GetYourGuide 搜 "Tekapo Shuttle Mt Cook Day Tour"，提前 1 周订）</span>
+            <span class="t">🌸 普卡基湖北岸与塔斯曼河岸 = 鲁冰花集中区，开得比蒂卡波更早</span>
+          </div>
+          <ul class="acts">
+            <li><span class="tm">09:00</span><span>Peter's Lookout 停靠：普卡基湖 + 库克山全景</span></li>
+            <li><span class="tm">09:45</span><span>塔斯曼冰川观景步道（约 300 级台阶，看冰川终端湖浮冰）</span></li>
+            <li><span class="tm">10:45</span><span><b>Hooker Valley 自助徒步 1.5-2h</b>：三座吊桥 + 冰川湖，全程平缓</span></li>
+            <li><span class="tm">15:00</span><span>Hermitage 酒店门口集合返程</span></li>
+            <li><span class="tm">16:00</span><span>普卡基湖高山三文鱼店停靠（刺身配湖景）</span></li>
+            <li><span class="tm">16:30</span><span>回到蒂卡波；湖边晚餐，天晴可教堂边观星</span></li>
+          </ul>
+          <div class="foot-row">
+            <div class="mini food"><b>🍽 餐饮</b>团含水；晚餐回镇上（Kohan 日料 / 炸鱼薯条）；零食在 Four Square 买齐</div>
+            <div class="mini hotel"><b>🏨 住宿</b>同前（蒂卡波第 2 晚）<b>💡 不用换酒店</b>，行李全程寄存酒店前台</div>
+          </div>
+          <div class="lupin-box"><b>🌸 鲁冰花：</b>普卡基湖北岸和塔斯曼河河岸是鲁冰花集中区域之一，10 月下旬通常比蒂卡波更早开花</div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-card">
+          <div class="dhead"><span class="dbadge">D7 <b>10.23</b> 周五</span><span class="dtitle">蒂卡波湖 → 瓦纳卡 · 🌸 沿途花丛</span><span class="dtag">12:50 发车 · Cromwell 换乘</span></div>
+          <div class="seg">
+            <span class="t">🚌 InterCity 12:50 蒂卡波 → Cromwell 15:29（2h39m，每日仅一班，intercity.co.nz）</span>
+            <span class="t">🚌 Ritchies Cromwell → 瓦纳卡 45min（NZ$9-11，ritchies.co.nz 或上车购）</span>
+            <span class="t">🌸 Cromwell 一带公路两旁常有鲁冰花，中转等车时留意</span>
+          </div>
+          <ul class="acts">
+            <li><span class="tm">上午</span><span>湖边慢时光 + 退房；午餐早些吃</span></li>
+            <li><span class="tm">15:30</span><span>在 Cromwell 中转，换乘 Ritchies 大巴去瓦纳卡</span></li>
+            <li><span class="tm">16:30</span><span>抵瓦纳卡，步行去 <b>孤独的树（That Wanaka Tree）</b> 拍日落（15-20min）</span></li>
+            <li><span class="tm">晚上</span><span>主街晚餐 Franchi / Boat Shed Café（小镇 20:00 后打烊，先吃饭）</span></li>
+          </ul>
+          <div class="foot-row">
+            <div class="mini hotel"><b>🏨 住宿（瓦纳卡 1 晚）</b>Clearbrook Motel / Haka House（巴士站步行圈）<b>明早还有半天湖边时间，不用赶</b></div>
+            <div class="mini food"><b>💡 注意</b>蒂卡波到瓦纳卡没有直达 InterCity 巴士，必须在 Cromwell 中转</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-card">
+          <div class="dhead"><span class="dbadge">D8 <b>10.24</b> 周六</span><span class="dtitle">瓦纳卡 → 皇后镇 · 🌸 Lindis River 沿途</span><span class="dtag">1h · 110km</span></div>
+          <div class="seg">
+            <span class="t">🚌 InterCity 瓦纳卡湖边站 → 皇后镇 Athol St 站（约 1h，每日多班，班次以官网为准 · 约 NZ$30/人）</span>
+            <span class="t">🌸 沿途 Lindis Pass 一带公路花丛，坐右侧留意窗外</span>
+          </div>
+          <ul class="acts">
+            <li><span class="tm">上午</span><span>Beacon Point 湖畔步道散步，"孤独的树"白天补拍；午餐后乘巴士（推荐 14:40-16:30 段）</span></li>
+            <li><span class="tm">傍晚</span><span>抵皇后镇，湖边散步看日落，皇后镇花园走一圈</span></li>
+            <li><span class="tm">晚餐</span><span>Fergburger 大脸汉堡 NZ$20（避开正午/傍晚高峰）或 Ferg's Bar</span></li>
+          </ul>
+          <div class="foot-row">
+            <div class="mini hotel"><b>🏨 住宿（5 晚）</b>Heartland / Novotel Lakeside（NZ$280-380）；Haka House 紧挨镇中心。⚠️ 订房确认有电梯；<b>米尔福德团到店后看天气选日期</b></div>
+            <div class="mini lupin"><b>🌸 鲁冰花</b>Lindis River 附近偶有花丛，坐巴士右侧，看到花丛可以记下位置，回程或自由日再来看</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-card">
+          <div class="dhead"><span class="dbadge">D9 <b>10.25</b> 周日</span><span class="dtitle">皇后镇：跳伞（或喷射快艇/滑翔伞） + Skyline + Luge</span><span class="dtag">刺激日</span></div>
+          <div class="seg">
+            <span class="t">🪂 NZONE 跳伞 15000ft 约 NZ$520/人（book.nzoneskydive.co.nz 或 Klook，提前 1-2 周，留 1 天备用日可与米尔福德互换）</span>
+            <span class="t">🚤 备选：Shotover Jet 喷射快艇 NZ$159 / Gforce 滑翔伞 NZ$249（与缆车同点，Klook 提前 1-2 天）</span>
+          </div>
+          <ul class="acts">
+            <li><span class="tm">上午</span><span>NZONE 中心（Shotover 街 35 号）集合，有车接送往返跳伞场地；GoPro 摄影 +NZ$200（可选）</span></li>
+            <li><span class="tm">12:30</span><span>午餐 + Patagonia 冰淇淋</span></li>
+            <li><span class="tm">14:00</span><span>Skyline 缆车 + Luge 滑板车 3 圈（NZ$89，Luge 19:00 关）俯瞰全镇</span></li>
+            <li><span class="tm">黄昏</span><span>山顶看日落；晚餐 Saigon Kingdom 越南粉（NZ$32）</span></li>
+          </ul>
+          <div class="foot-row">
+            <div class="mini food"><b>🍽 提醒</b>跳伞受天气影响大，今天飞不成可与 D9 米尔福德日期互换对冲；<b>不跳伞就玩喷射快艇/滑翔伞，别硬撑</b></div>
+            <div class="mini hotel"><b>🏨 住宿</b>同前（皇后镇第 2 晚）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-card">
+          <div class="dhead"><span class="dbadge">D10 <b>10.26</b> 周一</span><span class="dtitle">米尔福德峡湾一日游</span><span class="dtag">06:30 出发 · 全天 12h</span></div>
+          <div class="seg">
+            <span class="t">🚌 06:30 镇中心酒店接，米尔福德路 4.5-5h（镜湖、Knobs Flat 停靠）</span>
+            <span class="t">⛴️ 游船 1h40m（船上免费茶咖啡）</span>
+            <span class="t">🚌 约 18:00-19:00 回到皇后镇</span>
+          </div>
+          <ul class="acts">
+            <li><span class="tm">全天</span><span>瀑布群（十月春汛水量最大）+ 麦特尔峰 + 海豹岩，运气好见海豚企鹅 <span class="memo">下雨天瀑布最壮观别沮丧；山路易晕车者备晕车药；峡湾常年多雨带防水外套</span></span></li>
+            <li><span class="tm">晚上</span><span>The Public Kitchen（鹿肉意面）或 Cookie Time 甜点</span></li>
+          </ul>
+          <div class="foot-row">
+            <div class="mini food"><b>🍽 预算</b>巴士+游船套票 NZ$220-260/人（greatsights.co.nz / realnz.com / GetYourGuide / 飞猪，<b>买可免费改期票</b>）；升级 fly-cruise NZ$500+/人省 2.5h 车程</div>
+            <div class="mini hotel"><b>🏨 住宿</b>同前（皇后镇第 3 晚）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-card">
+          <div class="dhead"><span class="dbadge">D11 <b>10.27</b> 周二</span><span class="dtitle">格林诺奇 / 箭镇（二选一）</span><span class="dtag">半日</span></div>
+          <div class="seg">
+            <span class="t">🚌 A 格林诺奇：info&track 巴士 8:00-15:45，往返 NZ$62/人（infotrack.co.nz）</span>
+            <span class="t">🚌 B 箭镇：12 路公交 25min 直达（约每 30min 一班）</span>
+          </div>
+          <ul class="acts">
+            <li><span class="tm">A</span><span>格林诺奇："世界最美公路" 46km + Glenorchy Walkway 环线（1.5h 无爬升）+ 红船屋；魔戒深度团约 NZ$200</span></li>
+            <li><span class="tm">B</span><span>箭镇：白金汉街淘金古镇 + Patagonia 冰淇淋 + 鹿肉派 + 箭河边散步（春季花园很美）</span></li>
+            <li><span class="tm">晚上</span><span>自由：Onsen Hotpools 温泉（可选）或湖边夜色、恩斯洛公园码头</span></li>
+          </ul>
+          <div class="foot-row">
+            <div class="mini food"><b>🍽 晚餐</b>The Public Kitchen（鹿肉意面）或 Rātā（精致派）</div>
+            <div class="mini hotel"><b>🏨 住宿</b>同前（皇后镇第 4 晚）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-card">
+          <div class="dhead"><span class="dbadge">D12 <b>10.28</b> 周三</span><span class="dtitle">🚢 TSS 蒸汽船 + 瓦尔特峰农场 + 皇后镇花园</span><span class="dtag">上午场 · 约 4h</span></div>
+          <div class="seg">
+            <span class="t">⛴️ TSS Earnslaw 09:00 起航（提前 20min 到码头换票；realnz.com 或 Klook，含 BBQ 午餐约 NZ$150/人，提前 3-5 天订）</span>
+            <span class="t">🌸 下午皇后镇花园与湖边步道找春季花卉</span>
+          </div>
+          <ul class="acts">
+            <li><span class="tm">09:30</span><span>横穿瓦卡蒂普湖 45min，可参观蒸汽机舱、咖啡吧</span></li>
+            <li><span class="tm">10:00</span><span>瓦尔特峰高原农场：剪羊毛表演 + 牧羊犬赶羊 + 喂食，含 BBQ 自助午餐</span></li>
+            <li><span class="tm">12:30</span><span>返航回码头</span></li>
+            <li><span class="tm">下午</span><span>皇后镇花园散步 + 镇中心购物（蜂蜜、羊毛制品、绿玉）+ Patagonia；傍晚整理行李早休息</span></li>
+          </ul>
+          <div class="foot-row">
+            <div class="mini food"><b>🍽 晚餐</b>午餐 BBQ 很撑，晚餐轻食或 Cookie Time</div>
+            <div class="mini lupin"><b>🌸 鲁冰花</b>皇后镇花园和湖边步道春天也有花卉，但鲁冰花不如蒂卡波集中。如果前面几天花况不理想，今天可以再碰碰运气</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-card">
+          <div class="dhead"><span class="dbadge">D13 <b>10.29</b> 周四</span><span class="dtitle">皇后镇上午自由 → ✈ 奥克兰</span><span class="dtag">17:30-19:20（已订）</span></div>
+          <div class="seg">
+            <span class="t">🚌 1 路公交 → 机场 25-30min（NZ$10-13）；国内段提前 1h 到，值机起飞前 30min 关闭</span>
+            <span class="t">✈️ ZQN→AKL 17:30-19:20（已订）</span>
+          </div>
+          <ul class="acts">
+            <li><span class="tm">上午</span><span>睡到自然醒：皇后镇花园湖边坐坐 + Patagonia 冰淇淋 + 最后采购</span></li>
+            <li><span class="tm">12:00</span><span>镇中心午餐（Fergburger 或 Saigon）</span></li>
+            <li><span class="tm">14:30</span><span>出发机场：1 路公交或打车 NZ$30-40（15min）</span></li>
+            <li><span class="tm">17:30</span><span>✈️ 19:20 抵奥克兰 → 机场 Pullman 酒店入住休息；晚餐机场或酒店解决</span></li>
+          </ul>
+          <div class="foot-row">
+            <div class="mini hotel"><b>🏨 住宿</b>Pullman Auckland Airport（步行国际航站楼 10min，<b>行李直接带去寄存，明日免拖箱</b>）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-card">
+          <div class="dhead"><span class="dbadge">D14 <b>10.30</b> 周五</span><span class="dtitle">奥克兰 → 回北京</span><span class="dtag">返程日</span></div>
+          <div class="seg">
+            <span class="t">⛴️ 德文港轮渡 12min · 往返约 NZ$17</span>
+            <span class="t">🚌 SkyDrive → 机场 45min（最晚 17:00 离市区，晚高峰易堵）</span>
+            <span class="t">🛫 国际段提前 3h 到</span>
+          </div>
+          <ul class="acts">
+            <li><span class="tm">08:00</span><span>从机场酒店出发，坐 SkyDrive 巴士或打车去市区，行李寄存在机场酒店</span></li>
+            <li><span class="tm">09:30</span><span>参观 <b>天空塔</b>，观景台门票约 32 纽币</span></li>
+            <li><span class="tm">11:00</span><span>逛 <b>皇后街</b>，买新西兰特产：Manuka 蜂蜜、羊毛制品、绿玉等</span></li>
+            <li><span class="tm">12:30</span><span>步行到 Queens Wharf，坐轮渡去 <b>德文港</b>（单程约 7 纽币，船程 15min），德文港午餐</span></li>
+            <li><span class="tm">14:00</span><span>爬 <b>维多利亚山</b>，看海湾和奥克兰天际线</span></li>
+            <li><span class="tm">15:30</span><span>坐轮渡返回市区，时间充裕可去 <b>伊甸山</b>。最晚 17:00 离开市区去机场</span></li>
+            <li><span class="tm">19:00</span><span>到达奥克兰国际机场，取行李，转国际航站楼，办理登机、退税、免税店</span></li>
+            <li><span class="tm">22:00</span><span>✈️ 奥克兰 → 北京，搭乘国际航班返回北京</span></li>
+          </ul>
+          <div class="foot-row">
+            <div class="mini hotel"><b>💡 行李建议</b>10.29 飞奥克兰时，行李直接带到机场酒店。10.30 退房后寄存在酒店，晚上回酒店取，再去航站楼</div>
+            <div class="mini food"><b>🗼 天空塔</b>门票约 32 纽币/人 · 德文港轮渡单程 7 纽币/15min</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- Day 14 -->
-  <div class="day-card">
-    <div class="day-header"><div class="day-num">14</div><div class="day-title">奥克兰市区一日游 → 22:00 飞北京</div><div class="day-date">10月30日</div></div>
-    <div class="day-body">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-time">08:00</div><div class="tl-content">从机场酒店出发，坐 <strong>SkyDrive 巴士</strong>（约 30–45 分钟，20 纽币）或打车（约 30 分钟，50–70 纽币）去市区。行李寄存在机场酒店。</div></div>
-        <div class="tl-item"><div class="tl-time">09:30</div><div class="tl-content">参观 <strong>天空塔</strong>，观景台门票约 <strong>32 纽币</strong>。</div></div>
-        <div class="tl-item"><div class="tl-time">11:00</div><div class="tl-content">逛 <strong>皇后街</strong>，买新西兰特产：Manuka 蜂蜜、羊毛制品、绿玉等。</div></div>
-        <div class="tl-item"><div class="tl-time">12:30</div><div class="tl-content">步行到 <strong>Queens Wharf</strong>，坐轮渡去 <strong>德文港</strong>。轮渡单程约 <strong>7 纽币</strong>，船程 <strong>15 分钟</strong>。德文港午餐。</div></div>
-        <div class="tl-item"><div class="tl-time">14:00</div><div class="tl-content">爬 <strong>维多利亚山</strong>，看海湾和奥克兰天际线，约 20 分钟登顶。</div></div>
-        <div class="tl-item"><div class="tl-time">15:30</div><div class="tl-content">坐轮渡返回市区。时间充裕可去 <strong>伊甸山</strong>。最晚 <strong>17:00</strong> 离开市区去机场。</div></div>
-        <div class="tl-item"><div class="tl-time">17:30</div><div class="tl-content">从市区回奥克兰机场：SkyDrive 约 45 分钟，打车约 30–40 分钟（晚高峰可能堵车）。</div></div>
-        <div class="tl-item"><div class="tl-time">19:00</div><div class="tl-content">到达奥克兰国际机场，取行李，转国际航站楼，办理登机、退税、免税店。</div></div>
-        <div class="tl-item"><div class="tl-time">22:00</div><div class="tl-content">✈️ <strong>奥克兰 → 北京</strong>，搭乘国际航班返回北京。</div></div>
+  <!-- ===== 鲁冰花 ===== -->
+  <div class="tab-section" id="section-lupin">
+    <div class="tips-section">
+      <h2><span class="no">🌸</span>鲁冰花观赏专题（10月下旬早花期）</h2>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <h3>📅 花期说明</h3>
+          <ul>
+            <li>南岛鲁冰花花期通常从 <strong>10月开始零星出现</strong></li>
+            <li><strong>11月中下旬到12月中</strong> 才是大面积盛放高峰期</li>
+            <li>你10月下旬去，属于<strong>早花期</strong>，蒂卡波和普卡基湖一带大概率已有成片花</li>
+            <li>每年天气不同，花况会有浮动</li>
+          </ul>
+        </div>
+        <div class="tip-card">
+          <h3>📍 核心观赏点</h3>
+          <ul>
+            <li><strong>蒂卡波湖</strong>：好牧羊人教堂湖畔，往约翰山方向花丛更密</li>
+            <li><strong>普卡基湖</strong>：湖北岸和塔斯曼河河岸</li>
+            <li><strong>Cromwell 一带</strong>：公路两旁</li>
+            <li><strong>Lindis River 附近</strong>：瓦纳卡→皇后镇沿途</li>
+            <li><strong>皇后镇花园</strong>：自由日备选</li>
+          </ul>
+        </div>
+        <div class="tip-card">
+          <h3>📸 拍照小贴士</h3>
+          <ul>
+            <li><strong>最佳光线</strong>：清晨薄雾中或傍晚斜阳下</li>
+            <li><strong>经典构图</strong>：好牧羊人教堂为背景，前景放一丛鲁冰花</li>
+            <li>或蹲低拍花丛 + 湖面 + 雪山</li>
+            <li>蒂卡波湖畔鲁冰花<strong>以紫色为主</strong>，也有粉、白、蓝混杂</li>
+          </ul>
+        </div>
+        <div class="tip-card">
+          <h3>⚠️ 观赏礼仪</h3>
+          <ul>
+            <li><strong>不要走进花丛踩踏，更不要采摘</strong></li>
+            <li>拍照站在路边或步道即可</li>
+            <li>蒂卡波湖畔<strong>风很大</strong>，傍晚穿防风外套</li>
+            <li>花丛附近小虫子不少，穿长裤或喷防虫液</li>
+          </ul>
+        </div>
       </div>
-      <div class="info-row">
-        <span class="info-tag"><span class="icon">🚢</span> 轮渡：Queens Wharf → Devonport 单程7纽币/15分钟</span>
-        <span class="info-tag"><span class="icon">🗼</span> 天空塔门票：约32纽币/人</span>
-      </div>
-      <div class="highlight-box"><strong>💡 行李建议：</strong>10.29 飞奥克兰时，行李直接带到机场酒店。10.30 退房后寄存在酒店，晚上回酒店取，再去航站楼。</div>
     </div>
   </div>
 
-  <!-- 鲁冰花专题 -->
-  <div class="tips-section">
-    <h2>🌸 鲁冰花观赏专题（10月下旬早花期）</h2>
-    <div class="tips-grid">
-      <div class="tip-card">
-        <h3>📅 花期说明</h3>
-        <ul>
-          <li>南岛鲁冰花花期通常从 <strong>10月开始零星出现</strong></li>
-          <li><strong>11月中下旬到12月中</strong> 才是大面积盛放高峰期</li>
-          <li>你10月下旬去，属于<strong>早花期</strong>，蒂卡波和普卡基湖一带大概率已有成片花</li>
-          <li>每年天气不同，花况会有浮动</li>
+  <!-- ===== 费用明细 ===== -->
+  <div class="tab-section" id="section-cost">
+    <div class="cost-section">
+      <h2><span class="no">💰</span>双人14天费用明细清单（精确版）</h2>
+
+      <div class="highlight-box" style="margin-bottom:20px;">
+        <strong>📌 汇率说明：</strong>按 <strong>1 纽币 ≈ 4.3 人民币</strong>、<strong>1 美元 ≈ 7.2 人民币</strong>、<strong>1 港币 ≈ 0.92 人民币</strong> 换算。实际汇率以出行时为准。已订项目请以实际支付金额替换。
+      </div>
+
+      <h3 style="font-size:16px;color:#1a5f7a;margin:20px 0 10px;">一、国际机票（已订）</h3>
+      <table>
+        <thead><tr><th>项目</th><th>单价</th><th>数量</th><th>小计</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>北京→奥克兰 往返</td><td>约 5,700 元/人</td><td>2人</td><td><strong>11,400 元</strong></td><td>南航中转约795美元往返，含税</td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">二、新西兰国内机票（已订）</h3>
+      <table>
+        <thead><tr><th>项目</th><th>单价</th><th>数量</th><th>小计</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>奥克兰→基督城 10.20 20:55</td><td>约 650 元/人</td><td>2人</td><td><strong>1,300 元</strong></td><td>捷星单程约110–150纽币</td></tr>
+          <tr><td>皇后镇→奥克兰 10.29 17:30</td><td>约 900 元/人</td><td>2人</td><td><strong>1,800 元</strong></td><td>皇后镇航线较贵，约200–250纽币</td></tr>
+          <tr><td colspan="3" style="text-align:right;font-weight:600;">小计</td><td colspan="2"><strong>3,100 元</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">三、InterCity 巴士 + 南岛接驳</h3>
+      <table>
+        <thead><tr><th>项目</th><th>单价</th><th>数量</th><th>小计</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>InterCity FlexiPass 15小时</td><td>约 860 元/人（199纽币）</td><td>2人</td><td><strong>1,720 元</strong></td><td>覆盖基督城→蒂卡波→Cromwell→瓦纳卡→皇后镇</td></tr>
+          <tr><td>Cromwell→瓦纳卡 Ritchies</td><td>约 43 元/人（10纽币）</td><td>2人</td><td><strong>86 元</strong></td><td>需单独买票，不在FlexiPass内</td></tr>
+          <tr><td colspan="3" style="text-align:right;font-weight:600;">小计</td><td colspan="2"><strong>1,806 元</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">四、住宿（13晚，双人间）</h3>
+      <table>
+        <thead><tr><th>城市</th><th>晚数</th><th>单价/晚（双人间）</th><th>小计</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>奥克兰 CBD</td><td>2晚</td><td>约 600 元</td><td>1,200 元</td><td>Haka House / Adina CityLife</td></tr>
+          <tr><td>基督城</td><td>1晚</td><td>约 550 元</td><td>550 元</td><td>Quest on Cambridge / Haka House</td></tr>
+          <tr><td>蒂卡波湖</td><td>2晚</td><td>约 700 元</td><td>1,400 元</td><td>Haka House Tekapo，旺季偏贵</td></tr>
+          <tr><td>瓦纳卡</td><td>1晚</td><td>约 550 元</td><td>550 元</td><td>Haka House Wanaka</td></tr>
+          <tr><td>皇后镇</td><td>5晚</td><td>约 700 元</td><td>3,500 元</td><td>Haka House / LyLo，皇后镇住宿最贵</td></tr>
+          <tr><td>奥克兰机场</td><td>1晚</td><td>约 800 元</td><td>800 元</td><td>Pullman Auckland Airport</td></tr>
+          <tr><td colspan="3" style="text-align:right;font-weight:600;">小计（13晚）</td><td colspan="2"><strong>8,000 元</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="highlight-box" style="margin-top:10px;"><strong>💡 省钱提示：</strong>青旅双人间南岛均价约 60–160 新加坡元/晚（约 320–860 元）。如果把皇后镇部分晚数改成青旅床位，人均可省 200–300 元/晚。</div>
+
+      <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">五、一日游 & 活动</h3>
+      <table>
+        <thead><tr><th>项目</th><th>单价</th><th>数量</th><th>小计</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>霍比特人村+怀托摩一日游</td><td>约 1,431 元/人</td><td>2人</td><td><strong>2,862 元</strong></td><td>GetYourGuide最低价，含午餐</td></tr>
+          <tr><td>10.20 北岛一日游（蓝泉/罗托鲁瓦）</td><td>约 1,800 元/人</td><td>2人</td><td><strong>3,600 元</strong></td><td>含蒂普亚门票+温泉+蓝泉，估算值</td></tr>
+          <tr><td>库克山一日游（Tekapo Shuttle）</td><td>约 749 元/人（104美元）</td><td>2人</td><td><strong>1,498 元</strong></td><td>8小时，含接送和水</td></tr>
+          <tr><td>皇后镇跳伞 15000英尺</td><td>约 2,000 元/人</td><td>2人</td><td><strong>4,000 元</strong></td><td>约1291马币，不含摄影</td></tr>
+          <tr><td>跳伞摄影 GoPro</td><td>约 860 元/人</td><td>2人</td><td><strong>1,720 元</strong></td><td>手持GoPro套餐</td></tr>
+          <tr><td>Skyline缆车+Luge 3圈</td><td>约 383 元/人（89纽币）</td><td>2人</td><td><strong>766 元</strong></td><td>缆车+3圈滑板车</td></tr>
+          <tr><td>米尔福德峡湾一日游</td><td>约 1,693 元/人（1840港币）</td><td>2人</td><td><strong>3,386 元</strong></td><td>含酒店接送+2小时游船+免费茶咖啡</td></tr>
+          <tr><td>格林诺奇半日游</td><td>约 498 元/人</td><td>2人</td><td><strong>996 元</strong></td><td>Klook最低价，含接送</td></tr>
+          <tr><td>🚢 TSS蒸汽船 + 瓦尔特峰农场（含BBQ午餐）</td><td>约 645 元/人（150纽币）</td><td>2人</td><td><strong>1,290 元</strong></td><td>RealNZ官网或Klook，全程约4小时</td></tr>
+          <tr><td>天空塔门票</td><td>约 169 元/人</td><td>2人</td><td><strong>338 元</strong></td><td>携程优惠价</td></tr>
+          <tr><td>德文港轮渡 往返</td><td>约 64 元/人（14.8纽币）</td><td>2人</td><td><strong>128 元</strong></td><td>刷卡往返价</td></tr>
+          <tr><td colspan="3" style="text-align:right;font-weight:600;">小计</td><td colspan="2"><strong>20,584 元</strong></td></tr>
+        </tbody>
+      </table>
+
+      <div class="highlight-box" style="margin-top:10px;">
+        <strong>📌 备选项目（如跳伞改为以下项目，可替换上表中"皇后镇跳伞"及相关摄影费用）：</strong>
+        <ul style="margin-top:6px;padding-left:18px;">
+          <li><strong>沙特欧瓦河喷射快艇</strong>：约 159 纽币/人（约 684 元/人），双人约 <strong>1,368 元</strong>。</li>
+          <li><strong>天际线滑翔伞（Gforce）</strong>：约 249 纽币/人（约 1,071 元/人），双人约 <strong>2,142 元</strong>。</li>
+          <li>以上备选与跳伞二选一，不重复计入总费用。</li>
         </ul>
       </div>
-      <div class="tip-card">
-        <h3>📍 核心观赏点</h3>
-        <ul>
-          <li><strong>蒂卡波湖</strong>：好牧羊人教堂湖畔，往约翰山方向花丛更密</li>
-          <li><strong>普卡基湖</strong>：湖北岸和塔斯曼河河岸</li>
-          <li><strong>Cromwell 一带</strong>：公路两旁</li>
-          <li><strong>Lindis River 附近</strong>：瓦纳卡→皇后镇沿途</li>
-          <li><strong>皇后镇花园</strong>：自由日备选</li>
-        </ul>
+
+      <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">六、餐饮</h3>
+      <table>
+        <thead><tr><th>类型</th><th>人均/餐</th><th>天数×餐数</th><th>小计</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>平价餐厅/快餐</td><td>约 80 元（15–25纽币）</td><td>14天×1餐</td><td>2,240 元</td><td>三明治、汉堡、越南粉等</td></tr>
+          <tr><td>中档餐厅/自炊混合</td><td>约 150 元</td><td>14天×1餐</td><td>4,200 元</td><td>部分晚餐外食，部分超市自炊</td></tr>
+          <tr><td>超市采购（早餐+零食+水）</td><td>约 50 元/天/人</td><td>14天</td><td>1,400 元</td><td>面包、牛奶、水果、三文鱼等</td></tr>
+          <tr><td colspan="3" style="text-align:right;font-weight:600;">小计（双人）</td><td colspan="2"><strong>7,840 元</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="highlight-box" style="margin-top:10px;"><strong>💡 提示：</strong>中档餐厅双人三道菜约120纽币（约516元）。控制预算的关键是<strong>早餐和部分晚餐在青旅厨房自炊</strong>。</div>
+
+      <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">七、新西兰境内交通</h3>
+      <table>
+        <thead><tr><th>项目</th><th>单价</th><th>数量</th><th>小计</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>奥克兰机场↔市区 SkyDrive</td><td>约 86 元/人</td><td>2人×2次</td><td>344 元</td><td>单程约20纽币</td></tr>
+          <tr><td>奥克兰 AT Hop 公交卡</td><td>约 50 元/人</td><td>2人</td><td>100 元</td><td>含卡费+充值</td></tr>
+          <tr><td>基督城机场→市区</td><td>约 86 元/人</td><td>2人</td><td>172 元</td><td>InterCity机场巴士约20纽币</td></tr>
+          <tr><td>皇后镇机场→市区 Orbus</td><td>约 17 元/人（4纽币）</td><td>2人</td><td>34 元</td><td>1路公交，约20分钟</td></tr>
+          <tr><td>皇后镇市区打车（备用）</td><td>约 150 元/次</td><td>2次</td><td>300 元</td><td>行李多或赶时间时用</td></tr>
+          <tr><td colspan="3" style="text-align:right;font-weight:600;">小计</td><td colspan="2"><strong>950 元</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">八、通讯 & 其他</h3>
+      <table>
+        <thead><tr><th>项目</th><th>单价</th><th>数量</th><th>小计</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>电话卡/eSIM</td><td>约 100 元/人</td><td>2人</td><td>200 元</td><td>15天流量卡约44欧元或当地Spark套餐</td></tr>
+          <tr><td>纪念品/特产</td><td>约 800 元</td><td>2人</td><td>1,600 元</td><td>Manuka蜂蜜、羊毛制品等，弹性最大</td></tr>
+          <tr><td>旅行保险</td><td>约 300 元/人</td><td>2人</td><td>600 元</td><td>建议购买，覆盖跳伞等高危活动</td></tr>
+          <tr><td>应急备用金</td><td>—</td><td>—</td><td>1,000 元</td><td>建议预留</td></tr>
+          <tr><td colspan="3" style="text-align:right;font-weight:600;">小计</td><td colspan="2"><strong>3,400 元</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="font-size:16px;color:#1a5f7a;margin:28px 0 10px;">📊 双人总费用汇总</h3>
+      <table class="cost-table">
+        <thead><tr><th>大类</th><th>金额</th><th>占比</th></tr></thead>
+        <tbody>
+          <tr><td>国际机票</td><td>11,400 元</td><td>20%</td></tr>
+          <tr><td>新西兰国内机票</td><td>3,100 元</td><td>5%</td></tr>
+          <tr><td>InterCity巴士</td><td>1,806 元</td><td>3%</td></tr>
+          <tr><td>住宿（13晚）</td><td>8,000 元</td><td>14%</td></tr>
+          <tr><td>一日游 & 活动</td><td>20,584 元</td><td>36%</td></tr>
+          <tr><td>餐饮</td><td>7,840 元</td><td>14%</td></tr>
+          <tr><td>境内交通</td><td>950 元</td><td>2%</td></tr>
+          <tr><td>通讯/保险/纪念品/备用</td><td>3,400 元</td><td>6%</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>总计</td><td>约 57,080 元</td><td>100%</td></tr>
+          <tr><td>人均</td><td>约 28,540 元</td><td></td></tr>
+        </tfoot>
+      </table>
+
+      <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">📉 省钱方案（人均可压到2万以内）</h3>
+      <table>
+        <thead><tr><th>调整项</th><th>可省金额</th><th>做法</th></tr></thead>
+        <tbody>
+          <tr><td>住宿降级</td><td>约 3,000 元</td><td>皇后镇5晚改青旅床位，其他城市也选床位，人均省1500元</td></tr>
+          <tr><td>餐饮自炊</td><td>约 3,000 元</td><td>每天至少两餐在青旅厨房做，超市买食材</td></tr>
+          <tr><td>减少活动</td><td>约 5,000 元</td><td>跳伞只一人玩，或选12000英尺（省约400元/人）；北岛一日游选纯蓝泉团（省约800元/人）</td></tr>
+          <tr><td colspan="2" style="text-align:right;font-weight:600;">合计</td><td><strong>约 11,000 元 → 人均可压到约 2.2 万元</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="highlight-box" style="margin-top:12px;">
+        <strong>💡 极致省钱：</strong>全程青旅床位 + 三餐自炊 + 只参加峡湾和库克山两个必去团，<strong>人均 1.6–1.8 万元</strong>可以做到。
       </div>
-      <div class="tip-card">
-        <h3>📸 拍照小贴士</h3>
-        <ul>
-          <li><strong>最佳光线</strong>：清晨薄雾中或傍晚斜阳下</li>
-          <li><strong>经典构图</strong>：好牧羊人教堂为背景，前景放一丛鲁冰花</li>
-          <li>或蹲低拍花丛 + 湖面 + 雪山</li>
-          <li>蒂卡波湖畔鲁冰花<strong>以紫色为主</strong>，也有粉、白、蓝混杂</li>
-        </ul>
-      </div>
-      <div class="tip-card">
-        <h3>⚠️ 观赏礼仪</h3>
-        <ul>
-          <li><strong>不要走进花丛踩踏，更不要采摘</strong></li>
-          <li>拍照站在路边或步道即可</li>
-          <li>蒂卡波湖畔<strong>风很大</strong>，傍晚穿防风外套</li>
-          <li>花丛附近小虫子不少，穿长裤或喷防虫液</li>
+
+      <div class="warn-box" style="margin-top:18px;">
+        <strong>⚠️ 费用清单说明：</strong>
+        <ul style="margin-top:6px;padding-left:18px;">
+          <li>"已订"项目（国际机票、国内两段航班）请以实际支付金额替换。</li>
+          <li>一日游价格来自公开报价，实际预订时可能因汇率、促销、淡旺季浮动 10–20%。</li>
+          <li>10.20 北岛一日游按含门票和温泉的中等团估算 <strong>1,800 元/人</strong>，实际可在 GetYourGuide 筛选后确认。</li>
+          <li>跳伞摄影是可选项目，不买视频套餐每人可省约 860 元。</li>
+          <li>格林诺奇和箭镇二选一即可，表中按格林诺奇半日游计价。</li>
+          <li>TSS蒸汽船+农场按含BBQ午餐的套餐估算 <strong>150纽币/人</strong>，实际以RealNZ官网或Klook价格为准。</li>
+          <li>喷射快艇和滑翔伞为跳伞备选，如替换跳伞，费用按备选价格计算，总费用相应调整。</li>
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- ============ 精确费用明细 ============ -->
-  <div class="cost-section">
-    <h2>💰 双人14天费用明细清单（精确版）</h2>
-
-    <div class="highlight-box" style="margin-bottom:20px;">
-      <strong>📌 汇率说明：</strong>按 <strong>1 纽币 ≈ 4.3 人民币</strong>、<strong>1 美元 ≈ 7.2 人民币</strong>、<strong>1 港币 ≈ 0.92 人民币</strong> 换算。实际汇率以出行时为准。已订项目请以实际支付金额替换。
-    </div>
-
-    <h3 style="font-size:16px;color:#1a5f7a;margin:20px 0 10px;">一、国际机票（已订）</h3>
-    <table>
-      <thead><tr><th>项目</th><th>单价</th><th>数量</th><th>小计</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td>北京→奥克兰 往返</td><td>约 5,700 元/人</td><td>2人</td><td><strong>11,400 元</strong></td><td>南航中转约795美元往返，含税</td></tr>
-      </tbody>
-    </table>
-
-    <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">二、新西兰国内机票（已订）</h3>
-    <table>
-      <thead><tr><th>项目</th><th>单价</th><th>数量</th><th>小计</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td>奥克兰→基督城 10.20 20:55</td><td>约 650 元/人</td><td>2人</td><td><strong>1,300 元</strong></td><td>捷星单程约110–150纽币</td></tr>
-        <tr><td>皇后镇→奥克兰 10.29 17:30</td><td>约 900 元/人</td><td>2人</td><td><strong>1,800 元</strong></td><td>皇后镇航线较贵，约200–250纽币</td></tr>
-        <tr><td colspan="3" style="text-align:right;font-weight:600;">小计</td><td colspan="2"><strong>3,100 元</strong></td></tr>
-      </tbody>
-    </table>
-
-    <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">三、InterCity 巴士 + 南岛接驳</h3>
-    <table>
-      <thead><tr><th>项目</th><th>单价</th><th>数量</th><th>小计</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td>InterCity FlexiPass 15小时</td><td>约 860 元/人（199纽币）</td><td>2人</td><td><strong>1,720 元</strong></td><td>覆盖基督城→蒂卡波→Cromwell→瓦纳卡→皇后镇</td></tr>
-        <tr><td>Cromwell→瓦纳卡 Ritchies</td><td>约 43 元/人（10纽币）</td><td>2人</td><td><strong>86 元</strong></td><td>需单独买票，不在FlexiPass内</td></tr>
-        <tr><td colspan="3" style="text-align:right;font-weight:600;">小计</td><td colspan="2"><strong>1,806 元</strong></td></tr>
-      </tbody>
-    </table>
-
-    <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">四、住宿（13晚，双人间）</h3>
-    <table>
-      <thead><tr><th>城市</th><th>晚数</th><th>单价/晚（双人间）</th><th>小计</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td>奥克兰 CBD</td><td>2晚</td><td>约 600 元</td><td>1,200 元</td><td>Haka House / Adina CityLife</td></tr>
-        <tr><td>基督城</td><td>1晚</td><td>约 550 元</td><td>550 元</td><td>Quest on Cambridge / Haka House</td></tr>
-        <tr><td>蒂卡波湖</td><td>2晚</td><td>约 700 元</td><td>1,400 元</td><td>Haka House Tekapo，旺季偏贵</td></tr>
-        <tr><td>瓦纳卡</td><td>1晚</td><td>约 550 元</td><td>550 元</td><td>Haka House Wanaka</td></tr>
-        <tr><td>皇后镇</td><td>5晚</td><td>约 700 元</td><td>3,500 元</td><td>Haka House / LyLo，皇后镇住宿最贵</td></tr>
-        <tr><td>奥克兰机场</td><td>1晚</td><td>约 800 元</td><td>800 元</td><td>Pullman Auckland Airport</td></tr>
-        <tr><td colspan="3" style="text-align:right;font-weight:600;">小计（13晚）</td><td colspan="2"><strong>8,000 元</strong></td></tr>
-      </tbody>
-    </table>
-    <div class="highlight-box" style="margin-top:10px;"><strong>💡 省钱提示：</strong>青旅双人间南岛均价约 60–160 新加坡元/晚（约 320–860 元）。如果把皇后镇部分晚数改成青旅床位，人均可省 200–300 元/晚。</div>
-
-    <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">五、一日游 & 活动</h3>
-    <table>
-      <thead><tr><th>项目</th><th>单价</th><th>数量</th><th>小计</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td>霍比特人村+怀托摩一日游</td><td>约 1,431 元/人</td><td>2人</td><td><strong>2,862 元</strong></td><td>GetYourGuide最低价，含午餐</td></tr>
-        <tr><td>10.20 北岛一日游（蓝泉/罗托鲁瓦）</td><td>约 1,800 元/人</td><td>2人</td><td><strong>3,600 元</strong></td><td>含蒂普亚门票+温泉+蓝泉，估算值</td></tr>
-        <tr><td>库克山一日游（Tekapo Shuttle）</td><td>约 749 元/人（104美元）</td><td>2人</td><td><strong>1,498 元</strong></td><td>8小时，含接送和水</td></tr>
-        <tr><td>皇后镇跳伞 15000英尺</td><td>约 2,000 元/人</td><td>2人</td><td><strong>4,000 元</strong></td><td>约1291马币，不含摄影</td></tr>
-        <tr><td>跳伞摄影 GoPro</td><td>约 860 元/人</td><td>2人</td><td><strong>1,720 元</strong></td><td>手持GoPro套餐</td></tr>
-        <tr><td>Skyline缆车+Luge 3圈</td><td>约 383 元/人（89纽币）</td><td>2人</td><td><strong>766 元</strong></td><td>缆车+3圈滑板车</td></tr>
-        <tr><td>米尔福德峡湾一日游</td><td>约 1,693 元/人（1840港币）</td><td>2人</td><td><strong>3,386 元</strong></td><td>含酒店接送+2小时游船+免费茶咖啡</td></tr>
-        <tr><td>格林诺奇半日游</td><td>约 498 元/人</td><td>2人</td><td><strong>996 元</strong></td><td>Klook最低价，含接送</td></tr>
-        <tr><td>🚢 TSS蒸汽船 + 瓦尔特峰农场（含BBQ午餐）</td><td>约 645 元/人（150纽币）</td><td>2人</td><td><strong>1,290 元</strong></td><td>RealNZ官网或Klook，全程约4小时</td></tr>
-        <tr><td>天空塔门票</td><td>约 169 元/人</td><td>2人</td><td><strong>338 元</strong></td><td>携程优惠价</td></tr>
-        <tr><td>德文港轮渡 往返</td><td>约 64 元/人（14.8纽币）</td><td>2人</td><td><strong>128 元</strong></td><td>刷卡往返价</td></tr>
-        <tr><td colspan="3" style="text-align:right;font-weight:600;">小计</td><td colspan="2"><strong>20,584 元</strong></td></tr>
-      </tbody>
-    </table>
-
-    <div class="highlight-box" style="margin-top:10px;">
-      <strong>📌 备选项目（如跳伞改为以下项目，可替换上表中“皇后镇跳伞”及相关摄影费用）：</strong>
-      <ul style="margin-top:6px;padding-left:18px;">
-        <li><strong>沙特欧瓦河喷射快艇</strong>：约 159 纽币/人（约 684 元/人），双人约 <strong>1,368 元</strong>。</li>
-        <li><strong>天际线滑翔伞（Gforce）</strong>：约 249 纽币/人（约 1,071 元/人），双人约 <strong>2,142 元</strong>。</li>
-        <li>以上备选与跳伞二选一，不重复计入总费用。</li>
-      </ul>
-    </div>
-
-    <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">六、餐饮</h3>
-    <table>
-      <thead><tr><th>类型</th><th>人均/餐</th><th>天数×餐数</th><th>小计</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td>平价餐厅/快餐</td><td>约 80 元（15–25纽币）</td><td>14天×1餐</td><td>2,240 元</td><td>三明治、汉堡、越南粉等</td></tr>
-        <tr><td>中档餐厅/自炊混合</td><td>约 150 元</td><td>14天×1餐</td><td>4,200 元</td><td>部分晚餐外食，部分超市自炊</td></tr>
-        <tr><td>超市采购（早餐+零食+水）</td><td>约 50 元/天/人</td><td>14天</td><td>1,400 元</td><td>面包、牛奶、水果、三文鱼等</td></tr>
-        <tr><td colspan="3" style="text-align:right;font-weight:600;">小计（双人）</td><td colspan="2"><strong>7,840 元</strong></td></tr>
-      </tbody>
-    </table>
-    <div class="highlight-box" style="margin-top:10px;"><strong>💡 提示：</strong>中档餐厅双人三道菜约120纽币（约516元）。控制预算的关键是<strong>早餐和部分晚餐在青旅厨房自炊</strong>。</div>
-
-    <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">七、新西兰境内交通</h3>
-    <table>
-      <thead><tr><th>项目</th><th>单价</th><th>数量</th><th>小计</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td>奥克兰机场↔市区 SkyDrive</td><td>约 86 元/人</td><td>2人×2次</td><td>344 元</td><td>单程约20纽币</td></tr>
-        <tr><td>奥克兰 AT Hop 公交卡</td><td>约 50 元/人</td><td>2人</td><td>100 元</td><td>含卡费+充值</td></tr>
-        <tr><td>基督城机场→市区</td><td>约 86 元/人</td><td>2人</td><td>172 元</td><td>InterCity机场巴士约20纽币</td></tr>
-        <tr><td>皇后镇机场→市区 Orbus</td><td>约 17 元/人（4纽币）</td><td>2人</td><td>34 元</td><td>1路公交，约20分钟</td></tr>
-        <tr><td>皇后镇市区打车（备用）</td><td>约 150 元/次</td><td>2次</td><td>300 元</td><td>行李多或赶时间时用</td></tr>
-        <tr><td colspan="3" style="text-align:right;font-weight:600;">小计</td><td colspan="2"><strong>950 元</strong></td></tr>
-      </tbody>
-    </table>
-
-    <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">八、通讯 & 其他</h3>
-    <table>
-      <thead><tr><th>项目</th><th>单价</th><th>数量</th><th>小计</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td>电话卡/eSIM</td><td>约 100 元/人</td><td>2人</td><td>200 元</td><td>15天流量卡约44欧元或当地Spark套餐</td></tr>
-        <tr><td>纪念品/特产</td><td>约 800 元</td><td>2人</td><td>1,600 元</td><td>Manuka蜂蜜、羊毛制品等，弹性最大</td></tr>
-        <tr><td>旅行保险</td><td>约 300 元/人</td><td>2人</td><td>600 元</td><td>建议购买，覆盖跳伞等高危活动</td></tr>
-        <tr><td>应急备用金</td><td>—</td><td>—</td><td>1,000 元</td><td>建议预留</td></tr>
-        <tr><td colspan="3" style="text-align:right;font-weight:600;">小计</td><td colspan="2"><strong>3,400 元</strong></td></tr>
-      </tbody>
-    </table>
-
-    <h3 style="font-size:16px;color:#1a5f7a;margin:28px 0 10px;">📊 双人总费用汇总</h3>
-    <table class="cost-table">
-      <thead><tr><th>大类</th><th>金额</th><th>占比</th></tr></thead>
-      <tbody>
-        <tr><td>国际机票</td><td>11,400 元</td><td>20%</td></tr>
-        <tr><td>新西兰国内机票</td><td>3,100 元</td><td>5%</td></tr>
-        <tr><td>InterCity巴士</td><td>1,806 元</td><td>3%</td></tr>
-        <tr><td>住宿（13晚）</td><td>8,000 元</td><td>14%</td></tr>
-        <tr><td>一日游 & 活动</td><td>20,584 元</td><td>36%</td></tr>
-        <tr><td>餐饮</td><td>7,840 元</td><td>14%</td></tr>
-        <tr><td>境内交通</td><td>950 元</td><td>2%</td></tr>
-        <tr><td>通讯/保险/纪念品/备用</td><td>3,400 元</td><td>6%</td></tr>
-      </tbody>
-      <tfoot>
-        <tr><td>总计</td><td>约 57,080 元</td><td>100%</td></tr>
-        <tr><td>人均</td><td>约 28,540 元</td><td></td></tr>
-      </tfoot>
-    </table>
-
-    <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">📉 省钱方案（人均可压到2万以内）</h3>
-    <table>
-      <thead><tr><th>调整项</th><th>可省金额</th><th>做法</th></tr></thead>
-      <tbody>
-        <tr><td>住宿降级</td><td>约 3,000 元</td><td>皇后镇5晚改青旅床位，其他城市也选床位，人均省1500元</td></tr>
-        <tr><td>餐饮自炊</td><td>约 3,000 元</td><td>每天至少两餐在青旅厨房做，超市买食材</td></tr>
-        <tr><td>减少活动</td><td>约 5,000 元</td><td>跳伞只一人玩，或选12000英尺（省约400元/人）；北岛一日游选纯蓝泉团（省约800元/人）</td></tr>
-        <tr><td colspan="2" style="text-align:right;font-weight:600;">合计</td><td><strong>约 11,000 元 → 人均可压到约 2.2 万元</strong></td></tr>
-      </tbody>
-    </table>
-    <div class="highlight-box" style="margin-top:12px;">
-      <strong>💡 极致省钱：</strong>全程青旅床位 + 三餐自炊 + 只参加峡湾和库克山两个必去团，<strong>人均 1.6–1.8 万元</strong>可以做到。
-    </div>
-
-    <div class="warn-box" style="margin-top:18px;">
-      <strong>⚠️ 费用清单说明：</strong>
-      <ul style="margin-top:6px;padding-left:18px;">
-        <li>“已订”项目（国际机票、国内两段航班）请以实际支付金额替换。</li>
-        <li>一日游价格来自公开报价，实际预订时可能因汇率、促销、淡旺季浮动 10–20%。</li>
-        <li>10.20 北岛一日游按含门票和温泉的中等团估算 <strong>1,800 元/人</strong>，实际可在 GetYourGuide 筛选后确认。</li>
-        <li>跳伞摄影是可选项目，不买视频套餐每人可省约 860 元。</li>
-        <li>格林诺奇和箭镇二选一即可，表中按格林诺奇半日游计价。</li>
-        <li>TSS蒸汽船+农场按含BBQ午餐的套餐估算 <strong>150纽币/人</strong>，实际以RealNZ官网或Klook价格为准。</li>
-        <li>喷射快艇和滑翔伞为跳伞备选，如替换跳伞，费用按备选价格计算，总费用相应调整。</li>
-      </ul>
+  <!-- ===== 预约清单 ===== -->
+  <div class="tab-section" id="section-booking">
+    <div class="booking-section">
+      <h2><span class="no">📌</span>必须提前预约的项目清单</h2>
+      <ol class="booking-list">
+        <li><strong>奥克兰 → 基督城航班</strong>（已定 10.20 20:55）<span class="channel">已确认</span></li>
+        <li><strong>皇后镇 → 奥克兰航班</strong>（已定 10.29 17:30）<span class="channel">已确认</span></li>
+        <li><strong>InterCity FlexiPass</strong><span class="deadline">提前1–2周</span><span class="channel">intercity.co.nz</span> — 购买15小时Pass（199纽币/人），再登录锁定座位。</li>
+        <li><strong>库克山一日游（Tekapo Shuttle）</strong><span class="deadline">提前1周</span><span class="channel">GetYourGuide / Cool Destinations</span> — 约149纽币/人。</li>
+        <li><strong>米尔福德峡湾一日游</strong><span class="deadline">提前1–2周</span><span class="channel">Klook / GetYourGuide</span> — 约1110–1596元/人。</li>
+        <li><strong>NZONE 跳伞</strong><span class="deadline">提前1–2周</span><span class="channel">book.nzoneskydive.co.nz / Klook</span> — 15000英尺约2247元/人，留备用日。</li>
+        <li><strong>备选：沙特欧瓦河喷射快艇</strong><span class="deadline">提前1–2天</span><span class="channel">Klook / GetYourGuide</span> — 约159纽币/人，如不跳伞可替换。</li>
+        <li><strong>备选：天际线滑翔伞（Gforce）</strong><span class="deadline">提前1–2天</span><span class="channel">Klook / Gforce官网</span> — 约249纽币/人，如不跳伞可替换。</li>
+        <li><strong>霍比特人村 + 怀托摩一日游</strong><span class="deadline">提前1周</span><span class="channel">Klook / GetYourGuide</span> — 约1361元/人起。</li>
+        <li><strong>10.20 北岛一日游（蓝泉/罗托鲁瓦）</strong><span class="deadline">提前1周</span><span class="channel">GetYourGuide</span> — 选含蒂普亚+蓝泉+波利尼西亚温泉的团，约1500–1800元/人。</li>
+        <li><strong>🚢 TSS蒸汽船 + 瓦尔特峰农场</strong><span class="deadline">提前3–5天</span><span class="channel">RealNZ官网 / Klook</span> — 选含BBQ午餐套餐，约150纽币/人。</li>
+        <li><strong>皇后镇 Skyline 缆车 / Luge</strong><span class="deadline">提前3–5天</span><span class="channel">KKday / 携程 / Skyline官网</span> — 3圈约89纽币。</li>
+        <li><strong>格林诺奇半日游</strong><span class="deadline">提前3–5天</span><span class="channel">Klook / GetYourGuide</span> — 约78纽币。</li>
+        <li><strong>住宿</strong><span class="deadline">提前1–2个月</span><span class="channel">Booking / Agoda</span> — 尤其蒂卡波、皇后镇、奥克兰 CBD。</li>
+      </ol>
     </div>
   </div>
 
-  <!-- 预约清单 -->
-  <div class="booking-section">
-    <h2>📌 必须提前预约的项目清单</h2>
-    <ol class="booking-list">
-      <li><strong>奥克兰 → 基督城航班</strong>（已定 10.20 20:55）<span class="channel">已确认</span></li>
-      <li><strong>皇后镇 → 奥克兰航班</strong>（已定 10.29 17:30）<span class="channel">已确认</span></li>
-      <li><strong>InterCity FlexiPass</strong><span class="deadline">提前1–2周</span><span class="channel">intercity.co.nz</span> — 购买15小时Pass（199纽币/人），再登录锁定座位。</li>
-      <li><strong>库克山一日游（Tekapo Shuttle）</strong><span class="deadline">提前1周</span><span class="channel">GetYourGuide / Cool Destinations</span> — 约149纽币/人。</li>
-      <li><strong>米尔福德峡湾一日游</strong><span class="deadline">提前1–2周</span><span class="channel">Klook / GetYourGuide</span> — 约1110–1596元/人。</li>
-      <li><strong>NZONE 跳伞</strong><span class="deadline">提前1–2周</span><span class="channel">book.nzoneskydive.co.nz / Klook</span> — 15000英尺约2247元/人，留备用日。</li>
-      <li><strong>备选：沙特欧瓦河喷射快艇</strong><span class="deadline">提前1–2天</span><span class="channel">Klook / GetYourGuide</span> — 约159纽币/人，如不跳伞可替换。</li>
-      <li><strong>备选：天际线滑翔伞（Gforce）</strong><span class="deadline">提前1–2天</span><span class="channel">Klook / Gforce官网</span> — 约249纽币/人，如不跳伞可替换。</li>
-      <li><strong>霍比特人村 + 怀托摩一日游</strong><span class="deadline">提前1周</span><span class="channel">Klook / GetYourGuide</span> — 约1361元/人起。</li>
-      <li><strong>10.20 北岛一日游（蓝泉/罗托鲁瓦）</strong><span class="deadline">提前1周</span><span class="channel">GetYourGuide</span> — 选含蒂普亚+蓝泉+波利尼西亚温泉的团，约1500–1800元/人。</li>
-      <li><strong>🚢 TSS蒸汽船 + 瓦尔特峰农场</strong><span class="deadline">提前3–5天</span><span class="channel">RealNZ官网 / Klook</span> — 选含BBQ午餐套餐，约150纽币/人。</li>
-      <li><strong>皇后镇 Skyline 缆车 / Luge</strong><span class="deadline">提前3–5天</span><span class="channel">KKday / 携程 / Skyline官网</span> — 3圈约89纽币。</li>
-      <li><strong>格林诺奇半日游</strong><span class="deadline">提前3–5天</span><span class="channel">Klook / GetYourGuide</span> — 约78纽币。</li>
-      <li><strong>住宿</strong><span class="deadline">提前1–2个月</span><span class="channel">Booking / Agoda</span> — 尤其蒂卡波、皇后镇、奥克兰 CBD。</li>
-    </ol>
-  </div>
+  <!-- ===== 注意事项 ===== -->
+  <div class="tab-section" id="section-tips">
+    <div class="tips-section">
+      <h2><span class="no">⚠️</span>重要注意事项（12 组）</h2>
+      <div class="tips-grid">
 
-  <!-- 注意事项 -->
-  <div class="tips-section">
-    <h2>⚠️ 重要注意事项</h2>
-    <div class="tips-grid">
-      <div class="tip-card">
-        <h3>🛂 入境</h3>
-        <ul>
-          <li>新西兰<strong>禁止携带任何动植物制品</strong></li>
-          <li>蜂蜜、中药材、新鲜果蔬<strong>必须申报</strong></li>
-          <li>未申报被查到最低罚款 <strong>400 纽币</strong></li>
-        </ul>
-      </div>
-      <div class="tip-card">
-        <h3>🚌 交通</h3>
-        <ul>
-          <li>InterCity 巴士<strong>上车前15分钟到站等候</strong></li>
-          <li>司机拿名单核对名字，建议打印确认单备用</li>
-          <li>南岛小镇 Uber 很少，行程衔接留足余量</li>
-          <li>奥克兰用 <strong>AT Hop 卡</strong> 坐公交、轮渡更便宜</li>
-        </ul>
-      </div>
-      <div class="tip-card">
-        <h3>🌦️ 天气</h3>
-        <ul>
-          <li>10月春季，南岛早晚温差大（6–17°C）</li>
-          <li>一天内可能经历四季</li>
-          <li>核心穿搭：<strong>防风防水冲锋衣 + 抓绒中层 + 速干内层</strong></li>
-          <li>米尔福德峡湾和库克山地区<strong>务必带防水外套</strong></li>
-        </ul>
-      </div>
-      <div class="tip-card">
-        <h3>📶 网络</h3>
-        <ul>
-          <li>推荐 Spark 或 Vodafone，机场可购买</li>
-          <li>Spark 39纽币 13G 套餐性价比高</li>
-          <li>库克山、米尔福德峡湾信号弱</li>
-          <li>建议<strong>提前下载离线地图</strong></li>
-        </ul>
-      </div>
-      <div class="tip-card">
-        <h3>💳 支付</h3>
-        <ul>
-          <li>大部分地方可刷卡（Visa/Mastercard）</li>
-          <li>建议准备少量新西兰元现金</li>
-          <li>新西兰<strong>不用小费</strong></li>
-        </ul>
-      </div>
-      <div class="tip-card">
-        <h3>🙋 礼仪</h3>
-        <ul>
-          <li>新西兰人非常友善，常说 "Thank you"</li>
-          <li>公共场合（尤其巴士上）保持安静</li>
-          <li>尊重毛利文化，拍照前先征得同意</li>
-        </ul>
+        <div class="tip-card warn">
+          <h3>🛂 签证与证件（原版遗漏）</h3>
+          <ul>
+            <li>中国公民赴新西兰<strong>必须办访客签证</strong>，北京直飞<strong>不适用</strong>澳签+NZeTA免签通道</li>
+            <li>官网 RealMe 账号在线申请，费用 NZ$211 + IVL NZ$100，<strong>2–4 周下签</strong></li>
+            <li>2025.5 起非英文材料无需认证翻译，但建议附英文翻译</li>
+            <li>护照有效期需<strong>离境后 3 个月以上</strong>；电子签+行程单打印随身</li>
+            <li>护照、签证、保险单电子版存云盘备份</li>
+          </ul>
+        </div>
+
+        <div class="tip-card warn">
+          <h3>🛃 入境申报</h3>
+          <ul>
+            <li>新西兰<strong>禁止携带任何动植物制品</strong>：蜂蜜、中药材、坚果、木制品、新鲜果蔬</li>
+            <li>药品必须申报，处方药带英文说明</li>
+            <li>未申报被查到最低罚款 <strong>NZ$400</strong>，严重可拒入境</li>
+            <li>香烟限 50 支、酒限 3 瓶（1.125L）</li>
+          </ul>
+        </div>
+
+        <div class="tip-card info">
+          <h3>⏰ 时差与夏令时（原版遗漏）</h3>
+          <ul>
+            <li>10 月新西兰已进入<strong>夏令时（NZDT）</strong>，比北京<strong>快 5 小时</strong></li>
+            <li>16:35 落地奥克兰 = 北京时间 11:35</li>
+            <li>看班次、订闹钟一律用<strong>当地手机时间</strong>，避免错过巴士</li>
+            <li>回国时北京时间比 NZ 慢 5 小时，航班时间按出发地时区</li>
+          </ul>
+        </div>
+
+        <div class="tip-card">
+          <h3>🌦️ 天气与穿搭</h3>
+          <ul>
+            <li>10 月春季，南岛早晚温差大（6–17°C），一天可历四季</li>
+            <li>核心穿搭：<strong>防风防水冲锋衣 + 抓绒中层 + 速干内层</strong></li>
+            <li>米尔福德峡湾、库克山<strong>务必带防水外套</strong></li>
+            <li>进山前看 <strong>metservice.govt.nz</strong> 天气预报</li>
+          </ul>
+        </div>
+
+        <div class="tip-card warn">
+          <h3>☀️ 紫外线防护（原版遗漏）</h3>
+          <ul>
+            <li>新西兰臭氧层薄 + 雪湖反光，<strong>紫外线极强</strong></li>
+            <li>SPF50+ 防晒霜、墨镜、防晒帽<strong>全程必带</strong></li>
+            <li>阴天也要涂防晒，南岛春季晒伤很常见</li>
+            <li>唇部也需防晒唇膏</li>
+          </ul>
+        </div>
+
+        <div class="tip-card warn">
+          <h3>🌪️ 天气突变与户外取消（原版遗漏）</h3>
+          <ul>
+            <li>米尔福德、库克山、跳伞、直升机都可能<strong>临时取消</strong></li>
+            <li>户外项目一律买<strong>可免费退改</strong>的票</li>
+            <li>跳伞留 1 天备用日，与米尔福德互换对冲</li>
+            <li>行程别首尾相接，给延误留缓冲</li>
+          </ul>
+        </div>
+
+        <div class="tip-card info">
+          <h3>🚌 交通规则</h3>
+          <ul>
+            <li>InterCity 巴士<strong>上车前 15 分钟</strong>到站等候</li>
+            <li>司机拿名单核对名字，建议打印确认单备用</li>
+            <li>出发前 2 小时可免费改签，班次少务必提前买</li>
+            <li>南岛小镇 Uber 极少，衔接留足余量；奥克兰用 <strong>AT Hop 卡</strong> 更便宜</li>
+            <li>本行程 InterCity 段合计约 8h，<strong>买单程票即可，FlexiPass 小时卡不划算</strong></li>
+          </ul>
+        </div>
+
+        <div class="tip-card warn">
+          <h3>🚏 换乘细节（原版遗漏）</h3>
+          <ul>
+            <li>蒂卡波→瓦纳卡<strong>无直达</strong>：InterCity 12:50 → Cromwell 15:29（每日仅一班），换 Ritchies → 瓦纳卡 45min（NZ$9–11）</li>
+            <li>两段衔接约 30min，Ritchies 可上车购票</li>
+            <li>错过 InterCity 只能在 Cromwell 打车（约 NZ$80）</li>
+            <li>InterCity 下车点即小镇中心，订房确认步行距离</li>
+          </ul>
+        </div>
+
+        <div class="tip-card warn">
+          <h3>🥾 户外与徒步安全（原版遗漏）</h3>
+          <ul>
+            <li>步道无补给，Hooker Valley 往返带 1L 水 + 干粮</li>
+            <li>10 月山路可能有残雪湿滑，<strong>穿防滑徒步鞋</strong></li>
+            <li>提前下载离线地图，山区信号弱</li>
+            <li>特卡波暗夜区 22:00 后禁强光手电与无人机</li>
+            <li>拍星空用手动挡 + 关闪光</li>
+          </ul>
+        </div>
+
+        <div class="tip-card info">
+          <h3>🕐 小镇作息与餐饮（原版遗漏）</h3>
+          <ul>
+            <li>小镇超市 <strong>18–19 点关门</strong>，餐馆厨房 <strong>20:30 前打烊</strong></li>
+            <li>抵达当天先采购，备零食和水</li>
+            <li>正餐人均 NZ$25–40；Fergburger 错峰 14:00/21:00</li>
+            <li>超市自炊可省一半；青旅厨房免费用</li>
+            <li>必吃：Fergburger、Patagonia 冰淇淋、高山三文鱼刺身、鹿肉派</li>
+          </ul>
+        </div>
+
+        <div class="tip-card">
+          <h3>💳 支付、网络与小费</h3>
+          <ul>
+            <li>Visa/Mastercard 全通，公交可刷信用卡感应支付</li>
+            <li>备 NZ$200–300 现金；奥克兰打车优先滴滴（可支付宝）</li>
+            <li>电话卡推荐 Spark 或 Vodafone，机场可买，Spark 39 纽币 13G 性价比高</li>
+            <li>新西兰<strong>无小费文化</strong>，无需给</li>
+          </ul>
+        </div>
+
+        <div class="tip-card warn">
+          <h3>🛡️ 保险、应急与返程（原版遗漏）</h3>
+          <ul>
+            <li>保险须覆盖<strong>徒步（&lt;3000m）+ 直升机 + 延误</strong>，跳伞需确认在保</li>
+            <li>10.29 提前飞回奥克兰，<strong>不要压缩成 10.30 当天跨海转机</strong></li>
+            <li>新西兰紧急电话 <strong>111</strong>；中国驻新西兰使馆 +64-4-4721382</li>
+            <li>单店满 NZ$700 记得索要退税单，机场办退税</li>
+            <li>伴手礼在超市买最便宜（蜂蜜、麦卢卡糖、羊毛袜）</li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </div>
@@ -725,5 +1099,41 @@
   </div>
 
 </div>
+
+<script>
+  (function() {
+    var tabs = document.querySelectorAll('.tab');
+    var sections = {
+      overview: document.getElementById('section-overview'),
+      route: document.getElementById('section-route'),
+      itinerary: document.getElementById('section-itinerary'),
+      lupin: document.getElementById('section-lupin'),
+      cost: document.getElementById('section-cost'),
+      booking: document.getElementById('section-booking'),
+      tips: document.getElementById('section-tips')
+    };
+
+    function showTab(tabName) {
+      tabs.forEach(function(t) {
+        t.classList.toggle('active', t.dataset.tab === tabName);
+      });
+      Object.keys(sections).forEach(function(key) {
+        if (!sections[key]) return;
+        if (tabName === 'all') {
+          sections[key].classList.remove('hidden');
+        } else {
+          sections[key].classList.toggle('hidden', key !== tabName);
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        showTab(this.dataset.tab);
+      });
+    });
+  })();
+</script>
 </body>
 </html>
