@@ -83,7 +83,7 @@
     width: 3px; border-radius: 3px;
     background: linear-gradient(#1273a3, #2d7d5f);
   }
-  .day { position: relative; margin-bottom: 26px; }
+  .day { position: relative; margin-bottom: 26px; scroll-margin-top: 80px; }
   .day::before {
     content: ""; position: absolute; left: -30px; top: 22px;
     width: 15px; height: 15px; border-radius: 50%;
@@ -155,6 +155,36 @@
   }
   .booking-box strong { color: #1a7a3a; }
 
+  /* 新增：每日行程快捷导航 */
+  .day-quick-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+    padding: 10px 12px;
+    background: #f0f8fa;
+    border-radius: 12px;
+    border: 1px solid #d4e8ec;
+  }
+  .day-quick-nav a {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: #fff;
+    border: 1px solid #cde0e4;
+    color: #1a5f7a;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .day-quick-nav a:hover {
+    background: #1a5f7a;
+    color: #fff;
+    border-color: #1a5f7a;
+  }
+
   .booking-list { list-style: none; counter-reset: booking; }
   .booking-list li {
     counter-increment: booking; position: relative; padding: 12px 0 12px 48px;
@@ -206,6 +236,8 @@
     .acts .tm { min-width: 76px; }
     table { font-size: 12.5px; }
     thead th, tbody td { padding: 8px 6px; }
+    .day-quick-nav { padding: 8px 10px; gap: 4px; }
+    .day-quick-nav a { padding: 3px 8px; font-size: 12px; }
   }
 
   @media print {
@@ -215,6 +247,7 @@
     .day-card, .overview, .cost-section, .booking-section, .tips-section, .route-section {
       box-shadow: none; border: 1px solid #ddd;
     }
+    .day-quick-nav { display: none; }
   }
 </style>
 </head>
@@ -254,26 +287,26 @@
     <div class="overview">
       <h2><span class="no">1</span>行程总览</h2>
       <table>
-        <thead><tr><th>日期</th><th>行程</th><th>住宿</th></tr></thead>
+        <thead><tr><th>日期</th><th>行程</th><th>住宿（平台）</th></tr></thead>
         <tbody>
           <tr><td>10.17</td><td>北京 → 奥克兰（机上过夜）</td><td>—</td></tr>
-          <tr><td>10.18</td><td>16:35 落地奥克兰 · 皇后街夜景</td><td rowspan="2">奥克兰中心智选假日酒店</td></tr>
+          <tr><td>10.18</td><td>16:35 落地奥克兰 · 皇后街夜景</td><td rowspan="2">奥克兰中心智选假日酒店（去哪儿）</td></tr>
           <tr><td>10.19</td><td>霍比特人村 + 怀托摩萤火虫洞一日游</td></tr>
-          <tr><td>10.20</td><td>白天北岛一日游（蓝泉/罗托鲁瓦）→ 20:55 飞基督城</td><td>基督城 Lylo 酒店</td></tr>
-          <tr><td>10.21</td><td>基督城 → 蒂卡波湖 · 🌸 湖畔鲁冰花</td><td rowspan="2">佩珀斯蓝水度假酒店</td></tr>
+          <tr><td>10.20</td><td>白天北岛一日游（蓝泉/罗托鲁瓦）→ 20:55 飞基督城</td><td>基督城 Lylo 酒店（去哪儿）</td></tr>
+          <tr><td>10.21</td><td>基督城 → 蒂卡波湖 · 🌸 湖畔鲁冰花</td><td rowspan="2">佩珀斯蓝水度假酒店（去哪儿）</td></tr>
           <tr><td>10.22</td><td>库克山一日游 · 🌸 普卡基湖鲁冰花</td></tr>
-          <tr><td>10.23</td><td>蒂卡波湖 → 瓦纳卡（Cromwell 换乘）</td><td>Lake Wanaka 公寓</td></tr>
-          <tr><td>10.24</td><td>瓦纳卡 → 皇后镇 · 湖边漫步</td><td rowspan="4">Voco Queenstown by IHG</td></tr>
+          <tr><td>10.23</td><td>蒂卡波湖 → 瓦纳卡（Cromwell 换乘）</td><td>Lake Wanaka and Town at your door 公寓（AGODA）</td></tr>
+          <tr><td>10.24</td><td>瓦纳卡 → 皇后镇 · 湖边漫步</td><td rowspan="4">Voco Queenstown by IHG（飞猪）</td></tr>
           <tr><td>10.25</td><td>皇后镇：跳伞 + Skyline + Luge</td></tr>
           <tr><td>10.26</td><td>米尔福德峡湾一日游</td></tr>
           <tr><td>10.27</td><td>格林诺奇 / 箭镇 + TSS蒸汽船（下午场）</td></tr>
-          <tr><td>10.28</td><td>🚌 皇后镇 → 但尼丁 · 市区游览</td><td>但尼丁 Dunedin House</td></tr>
-          <tr><td>10.29</td><td>🚌 但尼丁 → 皇后镇 → ✈ 奥克兰（17:30-19:20）</td><td>奥克兰中心智选假日酒店</td></tr>
+          <tr><td>10.28</td><td>🚌 皇后镇 → 但尼丁 · 市区游览</td><td>Dunedin House - Boutique Hotel（飞猪）</td></tr>
+          <tr><td>10.29</td><td>🚌 但尼丁 → 皇后镇 → ✈ 奥克兰（17:30-19:20）</td><td>奥克兰中心智选假日酒店（去哪儿）</td></tr>
           <tr><td>10.30</td><td>奥克兰市区一日游 → 22:00 飞北京</td><td>—</td></tr>
         </tbody>
       </table>
       <div class="highlight-box" style="margin-top:16px;">
-        <strong>🏨 住宿汇总：</strong>奥克兰中心智选假日酒店（2晚，10.18-19 + 10.29）· 基督城 Lylo（1晚）· 佩珀斯蓝水度假酒店（2晚）· 瓦纳卡 Lake Wanaka 公寓（1晚）· 皇后镇 Voco Queenstown by IHG（4晚，10.24-27）· 但尼丁 Dunedin House（1晚，10.28）
+        <strong>🏨 住宿汇总（含平台）：</strong>奥克兰中心智选假日酒店（去哪儿，2晚，10.18-19 + 10.29）· 基督城 Lylo（去哪儿，1晚）· 佩珀斯蓝水度假酒店（去哪儿，2晚）· 瓦纳卡 Lake Wanaka 公寓（AGODA，1晚）· 皇后镇 Voco Queenstown by IHG（飞猪，4晚，10.24-27）· 但尼丁 Dunedin House（飞猪，1晚，10.28）
       </div>
       <div class="warn-box" style="margin-top:14px;">
         <strong>⚠️ 行程重大调整说明：</strong>原 10.28 的 TSS 蒸汽船调整到 <strong>10.27 下午场</strong>；原 10.28 的皇后镇自由活动取消；10.28 改为皇后镇→但尼丁，10.29 但尼丁→皇后镇→飞奥克兰。请务必提前预订 <strong>10.27 下午的 TSS 蒸汽船</strong>和 <strong>10.28/10.29 的 InterCity 巴士</strong>。
@@ -422,9 +455,27 @@
   </div>
 
   <div class="tab-section" id="section-itinerary">
+    <!-- 新增：每日行程快捷导航 -->
+    <div class="day-quick-nav">
+      <a href="#d1">10.17 D1</a>
+      <a href="#d2">10.18 D2</a>
+      <a href="#d3">10.19 D3</a>
+      <a href="#d4">10.20 D4</a>
+      <a href="#d5">10.21 D5</a>
+      <a href="#d6">10.22 D6</a>
+      <a href="#d7">10.23 D7</a>
+      <a href="#d8">10.24 D8</a>
+      <a href="#d9">10.25 D9</a>
+      <a href="#d10">10.26 D10</a>
+      <a href="#d11">10.27 D11</a>
+      <a href="#d12">10.28 D12</a>
+      <a href="#d13">10.29 D13</a>
+      <a href="#d14">10.30 D14</a>
+    </div>
+
     <div class="tl">
 
-      <div class="day">
+      <div class="day" id="d1">
         <div class="day-card">
           <div class="dhead"><span class="dbadge">D1 <b>10.17</b> 周六</span><span class="dtitle">北京 → 奥克兰</span><span class="dtag">飞行</span></div>
           <div class="seg"><span class="t">✈️ 北京 → 奥克兰 · 直飞约 12–13h（已订）</span></div>
@@ -436,7 +487,7 @@
         </div>
       </div>
 
-      <div class="day">
+      <div class="day" id="d2">
         <div class="day-card">
           <div class="dhead"><span class="dbadge">D2 <b>10.18</b> 周日</span><span class="dtitle">16:35 落地奥克兰 · 皇后街夜景</span><span class="dtag">奥克兰 第1晚</span></div>
           <div class="seg">
@@ -453,12 +504,12 @@
           </ul>
           <div class="foot-row">
             <div class="mini food"><b>🍽 晚餐</b>Depot / Elliott Stables 美食广场</div>
-            <div class="mini hotel"><b>🏨 住宿</b>奥克兰中心智选假日酒店（Holiday Inn Express Auckland City Centre）· CBD 核心，步行至皇后街约 5-10 分钟</div>
+            <div class="mini hotel"><b>🏨 住宿</b>奥克兰中心智选假日酒店（去哪儿）· CBD 核心，步行至皇后街约 5-10 分钟</div>
           </div>
         </div>
       </div>
 
-      <div class="day">
+      <div class="day" id="d3">
         <div class="day-card">
           <div class="dhead"><span class="dbadge">D3 <b>10.19</b> 周一</span><span class="dtitle">霍比特人村 + 怀托摩萤火虫洞一日游</span><span class="dtag">北岛精华 · 全天 11-12h</span></div>
           <div class="seg">
@@ -474,12 +525,12 @@
           </ul>
           <div class="foot-row">
             <div class="mini food"><b>📌 预订</b>Klook 搜"奥克兰霍比屯怀托摩萤火虫洞一日游"，或 GetYourGuide 搜 "Hobbiton Waitomo Day Tour"，<b>提前 1 周</b></div>
-            <div class="mini hotel"><b>🏨 住宿</b>奥克兰中心智选假日酒店（第 2 晚）· 约 1361 元/人起（含接送午餐）</div>
+            <div class="mini hotel"><b>🏨 住宿</b>奥克兰中心智选假日酒店（去哪儿，第 2 晚）· 约 1361 元/人起（含接送午餐）</div>
           </div>
         </div>
       </div>
 
-      <div class="day">
+      <div class="day" id="d4">
         <div class="day-card">
           <div class="dhead"><span class="dbadge">D4 <b>10.20</b> 周二</span><span class="dtitle">白天北岛一日游（蓝泉/罗托鲁瓦）→ 20:55 飞基督城</span><span class="dtag">一日游团 · 约 12h</span></div>
           <div class="seg">
@@ -496,12 +547,12 @@
           </ul>
           <div class="foot-row">
             <div class="mini food"><b>🍽 餐饮</b>午餐 Hangi 自助已含；晚餐机场或酒店简餐</div>
-            <div class="mini hotel"><b>🏨 住宿</b>基督城 Lylo 酒店 · 市中心，近 InterCity 巴士站，明早 8:30 巴士顺路</div>
+            <div class="mini hotel"><b>🏨 住宿</b>基督城 Lylo 酒店（去哪儿）· 市中心，近 InterCity 巴士站，明早 8:30 巴士顺路</div>
           </div>
         </div>
       </div>
 
-      <div class="day">
+      <div class="day" id="d5">
         <div class="day-card">
           <div class="dhead"><span class="dbadge">D5 <b>10.21</b> 周三</span><span class="dtitle">基督城 → 蒂卡波湖 · 🌸 鲁冰花</span><span class="dtag">3h35m · 256km</span></div>
           <div class="seg">
@@ -515,14 +566,14 @@
             <li><span class="tm">晚上</span><span>蒂卡波是<b>国际暗天保护区</b>，可在好牧羊人教堂附近观星，或预订 <b>Mt John 天文台观星团</b>（约 150-180 纽币/人）</span></li>
           </ul>
           <div class="foot-row">
-            <div class="mini hotel"><b>🏨 住宿（2 晚）</b>佩珀斯蓝水度假酒店（Peppers Bluewater Resort）· 湖景度假村，步行可达好牧羊人教堂</div>
+            <div class="mini hotel"><b>🏨 住宿（2 晚）</b>佩珀斯蓝水度假酒店（去哪儿）· 湖景度假村，步行可达好牧羊人教堂</div>
             <div class="mini lupin"><b>🌸 鲁冰花</b>蒂卡波湖畔是新西兰最经典鲁冰花拍摄地，10 月下旬属早花期，通常已有成片紫色、粉色鲁冰花</div>
           </div>
           <div class="booking-box"><b>📌 预订：</b>InterCity 官网 intercity.co.nz 购买 FlexiPass（15 小时 199 纽币/人），再登录锁定座位。观星团在 Klook 或 Dark Sky Project 官网搜索 "Mt John Observatory Tour"</div>
         </div>
       </div>
 
-      <div class="day">
+      <div class="day" id="d6">
         <div class="day-card">
           <div class="dhead"><span class="dbadge">D6 <b>10.22</b> 周四</span><span class="dtitle">库克山一日游 · 🌸 普卡基湖鲁冰花</span><span class="dtag">Tekapo Shuttle · 约 8h</span></div>
           <div class="seg">
@@ -539,13 +590,13 @@
           </ul>
           <div class="foot-row">
             <div class="mini food"><b>🍽 餐饮</b>团含水；晚餐回镇上（Kohan 日料 / 炸鱼薯条）；零食在 Four Square 买齐</div>
-            <div class="mini hotel"><b>🏨 住宿</b>佩珀斯蓝水度假酒店（第 2 晚）<b>💡 不用换酒店</b>，行李全程寄存酒店前台</div>
+            <div class="mini hotel"><b>🏨 住宿</b>佩珀斯蓝水度假酒店（去哪儿，第 2 晚）<b>💡 不用换酒店</b>，行李全程寄存酒店前台</div>
           </div>
           <div class="lupin-box"><b>🌸 鲁冰花：</b>普卡基湖北岸和塔斯曼河河岸是鲁冰花集中区域之一，10 月下旬通常比蒂卡波更早开花</div>
         </div>
       </div>
 
-      <div class="day">
+      <div class="day" id="d7">
         <div class="day-card">
           <div class="dhead"><span class="dbadge">D7 <b>10.23</b> 周五</span><span class="dtitle">蒂卡波湖 → 瓦纳卡 · 🌸 沿途花丛</span><span class="dtag">12:50 发车 · Cromwell 换乘</span></div>
           <div class="seg">
@@ -560,13 +611,13 @@
             <li><span class="tm">晚上</span><span>主街晚餐 Franchi / Boat Shed Café（小镇 20:00 后打烊，先吃饭）</span></li>
           </ul>
           <div class="foot-row">
-            <div class="mini hotel"><b>🏨 住宿（瓦纳卡 1 晚）</b>Lake Wanaka and Town at your door 公寓 · 位置极佳，步行可达湖边和镇中心 <b>明早还有半天湖边时间，不用赶</b></div>
+            <div class="mini hotel"><b>🏨 住宿（瓦纳卡 1 晚）</b>Lake Wanaka and Town at your door 公寓（AGODA）· 位置极佳，步行可达湖边和镇中心 <b>明早还有半天湖边时间，不用赶</b></div>
             <div class="mini food"><b>💡 注意</b>蒂卡波到瓦纳卡没有直达 InterCity 巴士，必须在 Cromwell 中转</div>
           </div>
         </div>
       </div>
 
-      <div class="day">
+      <div class="day" id="d8">
         <div class="day-card">
           <div class="dhead"><span class="dbadge">D8 <b>10.24</b> 周六</span><span class="dtitle">瓦纳卡 → 皇后镇 · 🌸 Lindis River 沿途</span><span class="dtag">1h · 110km</span></div>
           <div class="seg">
@@ -579,13 +630,13 @@
             <li><span class="tm">晚餐</span><span>Fergburger 大脸汉堡 NZ$20（避开正午/傍晚高峰）或 Ferg's Bar</span></li>
           </ul>
           <div class="foot-row">
-            <div class="mini hotel"><b>🏨 住宿（4 晚）</b>Voco Queenstown by IHG · 位于镇中心，步行可达湖边和巴士站。⚠️ 订房确认有电梯；<b>米尔福德团到店后看天气选日期</b></div>
+            <div class="mini hotel"><b>🏨 住宿（4 晚）</b>Voco Queenstown by IHG（飞猪）· 位于镇中心，步行可达湖边和巴士站。⚠️ 订房确认有电梯；<b>米尔福德团到店后看天气选日期</b></div>
             <div class="mini lupin"><b>🌸 鲁冰花</b>Lindis River 附近偶有花丛，坐巴士右侧，看到花丛可以记下位置，回程或自由日再来看</div>
           </div>
         </div>
       </div>
 
-      <div class="day">
+      <div class="day" id="d9">
         <div class="day-card">
           <div class="dhead"><span class="dbadge">D9 <b>10.25</b> 周日</span><span class="dtitle">皇后镇：跳伞（或喷射快艇/滑翔伞） + Skyline + Luge</span><span class="dtag">刺激日</span></div>
           <div class="seg">
@@ -600,12 +651,12 @@
           </ul>
           <div class="foot-row">
             <div class="mini food"><b>🍽 提醒</b>跳伞受天气影响大，今天飞不成可与 D9 米尔福德日期互换对冲；<b>不跳伞就玩喷射快艇/滑翔伞，别硬撑</b></div>
-            <div class="mini hotel"><b>🏨 住宿</b>Voco Queenstown by IHG（第 2 晚）</div>
+            <div class="mini hotel"><b>🏨 住宿</b>Voco Queenstown by IHG（飞猪，第 2 晚）</div>
           </div>
         </div>
       </div>
 
-      <div class="day">
+      <div class="day" id="d10">
         <div class="day-card">
           <div class="dhead"><span class="dbadge">D10 <b>10.26</b> 周一</span><span class="dtitle">米尔福德峡湾一日游</span><span class="dtag">06:30 出发 · 全天 12h</span></div>
           <div class="seg">
@@ -619,12 +670,12 @@
           </ul>
           <div class="foot-row">
             <div class="mini food"><b>🍽 预算</b>巴士+游船套票 NZ$220-260/人（greatsights.co.nz / realnz.com / GetYourGuide / 飞猪，<b>买可免费改期票</b>）；升级 fly-cruise NZ$500+/人省 2.5h 车程</div>
-            <div class="mini hotel"><b>🏨 住宿</b>Voco Queenstown by IHG（第 3 晚）</div>
+            <div class="mini hotel"><b>🏨 住宿</b>Voco Queenstown by IHG（飞猪，第 3 晚）</div>
           </div>
         </div>
       </div>
 
-      <div class="day">
+      <div class="day" id="d11">
         <div class="day-card">
           <div class="dhead"><span class="dbadge">D11 <b>10.27</b> 周二</span><span class="dtitle">格林诺奇 / 箭镇 + 🚢 TSS 蒸汽船（下午场）</span><span class="dtag">紧凑日 · 需早起</span></div>
           <div class="seg">
@@ -641,7 +692,7 @@
           </ul>
           <div class="foot-row">
             <div class="mini food"><b>🍽 晚餐</b>TSS 蒸汽船含 BBQ 自助晚餐，非常丰盛</div>
-            <div class="mini hotel"><b>🏨 住宿</b>Voco Queenstown by IHG（第 4 晚）<b>⚠️ 今天行程紧凑，建议格林诺奇/箭镇二选一，确保下午 14:45 回码头</b></div>
+            <div class="mini hotel"><b>🏨 住宿</b>Voco Queenstown by IHG（飞猪，第 4 晚）<b>⚠️ 今天行程紧凑，建议格林诺奇/箭镇二选一，确保下午 14:45 回码头</b></div>
           </div>
           <div class="booking-box">
             <b>📌 预订：</b>TSS 蒸汽船在 realnz.com 或 Klook 搜索 "TSS Earnslaw Walter Peak"，选 <b>下午班次含 BBQ 晚餐</b> 套餐，约 150 纽币/人。格林诺奇在 infotrack.co.nz 订，或箭镇直接坐 12 路公交。
@@ -649,7 +700,7 @@
         </div>
       </div>
 
-      <div class="day">
+      <div class="day" id="d12">
         <div class="day-card">
           <div class="dhead"><span class="dbadge">D12 <b>10.28</b> 周三</span><span class="dtitle">🚌 皇后镇 → 但尼丁 · 市区游览</span><span class="dtag">InterCity 4h50m · 291km</span></div>
           <div class="seg">
@@ -668,7 +719,7 @@
           </ul>
           <div class="foot-row">
             <div class="mini food"><b>🍽 晚餐</b>但尼丁鱼薯条 / Speight's Ale House（但尼丁是 Speight's 啤酒发源地）</div>
-            <div class="mini hotel"><b>🏨 住宿（但尼丁 1 晚）</b>Dunedin House - Boutique Hotel（295 Rattray Street，市中心，部分房间有海景阳台）</div>
+            <div class="mini hotel"><b>🏨 住宿（但尼丁 1 晚）</b>Dunedin House - Boutique Hotel（飞猪，295 Rattray Street，市中心，部分房间有海景阳台）</div>
           </div>
           <div class="booking-box">
             <b>📌 预订：</b>InterCity 巴士在 intercity.co.nz 搜索 "Queenstown to Dunedin"，每日 08:00 一班，<b>务必提前 2 天预订</b>。也可在 Klook 搜 "InterCity Queenstown to Dunedin" 购买。
@@ -679,7 +730,7 @@
         </div>
       </div>
 
-      <div class="day">
+      <div class="day" id="d13">
         <div class="day-card">
           <div class="dhead"><span class="dbadge">D13 <b>10.29</b> 周四</span><span class="dtitle">🚌 但尼丁 → 皇后镇 → ✈ 奥克兰</span><span class="dtag">紧张日 · 务必准时</span></div>
           <div class="seg">
@@ -697,7 +748,7 @@
             <li><span class="tm">20:00</span><span>入住奥克兰中心智选假日酒店；晚餐皇后街或酒店附近解决</span></li>
           </ul>
           <div class="foot-row">
-            <div class="mini hotel"><b>🏨 住宿</b>奥克兰中心智选假日酒店 · CBD 核心，次日去德文港和天空塔都方便</div>
+            <div class="mini hotel"><b>🏨 住宿</b>奥克兰中心智选假日酒店（去哪儿）· CBD 核心，次日去德文港和天空塔都方便</div>
             <div class="mini food"><b>🍽 晚餐</b>奥克兰 CBD 餐厅，或酒店附近简单解决</div>
           </div>
           <div class="booking-box">
@@ -709,7 +760,7 @@
         </div>
       </div>
 
-      <div class="day">
+      <div class="day" id="d14">
         <div class="day-card">
           <div class="dhead"><span class="dbadge">D14 <b>10.30</b> 周五</span><span class="dtitle">奥克兰市区 → 回北京</span><span class="dtag">返程日</span></div>
           <div class="seg">
@@ -821,15 +872,15 @@
 
       <h3 style="font-size:16px;color:#1a5f7a;margin:24px 0 10px;">四、住宿（13晚，<span style="color:#27ae60;">✅ 已全部预订</span>）</h3>
       <table>
-        <thead><tr><th>城市</th><th>晚数</th><th>酒店</th><th>说明</th></tr></thead>
+        <thead><tr><th>城市</th><th>晚数</th><th>酒店（平台）</th><th>说明</th></tr></thead>
         <tbody>
-          <tr><td>奥克兰 CBD</td><td>2晚</td><td>奥克兰中心智选假日酒店</td><td>✅ 已订 · 去哪儿</td></tr>
-          <tr><td>基督城</td><td>1晚</td><td>Lylo 酒店</td><td>✅ 已订 · 去哪儿</td></tr>
-          <tr><td>蒂卡波湖</td><td>2晚</td><td>佩珀斯蓝水度假酒店</td><td>✅ 已订 · 去哪儿</td></tr>
-          <tr><td>瓦纳卡</td><td>1晚</td><td>Lake Wanaka and Town at your door 公寓</td><td>✅ 已订 · AGODA</td></tr>
-          <tr><td>皇后镇</td><td>4晚</td><td>Voco Queenstown by IHG</td><td>✅ 已订 · 飞猪（10.24-27）</td></tr>
-          <tr><td>🆕 但尼丁</td><td>1晚</td><td>Dunedin House - Boutique Hotel</td><td>✅ 已订 · 飞猪（10.28）</td></tr>
-          <tr><td>奥克兰 CBD</td><td>1晚</td><td>奥克兰中心智选假日酒店</td><td>✅ 已订 · 去哪儿（10.29）</td></tr>
+          <tr><td>奥克兰 CBD</td><td>2晚</td><td>奥克兰中心智选假日酒店（去哪儿）</td><td>✅ 已订</td></tr>
+          <tr><td>基督城</td><td>1晚</td><td>Lylo 酒店（去哪儿）</td><td>✅ 已订</td></tr>
+          <tr><td>蒂卡波湖</td><td>2晚</td><td>佩珀斯蓝水度假酒店（去哪儿）</td><td>✅ 已订</td></tr>
+          <tr><td>瓦纳卡</td><td>1晚</td><td>Lake Wanaka and Town at your door 公寓（AGODA）</td><td>✅ 已订</td></tr>
+          <tr><td>皇后镇</td><td>4晚</td><td>Voco Queenstown by IHG（飞猪）</td><td>✅ 已订（10.24-27）</td></tr>
+          <tr><td>🆕 但尼丁</td><td>1晚</td><td>Dunedin House - Boutique Hotel（飞猪）</td><td>✅ 已订（10.28）</td></tr>
+          <tr><td>奥克兰 CBD</td><td>1晚</td><td>奥克兰中心智选假日酒店（去哪儿）</td><td>✅ 已订（10.29）</td></tr>
         </tbody>
       </table>
       <div class="highlight-box" style="margin-top:10px;"><strong>✅ 住宿已全部预订：</strong>奥克兰 3 晚（10.18-19 + 10.29）· 基督城 1 晚 · 蒂卡波 2 晚 · 瓦纳卡 1 晚 · 皇后镇 4 晚 · 但尼丁 1 晚。请以各平台实际支付金额替换预算。</div>
