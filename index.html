@@ -57,13 +57,62 @@
   }
 
   .mapbox {
+    position: relative;
     display: flex; align-items: center; justify-content: center;
     background: linear-gradient(180deg, #e8f4fa 0%, #dceef5 100%);
     border-radius: 18px; padding: 16px; border: 1px solid #cfe5ee;
     overflow-x: auto;
   }
-  .mapbox svg { width: 100%; max-width: 900px; height: auto; display: block; }
-  @media (max-width: 900px) { .mapbox svg { max-width: 100%; min-width: 680px; } }
+  .mapLegend svg{ width:38px; height:12px; flex:none; display:block; }
+
+  /* ---------- 真实地图（Leaflet） ---------- */
+  #nzMap{ height: 700px; border-radius: 14px; border: 1px solid #cfe5ee;
+    background: #eef2f5; z-index: 1; }
+  .leaflet-tile-pane{ filter: saturate(.55) brightness(1.08) contrast(.9); opacity:.9; }
+
+  /* 四种交通方式的流动动画（虚线短划沿线方向流动） */
+  @keyframes nzF12{ to{ stroke-dashoffset:-24; } }
+  @keyframes nzF22{ to{ stroke-dashoffset:-44; } }
+  @keyframes nzF24{ to{ stroke-dashoffset:-48; } }
+  @keyframes nzF10{ to{ stroke-dashoffset:-20; } }
+  path.nz-flight { stroke-dasharray:2 10; animation: nzF12 1.1s linear infinite; }
+  path.nz-busflow{ stroke-dasharray:10 14; animation: nzF24 .9s  linear infinite; }
+  path.nz-charter{ stroke-dasharray:12 10; animation: nzF22 1.4s linear infinite; }
+  path.nz-day    { stroke-dasharray:2 8;  animation: nzF10 2.2s linear infinite; }
+
+  /* 城市与景点标签 */
+  .leaflet-tooltip.cityTip{ background:transparent; border:none; box-shadow:none; padding:0;
+    font-weight:800; font-size:13px; color:#0f2b33;
+    text-shadow:-1.5px -1.5px 0 #fff,1.5px -1.5px 0 #fff,-1.5px 1.5px 0 #fff,1.5px 1.5px 0 #fff,0 0 6px #fff; }
+  .leaflet-tooltip.cityTip::before{ display:none !important; }
+  .leaflet-tooltip.cityTip .sub{ display:block; font-size:10.5px; font-weight:600; color:#4a6a74; }
+  .leaflet-tooltip.spotTip{ background:transparent; border:none; box-shadow:none; padding:0;
+    font-weight:600; font-size:10.5px; color:#2d7d5f;
+    text-shadow:-1.2px -1.2px 0 #fff,1.2px -1.2px 0 #fff,-1.2px 1.2px 0 #fff,1.2px 1.2px 0 #fff; }
+  .leaflet-tooltip.spotTip::before{ display:none !important; }
+  .leaflet-tooltip.noteTip{ background:transparent; border:none; box-shadow:none; padding:0;
+    font-size:10.5px; color:#7a8a98; font-style:italic;
+    text-shadow:-1.2px -1.2px 0 #fff,1.2px -1.2px 0 #fff,-1.2px 1.2px 0 #fff,1.2px 1.2px 0 #fff; }
+  .leaflet-tooltip.noteTip::before{ display:none !important; }
+  .modeTag{ font-size:11.5px; font-weight:700; white-space:nowrap;
+    text-shadow:-1.5px -1.5px 0 #fff,1.5px -1.5px 0 #fff,-1.5px 1.5px 0 #fff,1.5px 1.5px 0 #fff,0 0 6px #fff;
+    pointer-events:none; }
+
+  /* 图例 */
+  .mapLegend{ position:absolute; top:12px; left:12px; z-index:1000;
+    background:rgba(255,255,255,.94); border:1px solid #cfe5ee; border-radius:10px;
+    padding:10px 14px; font-size:11.5px; color:#2c5f6f; box-shadow:0 2px 10px rgba(0,0,0,.12);
+    line-height:2; }
+  .mapLegend .lgTitle{ font-weight:800; color:#0f4c5c; margin-bottom:2px; }
+  .mapLegend .lgRow{ display:flex; align-items:center; gap:8px; }
+  .mapLegend svg{ display:block; }
+  path.lg-flight { stroke:#e67e22; stroke-width:3; stroke-dasharray:2 10; stroke-linecap:round; fill:none; animation: nzF12 1.1s linear infinite; }
+  path.lg-bus    { stroke:#1273a3; stroke-width:4; fill:none; animation:none; }
+  path.lg-busflow{ stroke:#fff;   stroke-width:2; stroke-dasharray:10 14; fill:none; animation: nzF24 .9s  linear infinite; }
+  path.lg-charter{ stroke:#8e44ad; stroke-width:3; stroke-dasharray:12 10; stroke-linecap:round; fill:none; animation: nzF22 1.4s linear infinite; }
+  path.lg-day    { stroke:#8aa3ad; stroke-width:2.5; stroke-dasharray:2 8; stroke-linecap:round; fill:none; animation: nzF10 2.2s linear infinite; }
+  .lg-dot{ width:10px; height:10px; border-radius:50%; background:#0f4c5c; border:2px solid #fff; box-shadow:0 0 0 1px #cfe5ee; flex:none; }
+  .lg-spot{ width:8px; height:8px; border-radius:50%; background:#2d7d5f; flex:none; }
 
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
   thead th {
@@ -327,135 +376,16 @@
     <div class="route-section">
       <h2><span class="no">2</span>整体行程路线图</h2>
       <div class="mapbox">
-        <svg viewBox="0 0 620 780" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,'PingFang SC',sans-serif">
-          <rect x="0" y="0" width="620" height="780" rx="18" fill="#e8f4fa"/>
-          <text x="310" y="28" text-anchor="middle" font-size="15" font-weight="700" fill="#0f4c5c">新西兰行程路线图 · 2026.10.17 - 10.30</text>
-          <text x="112" y="330" font-size="13" fill="#a3bfcc" font-style="italic" letter-spacing="4">塔 斯 曼 海</text>
-          <text x="548" y="300" font-size="13" fill="#a3bfcc" font-style="italic">南太平洋</text>
-          <g transform="translate(56,86)">
-            <line x1="0" y1="14" x2="0" y2="-12" stroke="#5f7480" stroke-width="2"/>
-            <path d="M0,-20 L5,-7 L-5,-7 Z" fill="#5f7480"/>
-            <text x="0" y="34" font-size="12" fill="#5f7480" text-anchor="middle">北</text>
-          </g>
-
-          <path d="M283,48 C298,56 316,66 332,80 C342,92 350,108 356,126 C360,138 362,150 364,160 C368,168 372,172 376,176 C384,184 392,190 402,194 C410,186 417,172 424,158 C431,168 436,180 440,196 C444,210 452,222 464,230 C488,236 512,230 534,224 C540,222 544,220 547,220 C541,236 532,252 524,266 C516,278 508,288 500,298 C494,310 490,318 486,326 C472,338 456,348 440,358 C424,370 410,386 400,400 C392,406 384,408 378,408 L396,420 C384,424 372,420 366,412 C362,404 364,394 366,384 C364,372 362,360 358,348 C350,334 342,326 336,318 C332,314 331,310 332,306 C333,296 334,288 336,280 C342,268 348,260 354,252 C364,242 372,238 378,234 C376,222 372,208 368,196 C366,190 364,186 363,182 C358,172 354,160 350,148 C344,132 336,114 326,98 C318,86 306,72 296,60 C291,55 287,51 283,48 Z" fill="#cfe3d2" stroke="#9dbfa4" stroke-width="2"/>
-          <path d="M313,362 C305,366 298,370 293,373 C282,380 268,388 254,400 C244,410 238,419 236,428 C228,452 218,464 206,478 C192,502 176,510 163,518 C142,530 128,536 119,540 C105,548 94,560 86,574 C77,590 70,606 66,624 C62,642 68,660 80,674 C88,683 100,690 114,691 C132,692 150,686 163,672 C172,663 178,655 185,647 L198,653 C203,646 209,638 216,628 C224,615 228,600 222,586 C224,572 232,562 244,560 C258,558 275,552 292,544 C304,548 312,540 306,528 C298,518 290,510 283,502 C294,488 306,474 318,464 C330,452 340,438 347,425 C340,408 328,394 314,384 C306,378 298,375 293,373 Z" fill="#cfe3d2" stroke="#9dbfa4" stroke-width="2"/>
-          <ellipse cx="54" cy="712" rx="24" ry="14" fill="#cfe3d2" stroke="#9dbfa4" stroke-width="2"/>
-
-          <g fill="#bfe0ef" stroke="#9cc8dd" stroke-width="0.8">
-            <ellipse cx="98" cy="610" rx="8" ry="4" transform="rotate(-40 98 610)"/>
-            <ellipse cx="133" cy="590" rx="7" ry="3.5" transform="rotate(-25 133 590)"/>
-            <ellipse cx="172" cy="555" rx="8" ry="3.5" transform="rotate(-20 172 555)"/>
-          </g>
-
-          <path d="M377,408 L326,402" stroke="#8e9aa2" stroke-width="1.6" stroke-dasharray="3 4"/>
-          <circle cx="326" cy="402" r="3" fill="#8e9aa2"/>
-          <text x="352" y="438" font-size="10" fill="#9db8c4" font-style="italic">库克海峡（渡轮·本行程不乘）</text>
-
-          <path d="M373,175 C300,260 160,440 102,600" stroke="#e67e22" stroke-width="3" stroke-dasharray="8 6" fill="none" opacity="0.85"/>
-          <text x="243" y="372" font-size="11" font-weight="600" fill="#b35c12" transform="rotate(56 243 372)">✈ 10.29 · 1h50m</text>
-          <path d="M280,522 C330,420 362,280 373,175" stroke="#e67e22" stroke-width="3" stroke-dasharray="8 6" fill="none" opacity="0.85"/>
-          <text x="345" y="308" font-size="11" font-weight="600" fill="#b35c12" text-anchor="end" transform="rotate(-19 345 308)">✈ 10.20 · 1h25m</text>
-
-          <path d="M102,600 C110,593 116,589 124,582 C134,566 150,540 166,525 C172,533 178,540 184,546 C210,544 248,534 280,522" stroke="#1273a3" stroke-width="3.2" fill="none"/>
-          <text x="140" y="618" font-size="10.5" font-weight="600" fill="#0e5a7a">🚌 1h</text>
-          <text x="98" y="554" font-size="10.5" font-weight="600" fill="#0e5a7a" text-anchor="middle">Cromwell 换乘 3h</text>
-          <text x="232" y="548" font-size="10.5" font-weight="600" fill="#0e5a7a">🚌 3.5h</text>
-
-          <path d="M102,600 C88,616 72,632 56,646" stroke="#8e44ad" stroke-width="3" stroke-dasharray="6 4" fill="none" opacity="0.8"/>
-          <text x="60" y="622" font-size="10.5" font-weight="600" fill="#8e44ad">🚐 包车 10.28</text>
-          <path d="M56,646 C72,632 88,616 102,600" stroke="#8e44ad" stroke-width="2.5" stroke-dasharray="4 4" fill="none" opacity="0.5"/>
-          <text x="60" y="662" font-size="10" font-weight="600" fill="#8e44ad">🚐 包车 10.29</text>
-
-          <g fill="#1273a3">
-            <path d="M0,-4.5 L9,0 L0,4.5 Z" transform="translate(234,537) rotate(166)"/>
-            <path d="M0,-4.5 L9,0 L0,4.5 Z" transform="translate(176,535) rotate(-131)"/>
-            <path d="M0,-4.5 L9,0 L0,4.5 Z" transform="translate(146,556) rotate(126)"/>
-            <path d="M0,-4.5 L9,0 L0,4.5 Z" transform="translate(112,592) rotate(141)"/>
-          </g>
-          <g fill="#e67e22">
-            <path d="M0,-4.5 L9,0 L0,4.5 Z" transform="translate(310,430) rotate(105)"/>
-            <path d="M0,-4.5 L9,0 L0,4.5 Z" transform="translate(160,470) rotate(-57)"/>
-          </g>
-          <g fill="#8e44ad">
-            <path d="M0,-4.5 L9,0 L0,4.5 Z" transform="translate(74,630) rotate(58)"/>
-            <path d="M0,-4.5 L9,0 L0,4.5 Z" transform="translate(76,618) rotate(-58)"/>
-          </g>
-
-          <g stroke="#8aa3ad" stroke-width="2" stroke-dasharray="2.5 4" fill="none">
-            <path d="M373,175 C368,210 378,235 391,247 C402,242 412,232 423,224 C412,210 395,188 373,175"/>
-            <path d="M423,224 L441,241"/>
-          </g>
-          <text x="428" y="292" font-size="10.5" fill="#5f7480" text-anchor="middle">D2·D3 北岛一日游</text>
-
-          <g font-size="10.5" fill="#2d7d5f">
-            <circle cx="391" cy="247" r="3.5" fill="#2d7d5f"/><text x="398" y="251">怀托摩萤火虫洞</text>
-            <circle cx="423" cy="224" r="3.5" fill="#2d7d5f"/><text x="430" y="220">霍比特人村</text>
-            <circle cx="441" cy="241" r="3.5" fill="#2d7d5f"/><text x="449" y="245">罗托鲁瓦</text>
-          </g>
-          <circle cx="377" cy="408" r="4.5" fill="#8e9aa2"/>
-          <text x="385" y="412" font-size="10.5" fill="#5f7480">惠灵顿</text>
-
-          <circle cx="317" cy="465" r="3.5" fill="#8e9aa2"/>
-          <text x="325" y="469" font-size="10" fill="#7a8a98">凯库拉·观鲸(可选)</text>
-
-          <path d="M102,600 C90,612 75,628 60,638" stroke="#8aa3ad" stroke-width="1.8" stroke-dasharray="2.5 4" fill="none"/>
-          <path d="M102,600 C92,592 82,584 74,578" stroke="#8aa3ad" stroke-width="1.8" stroke-dasharray="2.5 4" fill="none"/>
-          <path d="M102,600 C110,596 120,592 128,590" stroke="#8aa3ad" stroke-width="1.8" stroke-dasharray="2.5 4" fill="none"/>
-
-          <path d="M184,546 C176,540 170,534 166,528" stroke="#8aa3ad" stroke-width="1.8" stroke-dasharray="2.5 4" fill="none"/>
-          <path d="M166,528 C170,534 176,540 184,546" stroke="#8aa3ad" stroke-width="1.8" stroke-dasharray="2.5 4" fill="none" opacity="0.5"/>
-
-          <circle cx="58" cy="640" r="3.5" fill="#2d7d5f"/>
-          <text x="58" y="654" font-size="10" fill="#2d7d5f" text-anchor="middle">米尔福德峡湾</text>
-
-          <circle cx="72" cy="576" r="3.5" fill="#2d7d5f"/>
-          <text x="72" y="566" font-size="10" fill="#2d7d5f" text-anchor="middle">格林诺奇</text>
-
-          <circle cx="130" cy="590" r="3.5" fill="#2d7d5f"/>
-          <text x="140" y="592" font-size="10" fill="#2d7d5f">箭镇</text>
-
-          <circle cx="50" cy="656" r="4" fill="#8e44ad"/>
-          <text x="50" y="672" font-size="11" fill="#8e44ad" font-weight="700" text-anchor="middle">但尼丁</text>
-
-          <circle cx="280" cy="522" r="6" fill="#0f4c5c" stroke="#fff" stroke-width="2"/>
-          <text x="290" y="518" font-size="11.5" font-weight="700" fill="#1a2b32">基督城</text>
-          <text x="290" y="532" font-size="10" fill="#5f7480" font-weight="600">10.20-21</text>
-
-          <polygon points="166,522 160,532 172,532" fill="#2c3e50" stroke="#fff" stroke-width="1.5"/>
-          <text x="178" y="526" font-size="11" font-weight="700" fill="#1a2b32">库克山</text>
-          <text x="178" y="538" font-size="10" fill="#5f7480" font-weight="600">D5 一日游</text>
-
-          <circle cx="184" cy="552" r="6" fill="#0f4c5c" stroke="#fff" stroke-width="2"/>
-          <text x="194" y="548" font-size="11.5" font-weight="700" fill="#1a2b32">特卡波</text>
-          <text x="194" y="562" font-size="10" fill="#5f7480" font-weight="600">10.21-23</text>
-
-          <circle cx="124" cy="582" r="6" fill="#0f4c5c" stroke="#fff" stroke-width="2"/>
-          <text x="110" y="576" font-size="11.5" font-weight="700" fill="#1a2b32" text-anchor="end">瓦纳卡</text>
-          <text x="110" y="590" font-size="10" fill="#5f7480" font-weight="600" text-anchor="end">10.23-24</text>
-
-          <circle cx="102" cy="604" r="7" fill="#e67e22" stroke="#fff" stroke-width="2.5"/>
-          <text x="102" y="626" font-size="12" font-weight="700" fill="#c0580a" text-anchor="middle">皇后镇</text>
-          <text x="102" y="640" font-size="10.5" fill="#c0580a" font-weight="600" text-anchor="middle">10.24-28 / 10.29</text>
-
-          <circle cx="373" cy="175" r="6.5" fill="#0f4c5c" stroke="#fff" stroke-width="2"/>
-          <text x="388" y="172" font-size="12" font-weight="700" fill="#1a2b32">奥克兰</text>
-          <text x="388" y="186" font-size="10.5" fill="#5f7480" font-weight="600">10.18-20 / 10.29</text>
-
-          <g font-size="11" fill="#1a2b32">
-            <rect x="430" y="468" width="180" height="140" rx="10" fill="#ffffff" opacity="0.95" stroke="#cfe5ee"/>
-            <line x1="442" y1="490" x2="472" y2="490" stroke="#e67e22" stroke-width="3" stroke-dasharray="7 5"/>
-            <text x="480" y="494" font-size="10.5">航班 · 奥克兰进出</text>
-            <line x1="442" y1="514" x2="472" y2="514" stroke="#1273a3" stroke-width="3"/>
-            <text x="480" y="518" font-size="10.5">长途巴士（含时长）</text>
-            <line x1="442" y1="538" x2="472" y2="538" stroke="#8e44ad" stroke-width="3" stroke-dasharray="5 4"/>
-            <text x="480" y="542" font-size="10.5">但尼丁往返（包车两日游）</text>
-            <line x1="442" y1="562" x2="472" y2="562" stroke="#8aa3ad" stroke-width="2" stroke-dasharray="2.5 4"/>
-            <text x="480" y="566" font-size="10.5">一日游 · 当天往返</text>
-            <circle cx="457" cy="586" r="5" fill="#0f4c5c"/><text x="480" y="590" font-size="10.5">过夜城市 + 日期</text>
-            <text x="446" y="606" fill="#2d7d5f" font-size="12">●</text><text x="480" y="606" font-size="10.5">景点（当天往返）</text>
-          </g>
-        </svg>
+        <div id="nzMap" style="width:100%;"></div>
+        <div class="mapLegend">
+          <div class="lgTitle">图例 · 交通方式</div>
+          <div class="lgRow"><svg width="38" height="12"><path d="M2,6 L36,6" class="lg-flight"/></svg>✈️ 航班 · 奥克兰进出</div>
+          <div class="lgRow"><svg width="38" height="12"><path d="M2,6 L36,6" class="lg-bus"/><path d="M2,6 L36,6" class="lg-busflow"/></svg>🚌 长途巴士（流动虚线为方向）</div>
+          <div class="lgRow"><svg width="38" height="12"><path d="M2,6 L36,6" class="lg-charter"/></svg>🚐 包车 · 皇后镇⇄但尼丁</div>
+          <div class="lgRow"><svg width="38" height="12"><path d="M2,6 L36,6" class="lg-day"/></svg>一日游 · 当天往返</div>
+          <div class="lgRow"><span class="lg-dot"></span>过夜城市 + 日期</div>
+          <div class="lgRow"><span class="lg-spot"></span>景点（当天往返）</div>
+        </div>
       </div>
       <div class="highlight-box" style="margin-top:20px;">
         <strong>💡 路线说明：</strong>北岛以奥克兰为基地，10.19 霍比特人村+怀托摩，10.20 罗托鲁瓦+蓝泉，当晚飞基督城。南岛从基督城出发，经蒂卡波湖（往返库克山）、瓦纳卡，抵达皇后镇。10.24–10.27 在皇后镇玩滑翔伞+缆车、米尔福德峡湾、格林诺奇+箭镇。10.28 包车前往但尼丁游览市区，10.29 包车游览奥塔哥半岛及摩拉基大圆石后前往皇后镇机场。
@@ -1048,6 +978,162 @@
   </div>
 
 </div>
+
+<link rel="stylesheet" href="leaflet.css">
+<script src="leaflet.js"></script>
+<script>
+  // ---------- 新西兰真实路线图：Leaflet + CARTO 浅色底图 ----------
+  (function(){
+    const nzMap = L.map('nzMap', { zoomControl:false, attributionControl:true });
+    L.control.zoom({ position:'topright' }).addTo(nzMap);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      attribution: 'Tiles &copy; Esri'
+    }).addTo(nzMap);
+
+    // 关键点（[纬度, 经度]）
+    const P = {
+      akl:[-36.85,174.76],  hob:[-37.87,175.68],  wai:[-38.26,175.10],  rot:[-38.14,176.25],
+      wlg:[-41.29,174.78],  chc:[-43.53,172.64],  kai:[-42.40,173.68],
+      tek:[-44.00,170.48],  cook:[-43.73,170.10], wan:[-44.70,169.15],  qt:[-45.03,168.66],
+      gle:[-44.85,168.39],  arr:[-44.94,168.83],  mil:[-44.67,167.93],  dun:[-45.87,170.50],
+      moe:[-45.35,170.83],  oma:[-45.10,170.97],  omar:[-44.49,169.97], tar:[-44.77,169.43],
+      crom:[-45.04,169.20], alex:[-45.25,169.30], balc:[-46.24,169.75],
+      ger:[-44.10,171.24],  fair:[-44.10,170.83], twiz:[-44.27,170.10], lind:[-44.68,169.80],
+      rak:[-43.77,172.13],  ota:[-45.82,170.62]
+    };
+
+    // 各交通方式路线（点序即行进方向，虚线沿线流动指示方向）
+    const ROUTES = {
+      flight: [
+        { pts:[P.akl,[-40.2,173.9],P.chc], tag:'✈️ 10.20 · 1h25m' },
+        { pts:[P.qt,[-41.0,171.6],P.akl],  tag:'✈️ 10.29 · 1h50m' }
+      ],
+      bus: [
+        { pts:[P.chc,P.rak,P.ger,P.fair,P.tek], tag:'🚌 3h', tagIdx:1 },
+        { pts:[P.tek,P.twiz,P.omar,P.lind,P.tar,P.wan], tag:'🚌 2.5h', tagIdx:4 },
+        { pts:[P.wan,P.crom,P.qt], tag:'🚌 1h' }
+      ],
+      charter: [
+        { pts:[P.qt,P.crom,P.alex,P.balc,P.dun], tag:'🚐 包车 10.28' },
+        { pts:[P.dun,P.ota,P.moe,P.oma,P.omar,P.tar,P.crom,P.qt], tag:'🚐 包车 10.29 · 顺游摩拉基大圆石' }
+      ],
+      day: [
+        { pts:[P.akl,P.hob,P.wai,P.rot,P.akl] },
+        { pts:[P.tek,P.cook] },
+        { pts:[P.qt,P.gle] },
+        { pts:[P.qt,P.arr] },
+        { pts:[P.qt,[-44.95,168.15],P.mil] }
+      ]
+    };
+
+    const MODE_STYLE = {
+      flight:  { color:'#e67e22', weight:3.5, dashArray:'2 10' },
+      bus:     { color:'#1273a3', weight:5 },
+      charter: { color:'#8e44ad', weight:4, dashArray:'12 10' },
+      day:     { color:'#8aa3ad', weight:2.5 }
+    };
+
+    function midOf(pts, idx){
+      if(typeof idx === 'number') return pts[idx];
+      if(pts.length === 2){
+        return [(pts[0][0]+pts[1][0])/2, (pts[0][1]+pts[1][1])/2];
+      }
+      return pts[Math.floor(pts.length/2)];
+    }
+
+    Object.keys(ROUTES).forEach(function(mode){
+      ROUTES[mode].forEach(function(r){
+        // 白色描边托底（航班与一日游细线不加，保持轻盈）
+        if(mode === 'bus' || mode === 'charter'){
+          L.polyline(r.pts, { color:'#fff', weight:9, opacity:.9,
+            lineCap:'round', lineJoin:'round', interactive:false }).addTo(nzMap);
+        }
+        const st = MODE_STYLE[mode];
+        L.polyline(r.pts, { color:st.color, weight:st.weight, opacity:.95,
+          dashArray:st.dashArray, lineCap:'round', lineJoin:'round',
+          interactive:false, className:'nz-'+mode }).addTo(nzMap);
+        // 巴士：叠加白色流动虚线指示方向
+        if(mode === 'bus'){
+          L.polyline(r.pts, { color:'#fff', weight:2.2, opacity:.95,
+            interactive:false, className:'nz-busflow' }).addTo(nzMap);
+        }
+        // 交通方式标签
+        if(r.tag){
+          const m = midOf(r.pts, r.tagIdx);
+          L.marker(m, { interactive:false, keyboard:false,
+            icon: L.divIcon({ className:'', iconSize:[0,0],
+              html:'<div class="modeTag" style="transform:translate(-50%,-50%);color:' + st.color + '">' + r.tag + '</div>' })
+          }).addTo(nzMap);
+        }
+      });
+    });
+
+    // 过夜城市
+    const CITIES = [
+      { p:P.akl, n:'奥克兰', d:'10.18–20 / 10.29', dir:'right', big:true },
+      { p:P.chc, n:'基督城', d:'10.20–21',          dir:'right' },
+      { p:P.tek, n:'特卡波', d:'10.21–23',          dir:'top'   },
+      { p:P.wan, n:'瓦纳卡', d:'10.23–24',          dir:'top'   },
+      { p:P.qt,  n:'皇后镇', d:'10.24–28 / 10.29',  dir:'bottom', big:true },
+      { p:P.dun, n:'但尼丁', d:'10.28–29 · 包车往返', dir:'right' }
+    ];
+    CITIES.forEach(function(c){
+      L.circleMarker(c.p, { radius:c.big?7:6, color:'#fff', weight:2.5,
+        fillColor:'#0f4c5c', fillOpacity:1 }).addTo(nzMap);
+      L.tooltip({ permanent:true, direction:c.dir, className:'cityTip', opacity:1 })
+        .setLatLng(c.p)
+        .setContent(c.n + '<span class="sub">' + c.d + '</span>')
+        .addTo(nzMap);
+    });
+
+    // 当天往返景点
+    const SPOTS = [
+      { p:P.hob,  n:'霍比特人村', dir:'top' },
+      { p:P.wai,  n:'怀托摩萤火虫洞', dir:'top' },
+      { p:P.rot,  n:'罗托鲁瓦', dir:'right' },
+      { p:P.cook, n:'库克山 · 一日游', dir:'left' },
+      { p:P.gle,  n:'格林诺奇', dir:'left' },
+      { p:P.arr,  n:'箭镇', dir:'top' },
+      { p:P.mil,  n:'米尔福德峡湾', dir:'top' },
+      { p:P.moe,  n:'摩拉基大圆石', dir:'right' }
+    ];
+    SPOTS.forEach(function(s){
+      L.circleMarker(s.p, { radius:3.5, color:'#fff', weight:1.5,
+        fillColor:'#2d7d5f', fillOpacity:1 }).addTo(nzMap);
+      L.tooltip({ permanent:true, direction:s.dir || 'top', className:'spotTip', opacity:1 })
+        .setLatLng(s.p).setContent(s.n).addTo(nzMap);
+    });
+
+    // 参考点（不前往 / 可选）
+    const NOTES = [
+      { p:P.wlg, n:'惠灵顿 · 库克海峡渡轮（本行程不乘）', dir:'right' },
+      { p:P.kai, n:'凯库拉 · 观鲸（可选）' }
+    ];
+    NOTES.forEach(function(s){
+      L.circleMarker(s.p, { radius:3.5, color:'#fff', weight:1.5,
+        fillColor:'#8e9aa2', fillOpacity:1 }).addTo(nzMap);
+      L.tooltip({ permanent:true, direction:s.dir || 'top', className:'noteTip', opacity:1 })
+        .setLatLng(s.p).setContent(s.n).addTo(nzMap);
+    });
+
+    // 视野适配
+    const ALL = Object.values(P);
+    function fitAll(){
+      nzMap.invalidateSize();
+      nzMap.fitBounds(L.latLngBounds(ALL).pad(0.09), { maxZoom:8 });
+    }
+    fitAll();
+    setTimeout(fitAll, 400);
+    if(window.ResizeObserver){
+      new ResizeObserver(function(){ nzMap.invalidateSize(); }).observe(document.getElementById('nzMap'));
+    }
+    // 切换 Tab 时重算尺寸
+    document.querySelectorAll('.tab').forEach(function(t){
+      t.addEventListener('click', function(){ setTimeout(fitAll, 80); });
+    });
+  })();
+</script>
 
 <script>
   (function() {
